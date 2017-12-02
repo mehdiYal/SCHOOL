@@ -1,0 +1,136 @@
+navbar:
+  link:
+    link1: اضافة مدير
+    link2: قائمة المدراء
+    link3: اضافة استاذ
+    link4: قائمة الاساتذة
+    link5: اضافة تلميذ
+    link6: قائمة التلاميذ
+    link7: اضافن ولي
+    link8: قائمة الاولياء
+    link9: اضافة مدرسة
+    link10: قائمة المدارس
+    link11: حسابي
+    link12: خروج
+    link13: دخول
+    link14: اضافة مادة
+    link15: قائمة المواد
+    link16: مدرستي
+    link17: اضافة سنة
+    link18: قائمة السنوات
+  dropdown:
+    dropdown1: المدراء
+    dropdown2: الاساتذة
+    dropdown3: التلاميذ
+    dropdown4: الاولياء
+    dropdown5: المدارس
+    dropdown6: المواد
+    dropdown7: السنوات
+
+form:
+    name: اللقب
+    lastName: الاسم
+    nameM: لقب الام
+    lastNameM: اسم الام
+    cin: CIN
+    jobP: مهنة الاب
+    jobM: مهنة الام
+    adresse: العنوان
+    codePostal: Code postal
+    tel: رقم الهاتف
+    mobile: رقم النقال
+    genre: الجنس
+    dateN: تاريخ الميلاد
+    lieuN: مكهن الميلاد
+    dateE: تاريخ الدخول
+    typeC: نوع العقد
+    comment: التعليق
+    nationalite: الجنسية
+    ecoleID: رمز المدرسة
+    groupeSanguin: زمرة الدم
+    photo: الصورة
+
+edit: تعديل
+add: اضافة
+admin: مدير
+student: تلميذ
+teacher: استاذ
+parent: ولي
+school: مدرسة
+admins: المدراء
+students: التلاميذ
+teachers: الاساتذة
+parents: الاولياء
+schools: المدارس
+list: قائمة
+delete: حذف
+profile: الحساب
+matiere: مادة
+matieres: مادة
+annee: سنة 
+classe: القسم
+classes: القسم
+niveau: المستوى
+note: النتائج
+
+
+eleve:
+    title: الطالب
+    show: عرض الطالب
+    nom: Nom de l'élève
+    prenom: Prénom de l'élève
+    nom_prenom: Nom et prénom de l'élève
+
+devoir:
+    maison:
+        title: واجب منزلي
+        add: إضافة واجب منزلي
+
+evaluation:
+    title: تقييم
+    add: إضافة تقييم
+
+cours: 
+    title: الدرس
+    name: اسم الدروس
+    add: إضافة درس
+    list: قائمة الدروس
+    support: 
+        title: دعم بالطبع
+        add: إضافة الدعم
+    annexe: 
+        title: كتب و مراجع خارجية
+        add: إضافة ملحق
+
+message:
+    title: رسالة
+    send: إرسال رسالة
+
+global:
+    update: تحديث
+    program: جدول أوقات
+    add: اضافة
+    delete: حذف
+    edit: تعديل
+    show: عرض
+    search: بحث
+    action: فعل
+    type: Type
+    annual:
+        program: البرنامج السنوي
+
+absence:
+    title: الغيابات
+    add: إضافة الغيابات
+    manage: إدارة الغيابات
+    date: Date d'absence
+
+retard:
+    title: Retard
+    add: Ajouter un retard
+    manage: Gérer les retards
+    date: Date de retard
+
+travail: 
+    title: Travail Réalisé
+    add: Ajouter un travail
