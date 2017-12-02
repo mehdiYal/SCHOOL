@@ -138,7 +138,7 @@ class Absence
     {
         return $this->eleve;
     }
-
+    
     /**
      * Set type
      *
@@ -166,4 +166,5 @@ class Absence
     {
         return $this->type;
     }
+
 }

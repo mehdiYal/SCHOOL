@@ -48,6 +48,7 @@ class MatiereEleve
      */
     private $note;
    
+<<<<<<< HEAD
     /**
      * @var \DateTime
      *
@@ -62,6 +63,8 @@ class MatiereEleve
      */
     private $remarque;
 
+=======
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 
     /**
      * Get id
@@ -168,6 +171,7 @@ class MatiereEleve
     {
         return $this->evaluation;
     }
+<<<<<<< HEAD
 
     /**
      * Set date
@@ -216,4 +220,6 @@ class MatiereEleve
     {
         return $this->remarque;
     }
+=======
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 }

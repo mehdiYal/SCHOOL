@@ -153,3 +153,4 @@ class AdminController extends Controller
         return $this->redirectToRoute('listAdmins');      
     }
 }
+

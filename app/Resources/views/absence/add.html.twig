@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base2.html.twig' %}
 
 {% block body %}
@@ -80,4 +81,31 @@
             });
 </script>
 
+=======
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+	{{ form_start(form) }}
+		<div class="form-group">
+			{{ form_label(form.eleve) }}
+		    {{ form_widget(form.eleve) }}
+		    {{ form_errors(form.eleve) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.date) }}
+		    {{ form_widget(form.date) }}
+		    {{ form_errors(form.date) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.commentaire) }}
+		    {{ form_widget(form.commentaire) }}
+		    {{ form_errors(form.commentaire) }}
+		</div>
+		
+		<button type="submit">Chercher</button>
+	{{ form_end(form) }}
+</div>
+
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 {% endblock %}

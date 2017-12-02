@@ -103,6 +103,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // payment
+        if ('/payment/payment' === $pathinfo) {
+            return array (  '_controller' => 'PaymentBundle\\Controller\\PaymentController::paymentAction',  '_route' => 'payment',);
+        }
+
+        // getPayements
+        if ('/payment/getPayements' === $pathinfo) {
+            return array (  '_controller' => 'PaymentBundle\\Controller\\PaymentController::getPayementsAction',  '_route' => 'getPayements',);
+        }
+
         // addAnnee
         if (preg_match('#^/(?P<_locale>[^/]++)/annee/add$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'addAnnee')), array (  '_controller' => 'SchoolBundle\\Controller\\AnneeController::addAction',));
@@ -274,14 +284,35 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_program_new:
 
+        // programme_new
+        if (preg_match('#^/(?P<_locale>[^/]++)/program/new$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_programme_new;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'programme_new')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::newAction',));
+        }
+        not_programme_new:
+
         // program_show_class
         if (preg_match('#^/(?P<_locale>[^/]++)/program/show/class/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'program_show_class')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showClasseAction',));
         }
 
+        // showClasse
+        if (preg_match('#^/(?P<_locale>[^/]++)/program/show/classe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'showClasse')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showClasseAction',));
+        }
+
         // program_show_enseignant
         if (preg_match('#^/(?P<_locale>[^/]++)/program/show/enseignant/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'program_show_enseignant')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showEnseignantAction',));
+        }
+
+        // showEnseignant
+        if (preg_match('#^/(?P<_locale>[^/]++)/program/show/enseignant/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'showEnseignant')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showEnseignantAction',));
         }
 
         // addSalle
@@ -302,36 +333,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // removeSalle
         if (preg_match('#^/(?P<_locale>[^/]++)/salle/remove/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'removeSalle')), array (  '_controller' => 'SchoolBundle\\Controller\\SalleController::removeAction',));
-        }
-
-        // addSchool
-        if (preg_match('#^/(?P<_locale>[^/]++)/school/add$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'addSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::addAction',));
-        }
-
-        // listSchools
-        if (preg_match('#^/(?P<_locale>[^/]++)/school/list$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'listSchools')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::showAction',));
-        }
-
-        // editSchool
-        if (preg_match('#^/(?P<_locale>[^/]++)/school/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'editSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::editAction',));
-        }
-
-        // removeSchool
-        if (preg_match('#^/(?P<_locale>[^/]++)/school/remove/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'removeSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::removeAction',));
-        }
-
-        // profileSchool
-        if (preg_match('#^/(?P<_locale>[^/]++)/school/profile/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'profileSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::profileAction',));
-        }
-
-        // mySchool
-        if (preg_match('#^/(?P<_locale>[^/]++)/school/mySchool$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'mySchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::mySchoolAction',));
         }
 
         // addTransport

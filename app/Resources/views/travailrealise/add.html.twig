@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base2.html.twig' %}
 
 
@@ -81,4 +82,18 @@
             });
 </script>
 
+=======
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container">
+{% dump(data) %}
+	{{ form_start(form) }}
+		
+		<button type="submit">Valider</button>
+	{{ form_end(form) }}
+</div>
+
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 {% endblock %}

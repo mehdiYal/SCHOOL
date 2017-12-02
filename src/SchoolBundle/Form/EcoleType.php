@@ -25,7 +25,13 @@ class EcoleType extends AbstractType
         ->add('pays')
         ->add('telephone')
         ->add('email',EmailType::class)
+<<<<<<< HEAD
         ->add('dateCreation')
+=======
+        ->add('dateCreation',null,array('label' => 'form.dateN',
+                                            'widget' => 'single_text',
+                                            'html5' => false,))
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
         ->add('informations');
     }
     

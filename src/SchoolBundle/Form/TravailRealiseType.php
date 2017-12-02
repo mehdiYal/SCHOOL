@@ -40,6 +40,7 @@ class TravailRealiseType extends AbstractType
                 },
                 'required' => TRUE,
             ))
+<<<<<<< HEAD
          ->add('date', DateType::class,[
             'attr' => ['class' => 'dp-3 form-control'],
             'widget' => 'single_text',
@@ -48,6 +49,12 @@ class TravailRealiseType extends AbstractType
             )
           ->add('travail', FileType::class, array(
                 'data_class' => null,
+=======
+         ->add('date', DateType::class, array(
+                'required' => true,
+            ))
+          ->add('travail', FileType::class, array(
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
                 'required' => false, 
             ))
          ;

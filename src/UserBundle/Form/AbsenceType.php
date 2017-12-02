@@ -71,5 +71,4 @@ class AbsenceType extends AbstractType
         return 'UserBundle_absence';
     }
 
-     
 }

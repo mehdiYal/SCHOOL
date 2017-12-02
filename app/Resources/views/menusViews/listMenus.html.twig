@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'baseList.html.twig' %}
 
 {% block title %}
@@ -40,4 +41,48 @@
         </table>                                    
     </div>
     
+=======
+{% extends 'baseList.html.twig' %}
+
+{% block title %}
+	{{'list'|trans}} {{'menues'|trans}}
+{% endblock %}
+
+
+{% block bodyList %}
+
+    <div class="table-responsive">
+        <table id="customers2" class="table datatable">
+            <thead>
+                <tr>
+                	<th>ID</th>
+                    <th>Jour</th>
+                    <th>Menu</th>
+                    <th>{{'edit'|trans}}</th>
+                    <th>{{'delete'|trans}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in app.user.ecole.menus %}
+					<tr>
+						<td>{{ menu.id}}</td>
+						<td>{{ menu.jour}}</td>
+						<td>{{ menu.menu}}</td>
+						<td>
+							<a href="{{ path('editMenu',{'id':menu.id})}}">
+								<span class="fa fa-pencil-square-o"></span>
+							</a>
+						</td>
+						<td>
+							<a href="{{ path('removeMenu',{'id':menu.id})}}">
+								<span class="fa fa-trash"></span>
+							</a>
+						</td>
+					</tr>
+                {% endfor %}
+            </tbody>
+        </table>                                    
+    </div>
+    
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 {% endblock %}  

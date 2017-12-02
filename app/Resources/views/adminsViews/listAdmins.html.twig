@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -17,3 +18,59 @@
 	</ol>
 	
 {% endblock %}
+=======
+{% extends 'baseListSuper.html.twig' %}
+
+{% block title %}
+    {{'list'|trans}} {{'admins'|trans}}
+{% endblock %}
+
+{% block bodyList %}
+	 <div class="table-responsive">
+        <table id="customers2" class="table datatable">
+            <thead>
+                <tr>
+                    <th>Nom & Prenom</th>
+                    <th>Pseudo</th>
+                    <th>telephone</th>
+                    <th>{{'edit'|trans}}</th>
+                    <th>{{'delete'|trans}}</th>
+                    <th>{{'profile'|trans}}</th>
+                    <th>{{'school'|trans}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                    {% if (admin.hasRole('ROLE_SUPER_ADMIN')==false) %}
+                    <tr class="{% if (admin.ecole == null)%} danger {% endif %}">
+                        <td>{{ admin.nom}} {{ admin.prenom}}</td>
+                        <td>{{ admin.username}}</td>
+                        <td>{{ admin.telephone}}</td>
+                        <td>
+                            <a href="{{ path('editAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-pencil-square-o"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('removeAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('profileAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-user"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('schoolAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-university"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>                                    
+    </div>
+{% endblock %}
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df

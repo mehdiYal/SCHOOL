@@ -44,6 +44,7 @@
                             </div>
                         </div>                                                                        
                     </li>
+<<<<<<< HEAD
 
                     <li class="active" >
                         <a href="#">
@@ -213,6 +214,82 @@
                     {% endif %}
                     
                     <!-- Fin Menu Navigation pour Administrateur -->
+=======
+                    <li class="active" ><a href="#"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboard</span></a></li>
+                    <li><a href="{{ path('editMySchool',{'id':app.user.ecole.id}) }}"><span class="fa fa-cog"></span> <span class="xn-text">Ecole</span></a></li>
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-graduation-cap"></span> <span class="xn-text">Gestion des Eleves</span></a>
+                        <ul>
+                            <li><a href="{{ path('addEleve') }}"><span class="xn-text">Ajouter Eleve</span></a></li>
+                            <li><a href="{{ path('listEleves') }}"><span class="xn-text">Liste des eleves </span></a></li>
+                        </ul>
+                    </li>
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-male"></span> <span class="xn-text">Gestion des Parents</span></a>
+                        <ul>
+                            <li><a href="{{ path('addParental') }}"><span class="xn-text">Ajouter Parent</span></a></li>
+                            <li><a href="{{ path('listParentals') }}"><span class="xn-text">Liste des Parents </span></a></li>
+                        </ul>
+                    </li>
+                     <li class="xn-openable">
+                        <a href="#"><span class="fa fa-briefcase"></span> <span class="xn-text">Gestion des Enseignants</span></a>
+                        <ul>
+                            <li><a href="{{ path('addEnseignant') }}"><span class="xn-text">Ajouter Enseignant</span></a></li>
+                            <li><a href="{{ path('listEnseignants') }}"><span class="xn-text">Liste des Enseignants </span></a></li>
+                        </ul>
+                    </li>
+                     <!-- <li class="xn-openable">
+                        <a href="#"><span class="fa fa-book"></span> <span class="xn-text">Gestion des Matieres</span></a>
+                        <ul>
+                            <li><a href="#"><span class="xn-text">Ajouter Matiere</span></a></li>
+                            <li><a href="dashboard.html"><span class="xn-text">Liste des Matieres </span></a></li>
+                        </ul>
+                    </li> -->
+                     <li class="xn-openable">
+                        <a href="#"><span class="fa fa-users"></span> <span class="xn-text">Gestion des Classes</span></a>
+                        <ul>
+                            <li><a href="{{ path('addClasse') }}"><span class="xn-text">Ajouter Classe</span></a></li>
+                            <li><a href="{{ path('listClasses') }}"><span class="xn-text">Liste des Classes </span></a></li>
+                        </ul>
+                    </li>
+                     <li class="xn-openable">
+                        <a href="#"><span class="fa fa-table"></span> <span class="xn-text">Gestion des Emplois de temps</span></a>
+                        <ul>
+                            <li><a href="#"><span class="xn-text">Ajouter Emploi de temps</span></a></li>
+                            <li><a href="#"><span class="xn-text">Liste des Emplois de temps </span></a></li>
+                        </ul>
+                    </li>
+                     <li class="xn-openable">
+                        <a href="#"><span class="fa fa-th"></span> <span class="xn-text">Gestion des Salles</span></a>
+                        <ul>
+                            <li><a href="{{ path('addSalle') }}"><span class="xn-text">Ajouter Salle</span></a></li>
+                            <li><a href="{{ path('listSalles') }}"><span class="xn-text">Liste des Salles </span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="fa fa-check-square-o"></span> <span class="xn-text">Gestion des Retards et absences</span></a></li>
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-bus"></span> <span class="xn-text">Transport</span></a>
+                        <ul>
+                            <li><a href="{{ path('addTransport') }}"><span class="xn-text">Ajouter Transport</span></a></li>
+                            <li><a href="{{ path('listTransports') }}"><span class="xn-text">Liste des Transports </span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('payment') }}"><span class="fa fa-money"></span> <span class="xn-text">Payement</span></a></li>
+                    <li><a href="#"><span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span></a></li>
+                    <li><a href="#"><span class="fa fa-leanpub"></span> <span class="xn-text">Ressources pédagogiques</span></a></li>
+                    <li><a href="#"><span class="fa fa-table"></span> <span class="xn-text">Plannings des examens</span></a></li>
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-cutlery"></span> <span class="xn-text">Menu de cantine</span></a>
+                        <ul>
+                            <li><a href="{{ path('addMenu') }}"><span class="xn-text">Ajouter Menu</span></a></li>
+                            <li><a href="{{ path('listMenus') }}"><span class="xn-text">Liste des Menus </span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="fa fa-check"></span> <span class="xn-text">Bultin</span></a></li>
+                    <li><a href="#"></a></li>
+                    
+                    
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
@@ -412,6 +489,7 @@
         
         <script type="text/javascript" src="{{ asset('js/plugins/morris/raphael-min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins/morris/morris.min.js') }}"></script>       
+<<<<<<< HEAD
   <!--      <script type="text/javascript" src="{{ asset('js/plugins/rickshaw/d3.v3.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins/rickshaw/rickshaw.min.js') }}"></script>
       -->  <script type='text/javascript' src="{{ asset('js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
@@ -420,6 +498,14 @@
         <script type="text/javascript" src="{{ asset('js/plugins/owl/owl.carousel.min.js') }}"></script>               
         <script type="text/javascript" src="{{ asset('js/plugins/bootstrap/bootstrap-select.js') }}"></script>
         
+=======
+        <script type="text/javascript" src="{{ asset('js/plugins/rickshaw/d3.v3.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/plugins/rickshaw/rickshaw.min.js') }}"></script>
+        <script type='text/javascript' src="{{ asset('js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
+        <script type='text/javascript' src="{{ asset('js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>                
+        <script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>                
+        <script type="text/javascript" src="{{ asset('js/plugins/owl/owl.carousel.min.js') }}"></script>                 
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
         
         <script type="text/javascript" src="{{ asset('js/plugins/moment.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
@@ -427,11 +513,20 @@
 
         <!-- START TEMPLATE -->
         <script type="text/javascript" src="{{ asset('js/settings.js') }}"></script>
+<<<<<<< HEAD
     <!--   
         <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>        
         --><script type="text/javascript" src="{{ asset('js/actions.js') }}"></script>
       <!--  
         <script type="text/javascript" src="{{ asset('js/demo_dashboard.js') }}"></script>
+=======
+        
+        <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('js/actions.js') }}"></script>
+        
+        <script type="text/javascript" src="{{ asset('js/demo_dashboard.js') }}"></script>
+
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS --> 
         {% block javascripts %}

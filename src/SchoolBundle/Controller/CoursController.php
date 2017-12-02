@@ -86,7 +86,7 @@ class CoursController extends Controller
 
         return $this->render('cours/add.html.twig',array("form"=>$form->createView(),'idClasse'=>$idClasse,'idMatiere'=>$idMatiere));
     }
-
+    
     /**
      * Displays a form to edit an existing cours entity.
      *

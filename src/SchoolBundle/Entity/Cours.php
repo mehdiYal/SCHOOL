@@ -43,21 +43,33 @@ class Cours
     /**
      * @var string
      *
+<<<<<<< HEAD
      * @ORM\Column(name="devoir", type="string", length=255, nullable=true)
+=======
+     * @ORM\Column(name="devoir", type="string", length=255)
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
      */
     private $devoir;
 
      /**
      * @var string
      *
+<<<<<<< HEAD
      * @ORM\Column(name="support", type="string", length=255, nullable=true)
+=======
+     * @ORM\Column(name="support", type="string", length=255)
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
      */
     private $support;
 
     /**
      * @var string
      *
+<<<<<<< HEAD
      * @ORM\Column(name="annexe", type="string", length=255, nullable=true)
+=======
+     * @ORM\Column(name="annexe", type="string", length=255)
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
      */
     private $annexe;
 

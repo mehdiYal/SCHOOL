@@ -399,4 +399,11 @@ class Classe
     {
         return $this->evaluations;
     }
+<<<<<<< HEAD
+=======
+
+    public function __toString() {
+        return $this->nom;
+    }
+>>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 }

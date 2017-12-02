@@ -153,10 +153,16 @@ $catalogue = new MessageCatalogue('ja', array (
 
 アカウントを有効化するには、次の確認 URL へアクセスしてください %confirmationUrl%
 
+このリンクは一度しか使用できません。
 
 開発チーム
 ',
-    'resetting.request.username' => 'ユーザー名かメールアドレス',
+    'resetting.check_email' => 'メールが送信されました。送信されたリンクをクリックしてパスワードをリセットして下さい。
+注意：パスワードのリセットは %tokenLifetime% 時間のあいだに一度しか要求できません。
+
+もしメールが届かない場合は、迷惑メールフォルダをご確認いただき、その上で再度やり直して下さい。
+',
+    'resetting.request.username' => 'ユーザー名またはメールアドレス',
     'resetting.request.submit' => 'パスワードのリセット',
     'resetting.reset.submit' => 'パスワードの変更',
     'resetting.flash.success' => 'パスワードのリセットが完了しました',
@@ -387,8 +393,10 @@ L\'équipe
     'delete' => 'supprimer',
     'profile' => 'Profil',
     'matiere' => 'Matiere',
+    'matieres' => 'Matieres',
     'annee' => 'Année',
     'classe' => 'Classe',
+    'classes' => 'Classes',
     'niveau' => 'Niveau',
     'note' => 'Note',
     'navbar.link.link1' => 'ajouter admin',
@@ -437,6 +445,11 @@ L\'équipe
     'form.ecoleID' => 'ID de l\'école',
     'form.groupeSanguin' => 'Groupe Sanguin',
     'form.photo' => 'photo',
+    'eleve.title' => 'Elèves',
+    'eleve.show' => 'Afficher les élèves',
+    'eleve.nom' => 'Nom de l\'élève',
+    'eleve.prenom' => 'Prénom de l\'élève',
+    'eleve.nom_prenom' => 'Nom et prénom de l\'élève',
     'cours.title' => 'Cours',
     'cours.name' => 'Nom du cours',
     'cours.add' => 'Ajouter un cours',
@@ -445,6 +458,7 @@ L\'équipe
     'cours.support.add' => 'Ajouter un support',
     'cours.annexe.title' => 'Annexe',
     'cours.annexe.add' => 'Ajouter une annexe',
+    'message.title' => 'message',
     'message.send' => 'Envoyer message',
     'devoir.maison.title' => 'Devoir maison',
     'devoir.maison.add' => 'Ajouter un devoir maison',
@@ -459,11 +473,20 @@ L\'équipe
     'global.search' => 'Rechercher',
     'global.parcourir' => 'Parcourir',
     'global.action' => 'Action',
+    'global.remark' => 'Remarque',
+    'global.date' => 'Date',
+    'global.type' => 'Type',
     'global.annual.program' => 'Programme Annuel',
     'absence.title' => 'Absence',
     'absence.add' => 'Ajouter une absence',
     'absence.manage' => 'Gérer les absences',
     'absence.date' => 'Date d\'absence',
+    'retard.title' => 'Retard',
+    'retard.add' => 'Ajouter un retard',
+    'retard.manage' => 'Gérer les retards',
+    'retard.date' => 'Date de retard',
+    'travail.title' => 'Travail Réalisé',
+    'travail.add' => 'Ajouter un travail',
   ),
 ));
 $catalogue->addFallbackCatalogue($catalogueFr);
