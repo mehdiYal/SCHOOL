@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 {% for eleve in app.user.ecole.eleves %}
-					<tr>
+					<tr class="{% if (eleve.parent == null)%} danger {% endif %}">
 						<td>{{ eleve.nom|upper}} {{ eleve.prenom}}</td>
 						<td>{{ ("now"|date("Y"))-( eleve.dateDeNaissance|date("Y"))}}</td>
 						<td>{{ eleve.annee.nom}} {{ eleve.annee.niveau}}</td>

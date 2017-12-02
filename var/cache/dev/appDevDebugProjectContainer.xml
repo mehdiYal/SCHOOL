@@ -20,6 +20,7 @@
       <parameter key="SchoolBundle">SchoolBundle\SchoolBundle</parameter>
       <parameter key="UserBundle">UserBundle\UserBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
+      <parameter key="PaymentBundle">PaymentBundle\PaymentBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -81,6 +82,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/Applications/MAMP/htdocs/Symfony/vendor/doctrine/doctrine-fixtures-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
+      </parameter>
+      <parameter key="PaymentBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Applications/MAMP/htdocs/Symfony/src/PaymentBundle</parameter>
+        <parameter key="namespace">PaymentBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -619,6 +625,7 @@
     <service id="cache_warmer" class="Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate">
       <argument type="collection">
         <argument type="service" id="templating.cache_warmer.template_paths"/>
+        <argument type="service" id="kernel.class_cache.cache_warmer"/>
         <argument type="service" id="validator.mapping.cache_warmer"/>
         <argument type="service" id="translation.warmer"/>
         <argument type="service" id="router.cache_warmer"/>
@@ -629,6 +636,7 @@
       </argument>
     </service>
     <service id="kernel.class_cache.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ClassCacheCacheWarmer">
+      <tag name="kernel.cache_warmer"/>
       <argument type="collection">
         <argument>Symfony\Component\HttpFoundation\ParameterBag</argument>
         <argument>Symfony\Component\HttpFoundation\HeaderBag</argument>
@@ -637,7 +645,6 @@
         <argument>Symfony\Component\HttpFoundation\Request</argument>
         <argument>Symfony\Component\HttpKernel\Kernel</argument>
       </argument>
-      <deprecated>The "%service_id%" option is deprecated since version 3.3, to be removed in 4.0.</deprecated>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer">
       <argument type="collection">
@@ -708,11 +715,6 @@
       <tag name="monolog.logger" channel="console"/>
       <argument type="service" id="monolog.logger.console" on-invalid="null"/>
     </service>
-    <service id="property_accessor" class="Symfony\Component\PropertyAccess\PropertyAccessor">
-      <argument>false</argument>
-      <argument>false</argument>
-      <argument type="service" id="cache.property_access" on-invalid="ignore"/>
-    </service>
     <service id="cache.app" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
       <tag name="cache.pool"/>
       <tag name="cache.pool" clearer="cache.default_clearer" unlazy="1"/>
@@ -743,7 +745,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>a9AWqd72lgwHFIoXsl65wD</argument>
+      <argument>6B5ymvZa8ptSgAmtXkPFWZ</argument>
       <argument>/Applications/MAMP/htdocs/Symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -753,7 +755,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>a9AWqd72lgwHFIoXsl65wD</argument>
+      <argument>6B5ymvZa8ptSgAmtXkPFWZ</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2102,6 +2104,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -2459,7 +2469,6 @@
       <argument type="service" id="routing.resolver"/>
     </service>
     <service id="router.default" class="Symfony\Bundle\FrameworkBundle\Routing\Router" public="false">
-      <tag name="monolog.logger" channel="router"/>
       <argument type="service" id="service_container"/>
       <argument>/Applications/MAMP/htdocs/Symfony/app/config/routing_dev.yml</argument>
       <argument type="collection">
@@ -2476,7 +2485,6 @@
         <argument key="strict_requirements">true</argument>
       </argument>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
-      <argument type="service" id="monolog.logger.router" on-invalid="ignore"/>
       <call method="setConfigCacheFactory">
         <argument type="service" id="config_cache_factory"/>
       </call>
@@ -2529,6 +2537,11 @@
     </service>
     <service id="annotations.cache" class="Symfony\Component\Cache\DoctrineProvider" public="false">
       <argument type="service" id="3_458c2885edf8496b0e3228586163a343107e4ad078a407799672c5ab37be36eb"/>
+    </service>
+    <service id="property_accessor" class="Symfony\Component\PropertyAccess\PropertyAccessor">
+      <argument>false</argument>
+      <argument>false</argument>
+      <argument type="service" id="cache.property_access" on-invalid="ignore"/>
     </service>
     <service id="security.authorization_checker" class="Symfony\Component\Security\Core\Authorization\AuthorizationChecker">
       <argument type="service" id="security.token_storage"/>
@@ -3125,12 +3138,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5a05f12789c865.03885039</argument>
+      <argument>5a12cd2f8a9958.17620755</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5a05f12789c865.03885039</argument>
+      <argument>5a12cd2f8a9958.17620755</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3310,12 +3323,16 @@
       <tag name="container.service_subscriber.locator" id="service_locator.26ac001b3ede28481ac0de703666b4d7"/>
       <argument type="service" id="service_locator.26ac001b3ede28481ac0de703666b4d7"/>
       <argument type="service" id="templating.finder" on-invalid="ignore"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="/Applications/MAMP/htdocs/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form">null</argument>
+      </argument>
     </service>
     <service id="twig.template_iterator" class="Symfony\Bundle\TwigBundle\TemplateIterator" public="false">
       <argument type="service" id="kernel"/>
       <argument>/Applications/MAMP/htdocs/Symfony/app</argument>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="/Applications/MAMP/htdocs/Symfony/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form">null</argument>
+      </argument>
     </service>
     <service id="twig.template_cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheWarmer" public="false">
       <tag name="kernel.cache_warmer"/>
@@ -3356,6 +3373,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Symfony/src/SchoolBundle/Resources/views</argument>
         <argument>School</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/Symfony/src/PaymentBundle/Resources/views</argument>
+        <argument>Payment</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -3510,6 +3531,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Symfony/src/SchoolBundle/Resources/views</argument>
         <argument>School</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/Symfony/src/PaymentBundle/Resources/views</argument>
+        <argument>Payment</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Symfony/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -3917,6 +3942,7 @@
         <argument type="collection">
           <argument key="SchoolBundle">SchoolBundle\Entity</argument>
           <argument key="UserBundle">UserBundle\Entity</argument>
+          <argument key="PaymentBundle">PaymentBundle\Entity</argument>
         </argument>
       </call>
       <call method="setMetadataCacheImpl">
@@ -3961,6 +3987,7 @@
       <argument type="collection">
         <argument>/Applications/MAMP/htdocs/Symfony/src/SchoolBundle/Entity</argument>
         <argument>/Applications/MAMP/htdocs/Symfony/src/UserBundle/Entity</argument>
+        <argument>/Applications/MAMP/htdocs/Symfony/src/PaymentBundle/Entity</argument>
       </argument>
     </service>
     <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
@@ -3971,6 +3998,10 @@
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
         <argument>UserBundle\Entity</argument>
+      </call>
+      <call method="addDriver">
+        <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
+        <argument>PaymentBundle\Entity</argument>
       </call>
       <call method="addDriver">
         <argument type="service">
@@ -4715,21 +4746,6 @@
         <argument type="service" id="monolog.handler.server_log"/>
       </call>
     </service>
-    <service id="monolog.logger.router" class="Symfony\Bridge\Monolog\Logger">
-      <argument>router</argument>
-      <call method="pushProcessor">
-        <argument type="service" id="debug.log_processor"/>
-      </call>
-      <call method="pushHandler">
-        <argument type="service" id="monolog.handler.server_log"/>
-      </call>
-      <call method="pushHandler">
-        <argument type="service" id="monolog.handler.console"/>
-      </call>
-      <call method="pushHandler">
-        <argument type="service" id="monolog.handler.main"/>
-      </call>
-    </service>
     <service id="monolog.logger.security" class="Symfony\Bridge\Monolog\Logger">
       <argument>security</argument>
       <call method="pushProcessor">
@@ -4827,7 +4843,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>HmTw1Op9zr</argument>
       <argument>0</argument>
-      <argument>a9AWqd72lgwHFIoXsl65wD</argument>
+      <argument>6B5ymvZa8ptSgAmtXkPFWZ</argument>
       <argument>/Applications/MAMP/htdocs/Symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4835,7 +4851,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>zG7auWC8H5</argument>
       <argument>0</argument>
-      <argument>a9AWqd72lgwHFIoXsl65wD</argument>
+      <argument>6B5ymvZa8ptSgAmtXkPFWZ</argument>
       <argument>/Applications/MAMP/htdocs/Symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4843,7 +4859,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>Jnuv68VaGM</argument>
       <argument>0</argument>
-      <argument>a9AWqd72lgwHFIoXsl65wD</argument>
+      <argument>6B5ymvZa8ptSgAmtXkPFWZ</argument>
       <argument>/Applications/MAMP/htdocs/Symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4851,7 +4867,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>B0boMLLRkZ</argument>
       <argument>0</argument>
-      <argument>a9AWqd72lgwHFIoXsl65wD</argument>
+      <argument>6B5ymvZa8ptSgAmtXkPFWZ</argument>
       <argument>/Applications/MAMP/htdocs/Symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4871,7 +4887,6 @@
     <service id="Symfony\Component\HttpKernel\KernelInterface" alias="kernel" public="false"/>
     <service id="Symfony\Component\Filesystem\Filesystem" alias="filesystem" public="false"/>
     <service id="Symfony\Component\HttpKernel\Config\FileLocator" alias="file_locator" public="false"/>
-    <service id="Symfony\Component\PropertyAccess\PropertyAccessorInterface" alias="property_accessor" public="false"/>
     <service id="cache.app_clearer" alias="cache.default_clearer"/>
     <service id="Psr\Cache\CacheItemPoolInterface" alias="cache.app" public="false"/>
     <service id="Symfony\Component\Translation\TranslatorInterface" alias="translator.data_collector" public="false"/>
@@ -4906,6 +4921,7 @@
     <service id="Symfony\Component\Routing\RequestContext" alias="router.request_context" public="false"/>
     <service id="annotation_reader" alias="annotations.cached_reader"/>
     <service id="Doctrine\Common\Annotations\Reader" alias="annotations.cached_reader" public="false"/>
+    <service id="Symfony\Component\PropertyAccess\PropertyAccessorInterface" alias="property_accessor" public="false"/>
     <service id="Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface" alias="security.authorization_checker" public="false"/>
     <service id="Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface" alias="security.token_storage" public="false"/>
     <service id="security.encoder_factory" alias="security.encoder_factory.generic"/>

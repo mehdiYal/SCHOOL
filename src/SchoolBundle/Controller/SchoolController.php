@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SchoolBundle\Entity\Ecole;
 use SchoolBundle\Form\EcoleType;
+use SchoolBundle\Form\EcoleEditType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -91,6 +92,39 @@ class SchoolController extends Controller
         }
 
         return $this->render('schoolsViews/addSchool.html.twig',array("edit"=>false,"form"=>$form->createView()));
+    }
+
+    /**
+     * @Route("/editMy/{id}", name="editMySchool")
+     */
+    public function editMyAction(Request $request,Ecole $ecole)
+    {
+        $form=$this->createForm(EcoleEditType::class,$ecole);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+             if($ecole->getLogo() !=null){
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $file = $ecole->getLogo();
+
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('logo_directory'),
+                    $fileName
+                );
+
+                
+                $ecole->setLogo($fileName);
+             }
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($ecole);
+            $em->flush();
+            return $this->redirectToRoute('listSchools');
+        }
+
+        return $this->render('schoolsViews/editSchool.html.twig',array("edit"=>false,"form"=>$form->createView()));
     }
 
 

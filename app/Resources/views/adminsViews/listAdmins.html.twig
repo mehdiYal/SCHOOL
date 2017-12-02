@@ -1,19 +1,54 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseListSuper.html.twig' %}
 
-{% block body %}
+{% block title %}
+    {{'list'|trans}} {{'admins'|trans}}
+{% endblock %}
 
-<h1>{{'list'|trans}} {{'admins'|trans}}</h1>
-	<ol>
-		{% for admin in admins %}
-			{% if 'ROLE_SUPER_ADMIN' not in admin.roles %}
-				<li>{{ admin.nom}} {{ admin.prenom}} {{ admin.username}} 
-					<a href="{{ path('editAdmin',{'id':admin.id})}}">{{'edit'|trans}}</a>
-					<a href="{{ path('removeAdmin',{'id':admin.id})}}">{{'delete'|trans}}</a>
-					<a href="{{ path('profileAdmin',{'id':admin.id})}}">{{'profile'|trans}}</a> 
-					<a href="{{ path('schoolAdmin',{'id':admin.id})}}">{{'school'|trans}}</a> 
-				</li>
-			{% endif %}
-		{% endfor %}
-	</ol>
-	
+{% block bodyList %}
+	 <div class="table-responsive">
+        <table id="customers2" class="table datatable">
+            <thead>
+                <tr>
+                    <th>Nom & Prenom</th>
+                    <th>Pseudo</th>
+                    <th>telephone</th>
+                    <th>{{'edit'|trans}}</th>
+                    <th>{{'delete'|trans}}</th>
+                    <th>{{'profile'|trans}}</th>
+                    <th>{{'school'|trans}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                    {% if (admin.hasRole('ROLE_SUPER_ADMIN')==false) %}
+                    <tr class="{% if (admin.ecole == null)%} danger {% endif %}">
+                        <td>{{ admin.nom}} {{ admin.prenom}}</td>
+                        <td>{{ admin.username}}</td>
+                        <td>{{ admin.telephone}}</td>
+                        <td>
+                            <a href="{{ path('editAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-pencil-square-o"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('removeAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('profileAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-user"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('schoolAdmin',{'id':admin.id})}}">
+                                <span class="fa fa-university"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>                                    
+    </div>
 {% endblock %}

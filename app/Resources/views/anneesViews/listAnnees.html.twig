@@ -1,11 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseListSuper.html.twig' %}
 
-{% block body %}
-<h1>{{'list'|trans}} {{'annee'|trans}}</h1>
-	<ol>
-		{% for annee in annees %}
-			<li>{{ annee.nom}} {{ annee.niveau}} {{ annee.specialite}} <a href="{{ path('editAnnee',{'id':annee.id})}}">Modifier</a> <a href="{{ path('removeAnnee',{'id':annee.id})}}">Supprimer</a>
-		{% endfor %}
-	</ol>
-	
+{% block title %}
+    {{'list'|trans}} {{'annees'|trans}}
+{% endblock %}
+
+{% block bodyList %}
+	 <div class="table-responsive">
+        <table id="customers2" class="table datatable">
+            <thead>
+                <tr>
+                    <th>Nom </th>
+                    <th>Niveau</th>
+                    <th>Specialité</th>
+                    <th>{{'edit'|trans}}</th>
+                    <th>{{'delete'|trans}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for annee in annees %}
+                    <tr>
+                        <td>{{ annee.nom}} </td>
+                        <td>{{ annee.niveau}}</td>
+                        <td>{{ annee.specialite}}</td>
+                        <td>
+                            <a href="{{ path('editAnnee',{'id':annee.id})}}">
+                                <span class="fa fa-pencil-square-o"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('removeAnnee',{'id':annee.id})}}">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>                                    
+    </div>
 {% endblock %}

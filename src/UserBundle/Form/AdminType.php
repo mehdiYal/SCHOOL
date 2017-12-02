@@ -23,7 +23,9 @@ class AdminType extends AbstractType
         ->add('nom',null,array('label' => 'form.name'))
         ->add('prenom',null,array('label' => 'form.lastName'))
         ->add('genre',null,array('label' => 'form.genre'))
-        ->add('dateDeNaissance',null,array('label' => 'form.dateN'))
+        ->add('dateDeNaissance',null,array('label' => 'form.dateN',
+                                            'widget' => 'single_text',
+                                            'html5' => false,))
         ->add('lieuDeNaissance',null,array('label' => 'form.lieuN'))
         ->add('cIN',null,array('label' => 'form.cin'))
         ->add('adresse',null,array('label' => 'form.adresse'))

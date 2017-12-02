@@ -64,10 +64,10 @@ class Ecole extends \SchoolBundle\Entity\Ecole implements \Doctrine\ORM\Proxy\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'menus', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'classes', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'salles', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'enseignants', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'eleves', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'transports', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'parents', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'admin', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'logo', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'nom', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'code', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'adresse', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'ville', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'pays', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'telephone', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'email', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'dateCreation', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'informations'];
+            return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'menus', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'classes', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'salles', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'enseignants', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'eleves', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'transports', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'parents', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'admin', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'logo', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'nom', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'code', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'adresse', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'ville', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'pays', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'fraisDeRestauration', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'fraisDeTransport', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'fraisDeScolarite', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'telephone', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'email', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'dateCreation', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'informations'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'menus', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'classes', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'salles', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'enseignants', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'eleves', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'transports', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'parents', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'admin', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'logo', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'nom', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'code', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'adresse', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'ville', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'pays', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'telephone', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'email', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'dateCreation', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'informations'];
+        return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'menus', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'classes', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'salles', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'enseignants', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'eleves', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'transports', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'parents', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'admin', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'logo', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'nom', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'code', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'adresse', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'ville', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'pays', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'fraisDeRestauration', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'fraisDeTransport', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'fraisDeScolarite', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'telephone', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'email', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'dateCreation', '' . "\0" . 'SchoolBundle\\Entity\\Ecole' . "\0" . 'informations'];
     }
 
     /**
@@ -692,6 +692,72 @@ class Ecole extends \SchoolBundle\Entity\Ecole implements \Doctrine\ORM\Proxy\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMenus', []);
 
         return parent::getMenus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFraisDeRestauration($fraisDeRestauration)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFraisDeRestauration', [$fraisDeRestauration]);
+
+        return parent::setFraisDeRestauration($fraisDeRestauration);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFraisDeRestauration()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFraisDeRestauration', []);
+
+        return parent::getFraisDeRestauration();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFraisDeTransport($fraisDeTransport)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFraisDeTransport', [$fraisDeTransport]);
+
+        return parent::setFraisDeTransport($fraisDeTransport);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFraisDeTransport()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFraisDeTransport', []);
+
+        return parent::getFraisDeTransport();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFraisDeScolarite($fraisDeScolarite)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFraisDeScolarite', [$fraisDeScolarite]);
+
+        return parent::setFraisDeScolarite($fraisDeScolarite);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFraisDeScolarite()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFraisDeScolarite', []);
+
+        return parent::getFraisDeScolarite();
     }
 
 }

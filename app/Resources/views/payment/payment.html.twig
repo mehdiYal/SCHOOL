@@ -1,0 +1,214 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrap">    
+    <div class="row">
+    	<div class="col-md-4">
+            
+            <!-- START WIDGET MESSAGES -->
+            <div class="widget widget-default widget-item-icon">
+                <div class="widget-item-left">
+                    <span class="fa fa-cutlery"></span>
+                </div>                             
+                <div class="widget-data">
+                    <div class="widget-int num-count">{{app.user.ecole.fraisDeRestauration}} DZD</div>
+                    <div class="widget-title">Frais de Restauration</div>
+                    <div class="widget-subtitle">{{app.user.ecole.fraisDeRestauration}} DZD par an</div>
+                </div>      
+                <div class="widget-controls">                                
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+            </div>                            
+            <!-- END WIDGET MESSAGES -->
+            
+        </div>
+
+        <div class="col-md-4">
+            
+            <!-- START WIDGET MESSAGES -->
+            <div class="widget widget-default widget-item-icon">
+                <div class="widget-item-left">
+                    <span class="fa fa-graduation-cap"></span>
+                </div>                             
+                <div class="widget-data">
+                    <div class="widget-int num-count">{{app.user.ecole.fraisDeScolarite}} DZD</div>
+                    <div class="widget-title">Frais de Scolarité</div>
+                    <div class="widget-subtitle">{{app.user.ecole.fraisDeScolarite}} DZD par an</div>
+                </div>      
+                <div class="widget-controls">                                
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+            </div>                            
+            <!-- END WIDGET MESSAGES -->
+            
+        </div>
+
+        <div class="col-md-4">
+            
+            <!-- START WIDGET MESSAGES -->
+            <div class="widget widget-default widget-item-icon">
+                <div class="widget-item-left">
+                    <span class="fa fa-bus"></span>
+                </div>                             
+                <div class="widget-data">
+                    <div class="widget-int num-count">{{app.user.ecole.fraisDeTransport}} DZD</div>
+                    <div class="widget-title">Frais de Transport</div>
+                    <div class="widget-subtitle">{{app.user.ecole.fraisDeTransport}} DZD par an</div>
+                </div>      
+                <div class="widget-controls">                                
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+            </div>                            
+            <!-- END WIDGET MESSAGES -->
+            
+        </div>
+    </div>  
+
+
+    <div class="row">
+                <div class="col-md-12">
+                    
+                    <!-- START DATATABLE EXPORT -->
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                                {{ form_start(form, { 'attr' : { 'class': 'form-horizontal' } }) }} 
+                                    <div class="form-group">
+                                        {{ form_label(form.classes , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+                                        <div class="col-md-6 col-xs-12">
+                                            {{ form_widget(form.classes ,{ 'attr': {'class': 'form-control select'} }) }}
+                                            {{ form_errors(form.classes) }}
+                                        </div>
+                                    </div>
+                                {{ form_end(form) }}
+                        </div>
+                        <div class="panel-body">                   
+                             <div class="table-responsive">
+                                <table id="customers2" class="table datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom & Prenom</th>
+                                            <th>Classe</th>
+                                            <th>Payé</th>
+                                            <th>Reste</th>
+                                            <th>Ajouter Payement</th>
+                                            <th>Liste des Payements</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for eleve in app.user.ecole.eleves %}
+                                            <tr class="{% if (eleve.parent == null)%} danger {% endif %}" id="{{eleve.id}}">
+                                                <td>{{ eleve.nom|upper}} {{ eleve.prenom}}</td>
+                                                <td>{% if eleve.classe != null %} {{ eleve.classe.nom}} {% endif %}</td>
+                                                <td>0DZD</td>
+                                                <td>0DZD</td>
+                                                <td style="text-align: center;">
+                                                    <a href="" data-toggle="modal" data-target="#pay">
+                                                        <span class="fa fa-plus"></span>
+                                                    </a>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <a href="" class="listPay" data-toggle="modal" data-target="#listpay">
+                                                        <span class="fa fa-list"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                 
+</div>
+
+<div class="modal" id="pay" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter Payement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(payment, { 'attr' : { 'class': 'form-horizontal' } }) }} 
+            <div class="form-group">
+                {{ form_label(payment.montant , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+                <div class="col-md-6 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                        {{ form_widget(payment.montant ,{ 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    {{ form_errors(payment.montant) }}
+                </div>
+            </div>
+            <div class="form-group">
+                    {{ form_label(payment.datePayment , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+                    <div class="col-md-6 col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                            {{ form_widget(payment.datePayment ,{ 'attr': {'class': 'form-control datepicker'} }) }}
+                        </div>
+                        {{ form_errors(payment.datePayment) }}
+                    </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary">Valider</button>
+        {{ form_end(payment) }}
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="listpay" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">List des Payements</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+                <table id="customers2" class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date de Payement</th>
+                            <th>Montant</th>
+                        </tr>
+                    </thead>
+                    <tbody class="lisBody">
+                        
+                    </tbody>
+                </table>                                    
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/tableExport.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jquery.base64.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/html2canvas.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/sprintf.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/jspdf.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/base64.js')}}"></script>       
+	<script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-select.js') }}"></script>
+    <script>
+        var listPath = "{{ path('getPayements') }}";
+    </script>
+    <script type='text/javascript' src="{{ asset('js/project/payment.js') }}"></script>
+
+{% endblock %}

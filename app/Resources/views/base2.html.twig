@@ -45,6 +45,7 @@
                         </div>                                                                        
                     </li>
                     <li class="active" ><a href="#"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboard</span></a></li>
+                    <li><a href="{{ path('editMySchool',{'id':app.user.ecole.id}) }}"><span class="fa fa-cog"></span> <span class="xn-text">Ecole</span></a></li>
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-graduation-cap"></span> <span class="xn-text">Gestion des Eleves</span></a>
                         <ul>
@@ -102,7 +103,7 @@
                             <li><a href="{{ path('listTransports') }}"><span class="xn-text">Liste des Transports </span></a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><span class="fa fa-money"></span> <span class="xn-text">Payement</span></a></li>
+                    <li><a href="{{ path('payment') }}"><span class="fa fa-money"></span> <span class="xn-text">Payement</span></a></li>
                     <li><a href="#"><span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span></a></li>
                     <li><a href="#"><span class="fa fa-leanpub"></span> <span class="xn-text">Ressources pédagogiques</span></a></li>
                     <li><a href="#"><span class="fa fa-table"></span> <span class="xn-text">Plannings des examens</span></a></li>

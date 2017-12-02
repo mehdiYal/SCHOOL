@@ -1,11 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseListSuper.html.twig' %}
 
-{% block body %}
-<h1>{{'list'|trans}} {{'schools'|trans}}</h1>
-	<ol>
-		{% for ecole in ecoles %}
-			<li>{{ ecole.nom}} {{ ecole.ville}} <a href="{{ path('editSchool',{'id':ecole.id})}}">Modifier</a> <a href="{{ path('removeSchool',{'id':ecole.id})}}">Supprimer</a> <a href="{{ path('profileSchool',{'id':ecole.id})}}">Profile</a></li>
-		{% endfor %}
-	</ol>
-	
+{% block title %}
+    {{'list'|trans}} {{'schools'|trans}}
+{% endblock %}
+
+{% block bodyList %}
+	 <div class="table-responsive">
+        <table id="customers2" class="table datatable">
+            <thead>
+                <tr>
+                    <th>Nom </th>
+                    <th>Code</th>
+                    <th>adresse</th>
+                    <th>telephone</th>
+                    <th>{{'edit'|trans}}</th>
+                    <th>{{'delete'|trans}}</th>
+                    <th>{{'profile'|trans}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ecole in ecoles %}
+                    <tr>
+                        <td>{{ ecole.nom}}</td>
+                        <td>{{ ecole.code}}</td>
+                        <td>{{ ecole.adresse}}</td>
+                        <td>{{ ecole.telephone}}</td>
+                        <td>
+                            <a href="{{ path('editSchool',{'id':ecole.id})}}">
+                                <span class="fa fa-pencil-square-o"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('removeSchool',{'id':ecole.id})}}">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('profileSchool',{'id':ecole.id})}}">
+                                <span class="fa fa-university"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>                                    
+    </div>
 {% endblock %}

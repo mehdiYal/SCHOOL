@@ -103,6 +103,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // payment
+        if ('/payment/payment' === $pathinfo) {
+            return array (  '_controller' => 'PaymentBundle\\Controller\\PaymentController::paymentAction',  '_route' => 'payment',);
+        }
+
+        // getPayements
+        if ('/payment/getPayements' === $pathinfo) {
+            return array (  '_controller' => 'PaymentBundle\\Controller\\PaymentController::getPayementsAction',  '_route' => 'getPayements',);
+        }
+
         // addAnnee
         if (preg_match('#^/(?P<_locale>[^/]++)/annee/add$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'addAnnee')), array (  '_controller' => 'SchoolBundle\\Controller\\AnneeController::addAction',));
@@ -296,6 +306,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // editSchool
         if (preg_match('#^/(?P<_locale>[^/]++)/school/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'editSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::editAction',));
+        }
+
+        // editMySchool
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/editMy/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'editMySchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::editMyAction',));
         }
 
         // removeSchool

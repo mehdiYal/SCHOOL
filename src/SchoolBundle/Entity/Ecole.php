@@ -122,6 +122,27 @@ class Ecole
     /**
      * @var int
      *
+     * @ORM\Column(name="fraisDeRestauration", type="integer",nullable=true)
+     */
+    private $fraisDeRestauration;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fraisDeTransport", type="integer",nullable=true)
+     */
+    private $fraisDeTransport;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fraisDeScolarite", type="integer",nullable=true)
+     */
+    private $fraisDeScolarite;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="telephone", type="integer")
      */
     private $telephone;
@@ -703,5 +724,77 @@ class Ecole
     public function getMenus()
     {
         return $this->menus;
+    }
+
+    /**
+     * Set fraisDeRestauration
+     *
+     * @param integer $fraisDeRestauration
+     *
+     * @return Ecole
+     */
+    public function setFraisDeRestauration($fraisDeRestauration)
+    {
+        $this->fraisDeRestauration = $fraisDeRestauration;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeRestauration
+     *
+     * @return integer
+     */
+    public function getFraisDeRestauration()
+    {
+        return $this->fraisDeRestauration;
+    }
+
+    /**
+     * Set fraisDeTransport
+     *
+     * @param integer $fraisDeTransport
+     *
+     * @return Ecole
+     */
+    public function setFraisDeTransport($fraisDeTransport)
+    {
+        $this->fraisDeTransport = $fraisDeTransport;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeTransport
+     *
+     * @return integer
+     */
+    public function getFraisDeTransport()
+    {
+        return $this->fraisDeTransport;
+    }
+
+    /**
+     * Set fraisDeScolarite
+     *
+     * @param integer $fraisDeScolarite
+     *
+     * @return Ecole
+     */
+    public function setFraisDeScolarite($fraisDeScolarite)
+    {
+        $this->fraisDeScolarite = $fraisDeScolarite;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeScolarite
+     *
+     * @return integer
+     */
+    public function getFraisDeScolarite()
+    {
+        return $this->fraisDeScolarite;
     }
 }

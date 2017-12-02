@@ -89,9 +89,13 @@ protected $saveHandler;
 protected $metadataBag;
 public function __construct(array $options = array(), $handler = null, MetadataBag $metaBag = null)
 {
-session_cache_limiter(''); ini_set('session.use_cookies', 1);
-session_register_shutdown();
 $this->setMetadataBag($metaBag);
+if (\PHP_SESSION_ACTIVE === session_status()) {
+return;
+}
+$options += array('cache_limiter'=>'','use_cookies'=> 1,
+);
+session_register_shutdown();
 $this->setOptions($options);
 $this->setSaveHandler($handler);
 }
@@ -135,6 +139,9 @@ $this->saveHandler->setName($name);
 public function regenerate($destroy = false, $lifetime = null)
 {
 if (\PHP_SESSION_ACTIVE !== session_status()) {
+return false;
+}
+if (headers_sent()) {
 return false;
 }
 if (null !== $lifetime) {
@@ -210,7 +217,10 @@ return $this->started;
 }
 public function setOptions(array $options)
 {
-$validOptions = array_flip(array('cache_limiter','cookie_domain','cookie_httponly','cookie_lifetime','cookie_path','cookie_secure','entropy_file','entropy_length','gc_divisor','gc_maxlifetime','gc_probability','hash_bits_per_character','hash_function','name','referer_check','serialize_handler','use_strict_mode','use_cookies','use_only_cookies','use_trans_sid','upload_progress.enabled','upload_progress.cleanup','upload_progress.prefix','upload_progress.name','upload_progress.freq','upload_progress.min-freq','url_rewriter.tags','sid_length','sid_bits_per_character','trans_sid_hosts','trans_sid_tags',
+if (headers_sent()) {
+return;
+}
+$validOptions = array_flip(array('cache_limiter','cookie_domain','cookie_httponly','cookie_lifetime','cookie_path','cookie_secure','entropy_file','entropy_length','gc_divisor','gc_maxlifetime','gc_probability','hash_bits_per_character','hash_function','lazy_write','name','referer_check','serialize_handler','use_strict_mode','use_cookies','use_only_cookies','use_trans_sid','upload_progress.enabled','upload_progress.cleanup','upload_progress.prefix','upload_progress.name','upload_progress.freq','upload_progress.min-freq','url_rewriter.tags','sid_length','sid_bits_per_character','trans_sid_hosts','trans_sid_tags',
 ));
 foreach ($options as $key => $value) {
 if (isset($validOptions[$key])) {
@@ -225,6 +235,9 @@ if (!$saveHandler instanceof AbstractProxy &&
 !$saveHandler instanceof \SessionHandlerInterface &&
 null !== $saveHandler) {
 throw new \InvalidArgumentException('Must be instance of AbstractProxy or NativeSessionHandler; implement \SessionHandlerInterface; or be null.');
+}
+if (headers_sent($file, $line)) {
+throw new \RuntimeException(sprintf('Failed to set the session handler because headers have already been sent by "%s" at line %d.', $file, $line));
 }
 if (!$saveHandler instanceof AbstractProxy && $saveHandler instanceof \SessionHandlerInterface) {
 $saveHandler = new SessionHandlerProxy($saveHandler);
@@ -2974,13 +2987,13 @@ public function write($content, array $metadata = null)
 $mode = 0666;
 $umask = umask();
 $filesystem = new Filesystem();
-$filesystem->dumpFile($this->file, $content, null);
+$filesystem->dumpFile($this->file, $content);
 try {
 $filesystem->chmod($this->file, $mode, $umask);
 } catch (IOException $e) {
 }
 if (null !== $metadata) {
-$filesystem->dumpFile($this->getMetaFile(), serialize($metadata), null);
+$filesystem->dumpFile($this->getMetaFile(), serialize($metadata));
 try {
 $filesystem->chmod($this->getMetaFile(), $mode, $umask);
 } catch (IOException $e) {
@@ -3533,7 +3546,7 @@ break;
 }
 if (!($throw || $this->scopedErrors & $type)) {
 for ($i = 0; isset($lightTrace[$i]); ++$i) {
-unset($lightTrace[$i]['args']);
+unset($lightTrace[$i]['args'], $lightTrace[$i]['object']);
 }
 }
 return $lightTrace;
@@ -3791,11 +3804,11 @@ protected function getEnv($name)
 if (isset($this->envCache[$name]) || array_key_exists($name, $this->envCache)) {
 return $this->envCache[$name];
 }
-if (isset($_SERVER[$name]) && 0 !== strpos($name,'HTTP_')) {
-return $this->envCache[$name] = $_SERVER[$name];
-}
 if (isset($_ENV[$name])) {
 return $this->envCache[$name] = $_ENV[$name];
+}
+if (isset($_SERVER[$name]) && 0 !== strpos($name,'HTTP_')) {
+return $this->envCache[$name] = $_SERVER[$name];
 }
 if (false !== ($env = getenv($name)) && null !== $env) { return $this->envCache[$name] = $env;
 }
@@ -4519,7 +4532,7 @@ if (!is_array($callable)) {
 return sprintf('Invalid type for controller given, expected string or array, got "%s".', gettype($callable));
 }
 if (2 !== count($callable)) {
-return sprintf('Invalid format for controller, expected array(controller, method) or controller::method.');
+return'Invalid format for controller, expected array(controller, method) or controller::method.';
 }
 list($controller, $method) = $callable;
 if (is_string($controller) && !class_exists($controller)) {

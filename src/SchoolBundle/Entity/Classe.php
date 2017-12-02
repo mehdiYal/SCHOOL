@@ -399,4 +399,8 @@ class Classe
     {
         return $this->evaluations;
     }
+
+    public function __toString() {
+        return $this->nom;
+    }
 }

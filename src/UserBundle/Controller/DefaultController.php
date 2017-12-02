@@ -22,10 +22,21 @@ class DefaultController extends Controller
      */
     public function dashAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/dashAdmin.html.twig', [
+        $user= $this->getUser();
+        if($user->hasRole('ROLE_SUPER_ADMIN')){
+            return $this->render('default/dashSuperAdmin.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+            ]);
+        }else if($user->hasRole('ROLE_ADMIN')){
+            return $this->render('default/dashAdmin.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            ]);
+        }else{
+            return $this->render('default/dashAdmin.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            ]);
+        }
+        
     }
 
 

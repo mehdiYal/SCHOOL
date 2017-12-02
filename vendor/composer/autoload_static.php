@@ -56,6 +56,7 @@ class ComposerStaticInit76b90f243bdacd2945495722ace5e1b0
             'Psr\\Link\\' => 9,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+            'PaymentBundle\\' => 14,
         ),
         'M' => 
         array (
@@ -189,6 +190,10 @@ class ComposerStaticInit76b90f243bdacd2945495722ace5e1b0
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'PaymentBundle\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/PaymentBundle',
         ),
         'Monolog\\' => 
         array (

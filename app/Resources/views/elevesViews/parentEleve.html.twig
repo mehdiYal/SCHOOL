@@ -1,33 +1,62 @@
-{% extends 'baseList.html.twig' %}
+{% extends 'base2.html.twig' %}
+{% block body %}
 
-{% block title %}
-	<h1>Pas de parent associé à {{eleve.nom}} {{eleve.prenom}} </h1>
-	<h2>Selectioner un parent</h2>	
+    <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <!-- START DATATABLE EXPORT -->
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"> Pas de parent associé à {{eleve.nom}} {{eleve.prenom}} </h3>                                 
+                            
+                        </div>
+                        <div class="panel-body">                   
+                             <div class="table-responsive">
+                                <table id="customers2" class="table datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom </th>
+                                            <th>Prenom</th>
+                                            <th>telephone</th>
+                                            <th>Associer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for parant in app.user.ecole.parents %}
+                                            <tr>
+                                                <td>{{ parant.nom}}</td>
+                                                <td>{{ parant.prenom}}</td>
+                                                <td>{{ parant.telephone}}</td>
+                                                <td>
+                                                    <a href="{{ path('assoParent',{'id':eleve.id,'idp':parant.id})}}">
+                                                        <span class="fa fa-plus"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 {% endblock %}
 
-{% block bodyList %}
+{% block javascripts %}
+        
+    <script type="text/javascript" src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/tableExport.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jquery.base64.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/html2canvas.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/sprintf.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/jspdf.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/base64.js')}}"></script>        
+       
 
-    <div class="table-responsive">
-        <table id="customers2" class="table datatable">
-            <thead>
-                <tr>
-                    <th>Nom & Prenom</th>
-                    <th>Associer</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for parant in app.user.ecole.parents %}
-					<tr>
-						<td>{{ parant.nom|upper}} {{ parant.prenom}}</td>
-						<td>
-							<a href="{{ path('assoParent',{'id':eleve.id,'idp':parant.id})}}">
-								<span class="fa fa-male"></span>
-							</a>
-						</td>
-					</tr>
-                {% endfor %}
-            </tbody>
-        </table>                                    
-    </div>
-    
 {% endblock %}  
+
