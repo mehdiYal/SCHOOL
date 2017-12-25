@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-{% extends 'base.html.twig' %}
-
-{% block body %}
-
-<h1>{{'list'|trans}} {{'admins'|trans}}</h1>
-	<ol>
-		{% for admin in admins %}
-			{% if 'ROLE_SUPER_ADMIN' not in admin.roles %}
-				<li>{{ admin.nom}} {{ admin.prenom}} {{ admin.username}} 
-					<a href="{{ path('editAdmin',{'id':admin.id})}}">{{'edit'|trans}}</a>
-					<a href="{{ path('removeAdmin',{'id':admin.id})}}">{{'delete'|trans}}</a>
-					<a href="{{ path('profileAdmin',{'id':admin.id})}}">{{'profile'|trans}}</a> 
-					<a href="{{ path('schoolAdmin',{'id':admin.id})}}">{{'school'|trans}}</a> 
-				</li>
-			{% endif %}
-		{% endfor %}
-	</ol>
-	
-{% endblock %}
-=======
 {% extends 'baseListSuper.html.twig' %}
 
 {% block title %}
@@ -73,4 +52,3 @@
         </table>                                    
     </div>
 {% endblock %}
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df

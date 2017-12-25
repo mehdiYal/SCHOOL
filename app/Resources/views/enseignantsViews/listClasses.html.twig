@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'baseList.html.twig' %}
 
 {% block title %}
@@ -75,31 +74,9 @@
      $( document ).ready( function() {
 
                 $('#customers2').dataTable();
+                $('.active').removeClass('active');
+                $('.GC').addClass('active');
+                $('.listClasse').addClass('active');
             });
 </script>
-
-=======
-{% extends 'base.html.twig' %}
-
-{% block body %}
-<h1>{{'list'|trans}} {{'teachers'|trans}}</h1>
-{% dump(data) %}
-	<a href="{{ path('showEnseignant', { 'id': data.enseignant.id}) }}">{{'global.program'|trans}}</a>
-	<a href="{{ path('absence_index')}}">{{'absence.manage'|trans}}</a>
-	<a href="{{path('program_add',{ 'id': data.enseignant.id})}}">{{'global.annual.program'|trans}}</a>
-			
-	<ol>
-
-		{% for classe in data.classes %}
-			<li><a href="{{ path('showEleve', { 'idClasse': classe.classe.id, 'idMatiere': classe.matiere.id}) }}">
-				{{classe.classe.ecole.nom~' '~classe.classe.nom~' '~classe.classe.annee.nom~' '~classe.classe.annee.niveau~' '~classe.matiere.nom}}</a>
-				<a href="{{path('showClasse',{ 'id': classe.classe.id})}}">{{'global.program'|trans}}</a>
-				<a href="{{path('absence_new',{ 'id': classe.classe.id})}}">{{'absence.add'|trans}}</a>
-				<a href="">{{'message.send'|trans}}</a>
-			</li>
-		{% endfor %}
-
-	</ol>
-	
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 {% endblock %}

@@ -6,10 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SchoolBundle\Entity\Ecole;
 use SchoolBundle\Form\EcoleType;
-<<<<<<< HEAD
-=======
 use SchoolBundle\Form\EcoleEditType;
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -96,9 +93,6 @@ class SchoolController extends Controller
 
         return $this->render('schoolsViews/addSchool.html.twig',array("edit"=>false,"form"=>$form->createView()));
     }
-
-<<<<<<< HEAD
-=======
     /**
      * @Route("/editMy/{id}", name="editMySchool")
      */
@@ -131,8 +125,6 @@ class SchoolController extends Controller
 
         return $this->render('schoolsViews/editSchool.html.twig',array("edit"=>false,"form"=>$form->createView()));
     }
-
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 
      /**
      * @Route("/remove/{id}", name="removeSchool")

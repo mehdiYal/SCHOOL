@@ -122,8 +122,6 @@ class Ecole
     /**
      * @var int
      *
-<<<<<<< HEAD
-=======
      * @ORM\Column(name="fraisDeRestauration", type="integer",nullable=true)
      */
     private $fraisDeRestauration;
@@ -145,7 +143,6 @@ class Ecole
     /**
      * @var int
      *
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
      * @ORM\Column(name="telephone", type="integer")
      */
     private $telephone;
@@ -728,8 +725,6 @@ class Ecole
     {
         return $this->menus;
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Set fraisDeRestauration
@@ -802,5 +797,4 @@ class Ecole
     {
         return $this->fraisDeScolarite;
     }
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 }

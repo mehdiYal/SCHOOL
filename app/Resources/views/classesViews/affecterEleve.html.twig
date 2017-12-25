@@ -1,0 +1,83 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrap">           
+    <div class="row">
+    	<div class="col-md-6">
+    		<div class="panel panel-default">
+	            <div class="panel-heading">
+	                <h3 class="panel-title">Liste des Eleves en {{classe.annee}} </h3>
+	            </div>
+	            <div class="panel-body">
+		    		<div class="table-responsive">
+				        <table id="customers2" class="table">
+				            <thead>
+				                <tr>
+				                    <th>Nom & Prenom </th>
+				                    <th>Remettre</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				                {% for eleve in eleves %}
+				                    <tr class="danger">
+				                    	<td>
+				                    		<a href="{{ path('profileEleve',{'id':eleve.id})}}">
+				                                {{eleve.nom}} {{eleve.prenom}}
+				                            </a>
+				                    	</td>
+				                    	<td>
+				                    		<a href="{{ path('affectEleveClasse',{'id':classe.id,'eleveID':eleve.id}) }}">
+				                                <span class="fa fa-chevron-right"></span>
+				                            </a>
+				                    	</td>
+				                    </tr>
+				                {% endfor %}
+				            </tbody>
+				        </table>                                    
+				    </div>
+				</div>
+			</div>
+    	</div>
+    	<div class="col-md-6">
+    		<div class="panel panel-default">
+	            <div class="panel-heading">
+	                <h3 class="panel-title">Liste des Eleves dans la classe</h3>
+	            </div>
+	            <div class="panel-body">
+		    		<div class="table-responsive">
+				        <table id="customers2" class="table">
+				            <thead>
+				                <tr>
+				                	<th>Remettre</th>
+				                    <th>Nom & Prenom </th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				                {% for eleve in classe.eleves %}
+				                    <tr>
+				                    	<td>
+				                    		<a href="{{ path('remettreEleveClasse',{'id':classe.id,'eleveID':eleve.id})}}">
+				                                <span class="fa fa-chevron-left"></span>
+				                            </a>
+				                    	</td>
+				                    	<td>
+				                    		<a href="{{ path('profileEleve',{'id':eleve.id})}}">
+				                                {{eleve.nom}} {{eleve.prenom}}
+				                            </a>
+				                    	</td>
+				                    </tr>
+				                {% endfor %}
+				            </tbody>
+				        </table>                                    
+				    </div>
+				</div>
+			</div>
+    	</div>
+    </div>                    
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+	<script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-select.js') }}"></script>
+{% endblock %}

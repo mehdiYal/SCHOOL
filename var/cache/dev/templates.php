@@ -165,6 +165,7 @@
   '::baseListSuper.html.twig' => __DIR__.'/../../../app/Resources/views/baseListSuper.html.twig',
   '::baseSuper.html.twig' => __DIR__.'/../../../app/Resources/views/baseSuper.html.twig',
   ':classesViews:addClasse.html.twig' => __DIR__.'/../../../app/Resources/views/classesViews/addClasse.html.twig',
+  ':classesViews:affecterEleve.html.twig' => __DIR__.'/../../../app/Resources/views/classesViews/affecterEleve.html.twig',
   ':classesViews:affecterProf.html.twig' => __DIR__.'/../../../app/Resources/views/classesViews/affecterProf.html.twig',
   ':classesViews:eleves.html.twig' => __DIR__.'/../../../app/Resources/views/classesViews/eleves.html.twig',
   ':classesViews:listClasses.html.twig' => __DIR__.'/../../../app/Resources/views/classesViews/listClasses.html.twig',

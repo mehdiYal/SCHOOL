@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 {% extends 'base2.html.twig' %}
-
-
-
 
 {% block body %}
 
@@ -11,7 +7,7 @@
             <div class="col-md-12">
                 <div id="alert_holder"></div>
                 <div class="calendar">                                
-        		    <div id="calendar"></div>                            
+        		<div id="calendar"></div>                            
                 </div>
             </div>
         </div>
@@ -24,6 +20,9 @@
 		
 		{% dump(data) %}
 		<script type="text/javascript">
+				$('.active').removeClass('active');
+                $('.plan').addClass('active');
+                $('.pl').addClass('active');
 			var j=0;
 			datedeb = [];
 			datefin = [];
@@ -244,9 +243,6 @@
 					}
 		});
 			length=j;
-
-			
-			
 			for(var i=0;i<length;i++){
 				calendar.fullCalendar('renderEvent',{
 					title: titletab[i],
@@ -256,39 +252,9 @@
 				);
 			};
 
-			//$('#calendar').fullCalendar('gotoDate', startDate);
+			$('#calendar').fullCalendar('gotoDate', startDate);
 		  	
 		  });
 
 		</script>
-=======
-{% extends 'base.html.twig' %}
-
-
-{% block body %}
-{%dump(data)%}
-	<table>
-		
-	{% for jour in data.jour %}
-		<th>
-			{{jour.nom}}
-		</th>
-		
-		{% for horraire in data.horraire %}
-		<tr>	
-				<td>{{horraire.heureDeb|date('H')~'H - '~horraire.heureFin|date('H')~'H'}}</td>
-				{% for programme in data.programme %}
-					{% if programme.jour.id==jour.id and programme.horraire.id==horraire.id %}
-					<td>{{programme.matiere.nom~' '~programme.enseignant.nom~' '~programme.salle.nom}}</td>
-					{% endif %}
-				{% endfor %}
-				
-		</tr>
-		{% endfor %}
-	{% endfor %}
-
-	
-	</table>
-
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 {% endblock %}

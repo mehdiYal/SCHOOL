@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-{% extends 'base.html.twig' %}
-
-{% block body %}
-<h1>{{'list'|trans}} {{'schools'|trans}}</h1>
-	<ol>
-		{% for ecole in ecoles %}
-			<li>{{ ecole.nom}} {{ ecole.ville}} <a href="{{ path('editSchool',{'id':ecole.id})}}">Modifier</a> <a href="{{ path('removeSchool',{'id':ecole.id})}}">Supprimer</a> <a href="{{ path('profileSchool',{'id':ecole.id})}}">Profile</a></li>
-		{% endfor %}
-	</ol>
-	
-{% endblock %}
-=======
 {% extends 'baseListSuper.html.twig' %}
 
 {% block title %}
@@ -59,4 +46,3 @@
         </table>                                    
     </div>
 {% endblock %}
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df

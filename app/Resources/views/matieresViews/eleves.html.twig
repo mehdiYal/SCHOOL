@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'baseList.html.twig' %}
 
 {% block title %}
@@ -14,16 +13,16 @@
 	</div>
 
 	    <div id="listEleve" class="table-responsive page-content-wrap page-tabs-item active">
-	    	<table id="customers2" class="table datatable">
+	    	<table id="customers2" class="table ">
 	            <thead>
 	                <tr>
 	                    <th style="width:10%;">{{'matiere'|trans}}</th>
 	                    <th style="width:10%;">{{'eleve.nom_prenom'|trans}}</th>
 	                    <th style="width:10%;">{{'evaluation.title'|trans}} </th>
-	                    <th style="width:20%;">{{'note'|trans}}</th>
-	                    <th style="width:20%">{{'global.remark'|trans}}</th>
-	                    <th style="width:20%;">{{'global.date'|trans}}</th>
-	                    <th style="width:10%;">{{'global.action'|trans}}</th>
+	                    <th style="width:15%;">{{'note'|trans}}</th>
+	                    <th style="width:100%">{{'global.remark'|trans}}</th>
+	                    <th style="width:15%;">{{'global.date'|trans}}</th>
+	                    <th style="width:5%;">{{'global.action'|trans}}</th>
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -204,17 +203,16 @@
 {% endblock %}
 
 {% block javascripts %}
-<script type="text/javascript" src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 
 	<script type="text/javascript">
 
      $( document ).ready( function() {
      		
-     		$('#customers2').dataTable({
+  /*   		$('#customers2').dataTable({
 				"aaSorting": []
   			});
-
-     		$('#customers3').dataTable({
+*/
+     		/*$('#customers3').dataTable({
 				"aaSorting": []
   			});
 
@@ -223,91 +221,6 @@
 
      			$('.spinner_decimal').spinner();
      		    $(".numberInput").spinner();
-            });
+            });*/
 </script>
-
-=======
-{% extends 'base.html.twig' %}
-
-{% block body %}
-
-
-	<ol>
-	{% set i=0 %}
-		{% for data in datas.data %}
-		<form name="addNote" id="addNote" action="{{path('addNote')}}" method="post">
-			{% if i==0 %}
-			<a href="{{ path('addMatiereEvaluation', { 'idClasse': data.eleve.classe.id, 'idMatiere': datas.matiere.id}) }}">{{'evaluation.add'|trans}}</a>
-			<a href="{{ path('new_cours', { 'idClasse': data.eleve.classe.id, 'idMatiere': datas.matiere.id}) }}">{{'cours.add'|trans}}</a>
-			<input type="hidden" name="idClasse" value="{{data.eleve.classe.id}}">
-			{% endif %}
-			<li>{{datas.matiere.nom~' '~data.eleve.nom~' '~data.eleve.prenom}}
-				{% set j=0 %}
-				{% for evaluation in datas.evaluations %}
-
-					{% set bool=false %}
-					
-					{% if(data.note is not null) %}
-						{% for notes in data.note %}
-							<div>
-							{% if bool==false and notes.evaluation_id==evaluation.id %}
-
-								{# Cas où l'evaluation a été noté #}
-								
-								<input type="text" name="evaluation{{i}}" value="{{evaluation.nom}}" disabled>
-								<input type="number" name="eleve{{data.eleve.id}}id{{j}}note" value="{{notes.note}}">
-								<input type="hidden" name="eleve{{data.eleve.id}}id{{j}}Evaluation" value="{{evaluation.id}}">
-								<input type="hidden" name="eleve{{data.eleve.id}}id{{j}}MatiereEleve" value="{{notes.id}}">
-								<a href="{{path('delete_note', { 'id': notes.id })}}">{{'global.delete'|trans()}}</a>
-								{% set bool=true %}
-								{% set j=j+1 %}
-
-							{% endif %}
-							{% if loop.last and bool==false %}
-
-								{# Cas où l'evaluation n'a pas été noté #}
-								
-								<input type="text" name="evaluation{{i}}" value="{{evaluation.nom}}" disabled>
-								<input type="number" name="eleve{{data.eleve.id}}id{{j}}note" value="">
-								<input type="hidden" name="eleve{{data.eleve.id}}id{{j}}Evaluation" value="{{evaluation.id}}">
-								<input type="hidden" name="eleve{{data.eleve.id}}id{{j}}MatiereEleve" value="-1">
-								{% set j=j+1 %}
-							{% endif %}
-							</div>
-						{% endfor %}
-					{% else %}	
-
-						{# Cas où l'eleve n'a pas été noté #}	
-						
-						<input type="text" name="evaluation{{i}}" value="{{evaluation.nom}}" disabled>
-						<input type="number" name="eleve{{data.eleve.id}}id{{j}}note" value="">
-						<input type="hidden" name="eleve{{data.eleve.id}}id{{j}}Evaluation" value="{{evaluation.id}}">
-						<input type="hidden" name="eleve{{data.eleve.id}}id{{j}}MatiereEleve" value="-1">
-						{% set j=j+1 %}
-
-					{% endif %}
-				{% endfor %}
-				<input type="hidden" name="idmatiere{{i}}" value="{{datas.matiere.id}}">
-				<input type="hidden" name="ideleve{{i}}" value="{{data.eleve.id}}">
-				<input type="hidden" name="lengthEvaluation" value="{{datas.evaluations|length}}">
-			</li>
-			{% set i=i+1 %}
-			
-		{% endfor %}
-		<input type="hidden" name="cpt" value="{{i}}">
-		<input type="submit" value="{{'global.update'|trans}}">
-		</form>
-	</ol>
-
-	<ol>
-		{% for cours in datas.cours %}
-		<li>{{cours.titre}} 
-			<a href="{{asset(uploads_cours_support~'/'~cours.support)}}">{{'cours.support.title'|trans}}</a> 
-			<a href="{{asset(uploads_cours_devoir~'/'~cours.devoir)}}">{{'devoir.maison.title'|trans}}</a> 
-			<a href="{{asset(uploads_cours_annexe~'/'~cours.annexe)}}">{{'cours.annexe.title'|trans}}</a>
-		</li>
-		{% endfor %}
-	</ol>
-	
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 {% endblock %}

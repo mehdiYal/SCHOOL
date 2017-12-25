@@ -5,9 +5,10 @@ namespace SchoolBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SchoolBundle\Entity\Classe;
+use UserBundle\Entity\Eleve;
 use SchoolBundle\Form\ClasseType;
 use SchoolBundle\Entity\EnsMat;
-use SchoolBundle\Form\EnsMatType;
+use SchoolBundle\Form\EnsMatAddType;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -84,7 +85,7 @@ class ClasseController extends Controller
     public function affectProf(Request $request,Classe $classe)
     {
         $ensMat = new EnsMat();
-        $form=$this->createForm(EnsMatType::class,$ensMat);
+        $form=$this->createForm(EnsMatAddType::class,$ensMat);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -92,10 +93,52 @@ class ClasseController extends Controller
             $em=$this->getDoctrine()->getManager();
             $em->persist($ensMat);
             $em->flush();
-            return $this->redirectToRoute('listClasses');
+            return $this->redirectToRoute('affectProf',array('id'=>$classe->getId()));
         }
 
         return $this->render('classesViews/affecterProf.html.twig',array("form"=>$form->createView(),"classe"=>$classe));
+    }
+
+    /**
+     * @Route("/affectEleves/{id}", name="affectEleves")
+     */
+    public function affectEleves(Classe $classe)
+    {
+        $repository=$this->getDoctrine()->getRepository("UserBundle:Eleve");
+        $eleves=$repository->findBy(array('classe'=>null,'ecole' => $classe->getEcole(),'annee'=>$classe->getAnnee()));
+        return $this->render('classesViews/affecterEleve.html.twig',array("eleves"=>$eleves,"classe"=>$classe));
+    }
+
+    /**
+     * @Route("/affectEleveClasse/{id}/{eleveID}", name="affectEleveClasse")
+     */
+    public function affectEleveClasse(Classe $classe,$eleveID)
+    {
+        $eleve = new Eleve();
+        $repository=$this->getDoctrine()->getRepository("UserBundle:Eleve");
+        $eleve=$repository->find($eleveID);
+        $eleve->setClasse($classe);
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($eleve);
+        $em->flush();
+        $eleves=$repository->findBy(array('classe'=>null,'ecole' => $classe->getEcole(),'annee'=>$classe->getAnnee()));
+        return $this->render('classesViews/affecterEleve.html.twig',array("eleves"=>$eleves,"classe"=>$classe));
+    }
+
+    /**
+     * @Route("/remettreEleveClasse/{id}/{eleveID}", name="remettreEleveClasse")
+     */
+    public function remettreEleveClasse(Classe $classe,$eleveID)
+    {
+        $eleve = new Eleve();
+        $repository=$this->getDoctrine()->getRepository("UserBundle:Eleve");
+        $eleve=$repository->find($eleveID);
+        $eleve->setClasse(null);
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($eleve);
+        $em->flush();
+        $eleves=$repository->findBy(array('classe'=>null,'ecole' => $classe->getEcole(),'annee'=>$classe->getAnnee()));
+        return $this->render('classesViews/affecterEleve.html.twig',array("eleves"=>$eleves,"classe"=>$classe));
     }
 
     

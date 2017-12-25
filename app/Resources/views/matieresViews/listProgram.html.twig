@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 {% extends 'baseList.html.twig' %}
 
 {% block bodyList %}
 
  <div class="table-responsive">
-        <table id="customers2" class="table datatable">
+        <table id="customers2" class="table">
             <thead>
                 <tr>
                     <th class="text-center">{{'matiere'|trans}}</th>
@@ -38,12 +37,11 @@
 									<i class="fa fa-file-text"></i>
 								</a> 
 							{% endif %}
-						</td>	
+						</td>
+
+						
 						<td class="text-center">
-							<a class="file-input-wrapper btn btn-default  fileinput">
-                       			<span>{{'global.parcourir'|trans}}</span>
-                       			{{ form_widget(formFile.programmeAnnuel,{ 'label_attr': {'class': 'fileinput'} } ) }}
-				  			</a>
+                       			{{ form_widget(formFile.programmeAnnuel,{ 'label_attr': {'class': 'fileinput btn-primary'} } ) }}
 							<button style="margin-left:5%;" type="submit" class="btn btn-success btn-condensed">
 								<i class="fa fa-check"></i>
 							</button>
@@ -67,54 +65,24 @@
         </table>                                    
     </div>
 
-=======
-{% extends 'base.html.twig' %}
-
-{% block body %}
-<h1>{{'list'|trans}} {{'teachers'|trans}}</h1>
-{% dump(form) %}
-{% set i=0 %}
-	{% for ensmat in data %}
-		{% set formFile =  form[i].createView %}
-
-	    {{ form_start(formFile) }}
-	    <label>{{ensmat.matiere.nom}}</label>
-		<label>{{ensmat.classe.nom}}</label>
-		<input hidden="hidden" name="idEnsMat{{i}}" value="{{ensmat.id}}" />
-		<input hidden="hidden" name="cpt" value="{{i}}" />
-		<input hidden="hidden" name="taille" value="{{ensmat|length}}" />
-		{% if ensmat.programmeAnnuel|slice(-4)!=".tmp" %}
-			<a href="{{asset(uploads_matiere_prog_annuel~'/'~ensmat.programmeAnnuel)}}">PDF</a>
-		{% endif %}
-		{{ form_widget(formFile.programmeAnnuel) }}
-	   	<button type="submit">{{'global.edit'|trans}}</button>
-	    {{ form_end(formFile) }}
-		{% if ensmat.programmeAnnuel|length==0 %}
-			<a href="" class="disabled">{{'global.delete'|trans}}</a>
-			{% else %}
-			<a href="">{{'global.delete'|trans}}</a>
-			{% endif %}
-		{% set i=i+1 %}
-	{% endfor %}
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 	<style type="text/css">
-
 	
 .disabled {
    pointer-events: none;
    cursor: default;
 }
 	</style>
-<<<<<<< HEAD
 {% endblock %}
 {% block javascripts %}
 
-<script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap-file-input.js')}}"></script>
+<script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-file-input.js') }}"></script>
 <script type="text/javascript">
+     $( document ).ready( function() {
 
-     
+                $('.active').removeClass('active');
+                $('.GC').addClass('active');
+                $('.prgmAnn').addClass('active');
+            });
 </script>
 
-=======
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
 {% endblock %}

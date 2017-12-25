@@ -63,9 +63,10 @@ class TravailRealiseController extends Controller
             $travailrealise->setAnnee($classe->getAnnee());
             $em->persist($travailrealise);
             $em->flush();
-            return $this->render('travailrealise/add.html.twig',array("form"=>$form->createView(),"data"=>$matieres));
+             $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findAll(array('enseignant_id'=> $id));
+        
+        return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise));
         }
-
         return $this->render('travailrealise/add.html.twig',array("form"=>$form->createView(),"data"=>$matieres));
     }
 

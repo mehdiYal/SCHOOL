@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-{% extends 'base.html.twig' %}
-
-{% block body %}
-<h1>Pas d'ecole associé à {{admin.nom}} {{admin.prenom}} </h1>
-<h2>Selectioner une Ecole</h2>	
-	<ol>
-		{% for ecole in ecoles %}
-			{% if ecole.admin ==null %}
-			<li>
-				{{ ecole.nom}} {{ ecole.ville}} <a href="{{ path('assoSchool',{'id':admin.id,'idp':ecole.id})}}">Associer</a>
-			</li>
-			{% endif %}
-		{% endfor %}
-	</ol>
-{% endblock %}
-=======
 {% extends 'baseSuper.html.twig' %}
 {% block body %}
 
@@ -80,4 +63,3 @@
        
 
 {% endblock %}  
->>>>>>> 54cd4f900f4952129c238960f1824c2e2314b6df
