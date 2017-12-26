@@ -21,6 +21,7 @@
       <parameter key="UserBundle">UserBundle\UserBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="PaymentBundle">PaymentBundle\PaymentBundle</parameter>
+      <parameter key="FOSMessageBundle">FOS\MessageBundle\FOSMessageBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -87,6 +88,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/Applications/MAMP/htdocs/Schoolium/src/PaymentBundle</parameter>
         <parameter key="namespace">PaymentBundle</parameter>
+      </parameter>
+      <parameter key="FOSMessageBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle</parameter>
+        <parameter key="namespace">FOS\MessageBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -414,6 +420,14 @@
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="fos_message.message_meta_class">UserBundle\Entity\MessageMetadata</parameter>
+    <parameter key="fos_message.thread_meta_class">UserBundle\Entity\ThreadMetadata</parameter>
+    <parameter key="fos_message.message_class">UserBundle\Entity\Message</parameter>
+    <parameter key="fos_message.thread_class">UserBundle\Entity\Thread</parameter>
+    <parameter key="fos_message.new_thread_form.model">FOS\MessageBundle\FormModel\NewThreadMessage</parameter>
+    <parameter key="fos_message.new_thread_form.name">message</parameter>
+    <parameter key="fos_message.reply_form.model">FOS\MessageBundle\FormModel\ReplyMessage</parameter>
+    <parameter key="fos_message.reply_form.name">message</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -538,6 +552,9 @@
     <service id="UserBundle\Controller\EnseignantController" class="UserBundle\Controller\EnseignantController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="UserBundle\Controller\MessageController" class="UserBundle\Controller\MessageController" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="UserBundle\Controller\ParentalController" class="UserBundle\Controller\ParentalController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
@@ -580,7 +597,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.ae1af4a9497b4b2960408ed449fba502"/>
+      <argument type="service" id="service_locator.3859a0273803cad4b039e7cd7bbbf407"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -625,7 +642,6 @@
     <service id="cache_warmer" class="Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate">
       <argument type="collection">
         <argument type="service" id="templating.cache_warmer.template_paths"/>
-        <argument type="service" id="kernel.class_cache.cache_warmer"/>
         <argument type="service" id="validator.mapping.cache_warmer"/>
         <argument type="service" id="translation.warmer"/>
         <argument type="service" id="router.cache_warmer"/>
@@ -636,7 +652,6 @@
       </argument>
     </service>
     <service id="kernel.class_cache.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ClassCacheCacheWarmer">
-      <tag name="kernel.cache_warmer"/>
       <argument type="collection">
         <argument>Symfony\Component\HttpFoundation\ParameterBag</argument>
         <argument>Symfony\Component\HttpFoundation\HeaderBag</argument>
@@ -645,6 +660,7 @@
         <argument>Symfony\Component\HttpFoundation\Request</argument>
         <argument>Symfony\Component\HttpKernel\Kernel</argument>
       </argument>
+      <deprecated>The "%service_id%" option is deprecated since version 3.3, to be removed in 4.0.</deprecated>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer">
       <argument type="collection">
@@ -745,7 +761,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>Mdn3HWfoF36uxlXbH-1C58</argument>
+      <argument>8cF3G8AWwhjH0Py1dzwk1c</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -755,7 +771,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>Mdn3HWfoF36uxlXbH-1C58</argument>
+      <argument>8cF3G8AWwhjH0Py1dzwk1c</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -871,7 +887,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.88781b9d0d2bd5308b0f059bc94e3cdb"/>
+      <argument type="service" id="service_locator.aefdec3f06c5f7c14d1840d438b71ef8"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.http_foundation"/>
@@ -1161,6 +1177,7 @@
         <argument type="collection">
           <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
           <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</argument>
+          <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/config/validation.xml</argument>
         </argument>
       </call>
       <call method="enableAnnotationMapping">
@@ -1193,7 +1210,7 @@
       <argument type="service" id="2_b42552a81c2181493033e9b09a05d3e57aba56c2f8bf8d703e49a85aa9766d6d"/>
     </service>
     <service id="validator.validator_factory" class="Symfony\Component\Validator\ContainerConstraintValidatorFactory" public="false">
-      <argument type="service" id="service_locator.39e66930232432ca5ba91e98fdd8a17b"/>
+      <argument type="service" id="service_locator.d1035efbd4e2f2796cab4e77371ef95b"/>
     </service>
     <service id="validator.expression" class="Symfony\Component\Validator\Constraints\ExpressionValidator">
       <tag name="validator.constraint_validator" alias="validator.expression"/>
@@ -1261,6 +1278,8 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ar.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ar.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ar.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.ar.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.ar.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/app/Resources/translations/messages.ar.yml</argument>
           </argument>
           <argument key="az" type="collection">
@@ -1288,6 +1307,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.cs.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.cs.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.cs.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.cs.yml</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cy.xlf</argument>
@@ -1305,6 +1325,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.de.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.de.yml</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.el.xlf</argument>
@@ -1319,6 +1340,8 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.en.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.en.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.en.yml</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
@@ -1326,6 +1349,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.es.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.es.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.es.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.es.yml</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.et.xlf</argument>
@@ -1344,6 +1368,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.fa.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fa.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fa.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.fa.yml</argument>
           </argument>
           <argument key="fi" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fi.xlf</argument>
@@ -1357,6 +1382,8 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.fr.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.fr.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.fr.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/app/Resources/translations/messages.fr.yml</argument>
           </argument>
           <argument key="gl" type="collection">
@@ -1403,6 +1430,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.it.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.it.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.it.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.it.yml</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ja.xlf</argument>
@@ -1441,6 +1469,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.nl.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nl.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.nl.yml</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nn.xlf</argument>
@@ -1456,6 +1485,8 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.pl.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pl.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.pl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.pl.yml</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt.xlf</argument>
@@ -1483,6 +1514,8 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ru.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ru.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ru.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.ru.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.ru.yml</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sk.xlf</argument>
@@ -1490,6 +1523,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sk.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sk.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sk.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.sk.yml</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sl.xlf</argument>
@@ -1497,6 +1531,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sl.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sl.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.sl.yml</argument>
           </argument>
           <argument key="sq" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sq.xlf</argument>
@@ -1519,6 +1554,7 @@
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sv.xlf</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sv.yml</argument>
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sv.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.sv.yml</argument>
           </argument>
           <argument key="th" type="collection">
             <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.th.xlf</argument>
@@ -2107,14 +2143,6 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -3148,12 +3176,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5a23bb8cd23d93.82624354</argument>
+      <argument>5a42c86e48d988.56587811</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5a23bb8cd23d93.82624354</argument>
+      <argument>5a42c86e48d988.56587811</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3279,6 +3307,9 @@
         <argument type="service" id="doctrine.twig.doctrine_extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="fos_message.twig_extension.default"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.dump"/>
       </call>
       <call method="addExtension">
@@ -3387,6 +3418,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Schoolium/src/PaymentBundle/Resources/views</argument>
         <argument>Payment</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/views</argument>
+        <argument>FOSMessage</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -3545,6 +3580,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Schoolium/src/PaymentBundle/Resources/views</argument>
         <argument>Payment</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/views</argument>
+        <argument>FOSMessage</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -3958,6 +3997,7 @@
           <argument key="SchoolBundle">SchoolBundle\Entity</argument>
           <argument key="UserBundle">UserBundle\Entity</argument>
           <argument key="PaymentBundle">PaymentBundle\Entity</argument>
+          <argument key="FOSMessageBundle">FOS\MessageBundle\Entity</argument>
         </argument>
       </call>
       <call method="setMetadataCacheImpl">
@@ -4008,6 +4048,14 @@
         <argument>/Applications/MAMP/htdocs/Schoolium/src/PaymentBundle/Entity</argument>
       </argument>
     </service>
+    <service id="doctrine.orm.default_xml_metadata_driver" class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+      <argument type="collection">
+        <argument key="/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/config/doctrine">FOS\MessageBundle\Entity</argument>
+      </argument>
+      <call method="setGlobalBasename">
+        <argument>mapping</argument>
+      </call>
+    </service>
     <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
@@ -4020,6 +4068,10 @@
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
         <argument>PaymentBundle\Entity</argument>
+      </call>
+      <call method="addDriver">
+        <argument type="service" id="doctrine.orm.default_xml_metadata_driver"/>
+        <argument>FOS\MessageBundle\Entity</argument>
       </call>
       <call method="addDriver">
         <argument type="service">
@@ -4302,6 +4354,130 @@
     <service id="doctrine.fixtures_load_command" class="Doctrine\Bundle\FixturesBundle\Command\LoadDataFixturesDoctrineCommand">
       <tag name="console.command" command="doctrine:fixtures:load"/>
     </service>
+    <service id="fos_message.message_manager.default" class="FOS\MessageBundle\EntityManager\MessageManager" public="false">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument>UserBundle\Entity\Message</argument>
+      <argument>UserBundle\Entity\MessageMetadata</argument>
+    </service>
+    <service id="fos_message.thread_manager.default" class="FOS\MessageBundle\EntityManager\ThreadManager" public="false">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument>UserBundle\Entity\Thread</argument>
+      <argument>UserBundle\Entity\ThreadMetadata</argument>
+      <argument type="service" id="fos_message.message_manager.default"/>
+    </service>
+    <service id="fos_message.sender.default" class="FOS\MessageBundle\Sender\Sender" public="false">
+      <argument type="service" id="fos_message.message_manager.default"/>
+      <argument type="service" id="fos_message.thread_manager.default"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="fos_message.composer.default" class="FOS\MessageBundle\Composer\Composer" public="false">
+      <argument type="service" id="fos_message.message_manager.default"/>
+      <argument type="service" id="fos_message.thread_manager.default"/>
+    </service>
+    <service id="fos_message.participant_provider.default" class="FOS\MessageBundle\Security\ParticipantProvider" public="false">
+      <argument type="service" id="security.token_storage"/>
+    </service>
+    <service id="fos_message.authorizer.default" class="FOS\MessageBundle\Security\Authorizer" public="false">
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
+    <service id="fos_message.provider.default" class="FOS\MessageBundle\Provider\Provider" public="false">
+      <argument type="service" id="fos_message.thread_manager.default"/>
+      <argument type="service" id="fos_message.message_manager.default"/>
+      <argument type="service" id="fos_message.thread_reader.default"/>
+      <argument type="service" id="fos_message.authorizer.default"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
+    <service id="fos_message.message_reader.default" class="FOS\MessageBundle\Reader\Reader" public="false">
+      <argument type="service" id="fos_message.participant_provider.default"/>
+      <argument type="service" id="fos_message.message_manager.default"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="fos_message.thread_reader.default" class="FOS\MessageBundle\Reader\Reader" public="false">
+      <argument type="service" id="fos_message.participant_provider.default"/>
+      <argument type="service" id="fos_message.thread_manager.default"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="fos_message.deleter.default" class="FOS\MessageBundle\Deleter\Deleter" public="false">
+      <argument type="service" id="fos_message.authorizer.default"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="fos_message.twig_extension.default" class="FOS\MessageBundle\Twig\Extension\MessageExtension" public="false">
+      <tag name="twig.extension" alias="fos_message"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+      <argument type="service" id="fos_message.provider.default"/>
+      <argument type="service" id="fos_message.authorizer.default"/>
+    </service>
+    <service id="fos_message.search_query_factory.default" class="FOS\MessageBundle\Search\QueryFactory">
+      <argument type="service" id="request_stack"/>
+      <argument>q</argument>
+    </service>
+    <service id="fos_message.search_finder.default" class="FOS\MessageBundle\Search\Finder">
+      <argument type="service" id="fos_message.participant_provider.default"/>
+      <argument type="service" id="fos_message.thread_manager.default"/>
+    </service>
+    <service id="fos_message.new_thread_form.type.default" class="FOS\MessageBundle\FormType\NewThreadMessageFormType" public="false"/>
+    <service id="fos_message.new_thread_multiple_form.type" class="FOS\MessageBundle\FormType\NewThreadMultipleMessageFormType" public="false"/>
+    <service id="fos_message.reply_form.type.default" class="FOS\MessageBundle\FormType\ReplyMessageFormType" public="false"/>
+    <service id="fos_message.new_thread_form.factory.default" class="FOS\MessageBundle\FormFactory\NewThreadMessageFormFactory" public="false">
+      <argument type="service" id="form.factory"/>
+      <argument>FOS\MessageBundle\FormType\NewThreadMessageFormType</argument>
+      <argument>message</argument>
+      <argument>FOS\MessageBundle\FormModel\NewThreadMessage</argument>
+    </service>
+    <service id="fos_message.reply_form.factory.default" class="FOS\MessageBundle\FormFactory\ReplyMessageFormFactory" public="false">
+      <argument type="service" id="form.factory"/>
+      <argument>FOS\MessageBundle\FormType\ReplyMessageFormType</argument>
+      <argument>message</argument>
+      <argument>FOS\MessageBundle\FormModel\ReplyMessage</argument>
+    </service>
+    <service id="fos_message.new_thread_form.handler.default" class="FOS\MessageBundle\FormHandler\NewThreadMessageFormHandler" public="false">
+      <argument type="service" id="request_stack"/>
+      <argument type="service" id="fos_message.composer.default"/>
+      <argument type="service" id="fos_message.sender.default"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
+    <service id="fos_message.new_thread_multiple_form.handler" class="FOS\MessageBundle\FormHandler\NewThreadMultipleMessageFormHandler" public="false">
+      <argument type="service" id="request_stack"/>
+      <argument type="service" id="fos_message.composer.default"/>
+      <argument type="service" id="fos_message.sender.default"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
+    <service id="fos_message.reply_form.handler.default" class="FOS\MessageBundle\FormHandler\ReplyMessageFormHandler" public="false">
+      <argument type="service" id="request_stack"/>
+      <argument type="service" id="fos_message.composer.default"/>
+      <argument type="service" id="fos_message.sender.default"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
+    <service id="fos_message.recipients_data_transformer" class="FOS\MessageBundle\DataTransformer\RecipientsDataTransformer" public="false">
+      <argument type="service" id="fos_user.user_to_username_transformer"/>
+    </service>
+    <service id="fos_message.recipients_selector" class="FOS\MessageBundle\FormType\RecipientsType">
+      <tag name="form.type" alias="recipients_selector"/>
+      <argument type="service" id="fos_message.recipients_data_transformer"/>
+    </service>
+    <service id="fos_message.validator.authorization" class="FOS\MessageBundle\Validator\AuthorizationValidator">
+      <tag name="validator.constraint_validator" alias="fos_message.validator.authorization"/>
+      <argument type="service" id="fos_message.authorizer.default"/>
+    </service>
+    <service id="fos_message.validator.reply_authorization" class="FOS\MessageBundle\Validator\ReplyAuthorizationValidator">
+      <tag name="validator.constraint_validator" alias="fos_message.validator.reply_authorization"/>
+      <argument type="service" id="fos_message.authorizer.default"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
+    <service id="fos_message.validator.spam" class="FOS\MessageBundle\Validator\SpamValidator">
+      <tag name="validator.constraint_validator" alias="fos_message.validator.spam"/>
+      <argument type="service" id="fos_message.noop_spam_detector"/>
+    </service>
+    <service id="fos_message.validator.self_recipient" class="FOS\MessageBundle\Validator\SelfRecipientValidator">
+      <tag name="validator.constraint_validator" alias="fos_message.validator.self_recipient"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
+    <service id="fos_message.noop_spam_detector" class="FOS\MessageBundle\SpamDetection\NoopSpamDetector" public="false"/>
+    <service id="fos_message.akismet_spam_detector" class="FOS\MessageBundle\SpamDetection\AkismetSpamDetector" public="false">
+      <argument type="service" id="ornicar_akismet"/>
+      <argument type="service" id="fos_message.participant_provider.default"/>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -4491,6 +4667,8 @@
     <service id="abstract.instanceof.UserBundle\Controller\EleveController" class="UserBundle\Controller\EleveController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\EnseignantController" class="UserBundle\Controller\EnseignantController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.UserBundle\Controller\EnseignantController" class="UserBundle\Controller\EnseignantController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\MessageController" class="UserBundle\Controller\MessageController" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.UserBundle\Controller\MessageController" class="UserBundle\Controller\MessageController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\ParentalController" class="UserBundle\Controller\ParentalController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.UserBundle\Controller\ParentalController" class="UserBundle\Controller\ParentalController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.UserBundle\Form\AbsenceType" class="UserBundle\Form\AbsenceType" public="false" autowire="true" abstract="true"/>
@@ -4567,6 +4745,16 @@
         <argument key="enseignant" type="service" id="autowired.UserBundle\Entity\Enseignant"/>
       </argument>
     </service>
+    <service id="service_locator.61b7ce76edea1fb8a8579609fa72e28c" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="thread" type="service" id="autowired.UserBundle\Entity\Thread"/>
+      </argument>
+    </service>
+    <service id="service_locator.c0d60a54df14687758cf91b5771f0604" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
     <service id="service_locator.020ba0af70b7ed1a76ae4d6d2cdfe35d" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
@@ -4583,7 +4771,7 @@
         <argument key="parental" type="service" id="autowired.UserBundle\Entity\Parental"/>
       </argument>
     </service>
-    <service id="service_locator.ae1af4a9497b4b2960408ed449fba502" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.3859a0273803cad4b039e7cd7bbbf407" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="UserBundle\Controller\AbsenceController:editAction" type="service" id="service_locator.9a7dbe7c3f50eff43f96708a6d342f79"/>
@@ -4602,6 +4790,7 @@
         <argument key="UserBundle\Controller\EnseignantController:editAction" type="service" id="service_locator.7777ac7d125f850c85874200b0e20cdd"/>
         <argument key="UserBundle\Controller\EnseignantController:profileAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
         <argument key="UserBundle\Controller\EnseignantController:removeAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
+        <argument key="UserBundle\Controller\MessageController:showAction" type="service" id="service_locator.61b7ce76edea1fb8a8579609fa72e28c"/>
         <argument key="UserBundle\Controller\ParentalController:editAction" type="service" id="service_locator.5088ad102906363d71e711956108d3ef"/>
         <argument key="UserBundle\Controller\ParentalController:profileAction" type="service" id="service_locator.eff5e9bca454bfd26380c3a61f8bcdb3"/>
         <argument key="UserBundle\Controller\ParentalController:removeAction" type="service" id="service_locator.eff5e9bca454bfd26380c3a61f8bcdb3"/>
@@ -4621,6 +4810,7 @@
         <argument key="UserBundle\Controller\EnseignantController::editAction" type="service" id="service_locator.7777ac7d125f850c85874200b0e20cdd"/>
         <argument key="UserBundle\Controller\EnseignantController::profileAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
         <argument key="UserBundle\Controller\EnseignantController::removeAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
+        <argument key="UserBundle\Controller\MessageController::showAction" type="service" id="service_locator.61b7ce76edea1fb8a8579609fa72e28c"/>
         <argument key="UserBundle\Controller\ParentalController::editAction" type="service" id="service_locator.5088ad102906363d71e711956108d3ef"/>
         <argument key="UserBundle\Controller\ParentalController::profileAction" type="service" id="service_locator.eff5e9bca454bfd26380c3a61f8bcdb3"/>
         <argument key="UserBundle\Controller\ParentalController::removeAction" type="service" id="service_locator.eff5e9bca454bfd26380c3a61f8bcdb3"/>
@@ -4642,9 +4832,10 @@
         <argument key="translation.loader.yml" type="service" id="translation.loader.yml"/>
       </argument>
     </service>
-    <service id="service_locator.88781b9d0d2bd5308b0f059bc94e3cdb" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.aefdec3f06c5f7c14d1840d438b71ef8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="FOS\MessageBundle\FormType\RecipientsType" type="service" id="fos_message.recipients_selector"/>
         <argument key="FOS\UserBundle\Form\Type\ChangePasswordFormType" type="service" id="fos_user.change_password.form.type"/>
         <argument key="FOS\UserBundle\Form\Type\ProfileFormType" type="service" id="fos_user.profile.form.type"/>
         <argument key="FOS\UserBundle\Form\Type\RegistrationFormType" type="service" id="fos_user.registration.form.type"/>
@@ -4844,15 +5035,24 @@
     <service id="autowired.UserBundle\Entity\Admin" class="UserBundle\Entity\Admin" public="false" autowire="true"/>
     <service id="autowired.UserBundle\Entity\Eleve" class="UserBundle\Entity\Eleve" public="false" autowire="true"/>
     <service id="autowired.UserBundle\Entity\Enseignant" class="UserBundle\Entity\Enseignant" public="false" autowire="true"/>
+    <service id="autowired.UserBundle\Entity\Thread" class="UserBundle\Entity\Thread" public="false" autowire="true"/>
     <service id="autowired.UserBundle\Entity\Parental" class="UserBundle\Entity\Parental" public="false" autowire="true"/>
-    <service id="service_locator.39e66930232432ca5ba91e98fdd8a17b" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.d1035efbd4e2f2796cab4e77371ef95b" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="FOS\MessageBundle\Validator\AuthorizationValidator" type="service" id="fos_message.validator.authorization"/>
+        <argument key="FOS\MessageBundle\Validator\ReplyAuthorizationValidator" type="service" id="fos_message.validator.reply_authorization"/>
+        <argument key="FOS\MessageBundle\Validator\SelfRecipientValidator" type="service" id="fos_message.validator.self_recipient"/>
+        <argument key="FOS\MessageBundle\Validator\SpamValidator" type="service" id="fos_message.validator.spam"/>
         <argument key="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator" type="service" id="doctrine.orm.validator.unique"/>
         <argument key="Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator" type="service" id="security.validator.user_password"/>
         <argument key="Symfony\Component\Validator\Constraints\EmailValidator" type="service" id="validator.email"/>
         <argument key="Symfony\Component\Validator\Constraints\ExpressionValidator" type="service" id="validator.expression"/>
         <argument key="doctrine.orm.validator.unique" type="service" id="doctrine.orm.validator.unique"/>
+        <argument key="fos_message.validator.authorization" type="service" id="fos_message.validator.authorization"/>
+        <argument key="fos_message.validator.reply_authorization" type="service" id="fos_message.validator.reply_authorization"/>
+        <argument key="fos_message.validator.self_recipient" type="service" id="fos_message.validator.self_recipient"/>
+        <argument key="fos_message.validator.spam" type="service" id="fos_message.validator.spam"/>
         <argument key="security.validator.user_password" type="service" id="security.validator.user_password"/>
         <argument key="validator.expression" type="service" id="validator.expression"/>
       </argument>
@@ -4874,7 +5074,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>pa5OcqjSWU</argument>
       <argument>0</argument>
-      <argument>Mdn3HWfoF36uxlXbH-1C58</argument>
+      <argument>8cF3G8AWwhjH0Py1dzwk1c</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4882,7 +5082,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>s0usrvYPSv</argument>
       <argument>0</argument>
-      <argument>Mdn3HWfoF36uxlXbH-1C58</argument>
+      <argument>8cF3G8AWwhjH0Py1dzwk1c</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4890,7 +5090,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>b8+C7eL5rw</argument>
       <argument>0</argument>
-      <argument>Mdn3HWfoF36uxlXbH-1C58</argument>
+      <argument>8cF3G8AWwhjH0Py1dzwk1c</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4898,7 +5098,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>bQfurwaqgO</argument>
       <argument>0</argument>
-      <argument>Mdn3HWfoF36uxlXbH-1C58</argument>
+      <argument>8cF3G8AWwhjH0Py1dzwk1c</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5003,6 +5203,24 @@
     <service id="fos_user.util.token_generator" alias="fos_user.util.token_generator.default"/>
     <service id="fos_user.user_manager" alias="fos_user.user_manager.default"/>
     <service id="FOS\UserBundle\Model\UserManagerInterface" alias="fos_user.user_manager.default" public="false"/>
+    <service id="fos_message.message_manager" alias="fos_message.message_manager.default"/>
+    <service id="fos_message.thread_manager" alias="fos_message.thread_manager.default"/>
+    <service id="fos_message.sender" alias="fos_message.sender.default"/>
+    <service id="fos_message.composer" alias="fos_message.composer.default"/>
+    <service id="fos_message.provider" alias="fos_message.provider.default"/>
+    <service id="fos_message.participant_provider" alias="fos_message.participant_provider.default"/>
+    <service id="fos_message.authorizer" alias="fos_message.authorizer.default"/>
+    <service id="fos_message.message_reader" alias="fos_message.message_reader.default"/>
+    <service id="fos_message.thread_reader" alias="fos_message.thread_reader.default"/>
+    <service id="fos_message.deleter" alias="fos_message.deleter.default"/>
+    <service id="fos_message.spam_detector" alias="fos_message.noop_spam_detector"/>
+    <service id="fos_message.twig_extension" alias="fos_message.twig_extension.default"/>
+    <service id="fos_message.new_thread_form.factory" alias="fos_message.new_thread_form.factory.default"/>
+    <service id="fos_message.new_thread_form.handler" alias="fos_message.new_thread_form.handler.default"/>
+    <service id="fos_message.reply_form.factory" alias="fos_message.reply_form.factory.default"/>
+    <service id="fos_message.reply_form.handler" alias="fos_message.reply_form.handler.default"/>
+    <service id="fos_message.search_query_factory" alias="fos_message.search_query_factory.default"/>
+    <service id="fos_message.search_finder" alias="fos_message.search_finder.default"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand" alias="security.console.user_password_encoder_command"/>

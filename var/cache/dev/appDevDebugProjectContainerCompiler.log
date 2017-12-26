@@ -8,6 +8,8 @@ Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: R
 Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "UserBundle\Controller\EleveController" (parent: instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\EleveController).
 Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\EnseignantController" (parent: abstract.instanceof.UserBundle\Controller\EnseignantController).
 Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "UserBundle\Controller\EnseignantController" (parent: instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\EnseignantController).
+Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\MessageController" (parent: abstract.instanceof.UserBundle\Controller\MessageController).
+Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "UserBundle\Controller\MessageController" (parent: instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\MessageController).
 Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\ParentalController" (parent: abstract.instanceof.UserBundle\Controller\ParentalController).
 Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "UserBundle\Controller\ParentalController" (parent: instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\ParentalController).
 Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass: Resolving inheritance for "instanceof.Symfony\Component\Form\FormTypeInterface.0.UserBundle\Form\AbsenceType" (parent: abstract.instanceof.UserBundle\Form\AbsenceType).
@@ -90,6 +92,8 @@ Symfony\Component\DependencyInjection\Compiler\AutowirePass: Cannot autowire ser
 Symfony\Component\DependencyInjection\Compiler\AutowirePass: Cannot autowire service "service_locator.56c238d15bfa38177cd65410ae6bfa06": it references class "Symfony\Component\HttpFoundation\Request" but no such service exists. It cannot be auto-registered because it is from a different root namespace.
 Symfony\Component\DependencyInjection\Compiler\AutowirePass: Type "UserBundle\Entity\Enseignant" has been auto-registered for service "service_locator.7777ac7d125f850c85874200b0e20cdd".
 Symfony\Component\DependencyInjection\Compiler\AutowirePass: Cannot autowire service "service_locator.7777ac7d125f850c85874200b0e20cdd": it references class "Symfony\Component\HttpFoundation\Request" but no such service exists. It cannot be auto-registered because it is from a different root namespace.
+Symfony\Component\DependencyInjection\Compiler\AutowirePass: Type "UserBundle\Entity\Thread" has been auto-registered for service "service_locator.61b7ce76edea1fb8a8579609fa72e28c".
+Symfony\Component\DependencyInjection\Compiler\AutowirePass: Cannot autowire service "service_locator.c0d60a54df14687758cf91b5771f0604": it references class "Symfony\Component\HttpFoundation\Request" but no such service exists. It cannot be auto-registered because it is from a different root namespace.
 Symfony\Component\DependencyInjection\Compiler\AutowirePass: Cannot autowire service "service_locator.020ba0af70b7ed1a76ae4d6d2cdfe35d": it references class "Symfony\Component\HttpFoundation\Request" but no such service exists. It cannot be auto-registered because it is from a different root namespace.
 Symfony\Component\DependencyInjection\Compiler\AutowirePass: Type "UserBundle\Entity\Parental" has been auto-registered for service "service_locator.5088ad102906363d71e711956108d3ef".
 Symfony\Component\DependencyInjection\Compiler\AutowirePass: Cannot autowire service "service_locator.5088ad102906363d71e711956108d3ef": it references class "Symfony\Component\HttpFoundation\Request" but no such service exists. It cannot be auto-registered because it is from a different root namespace.
@@ -106,6 +110,10 @@ Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLo
 Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\EnseignantController:addAction": no corresponding services exist for the referenced types.
 Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\EnseignantController:showAction": no corresponding services exist for the referenced types.
 Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\EnseignantController:showClasseAction": no corresponding services exist for the referenced types.
+Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\MessageController:inboxAction": no corresponding services exist for the referenced types.
+Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\MessageController:newAction": no corresponding services exist for the referenced types.
+Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\MessageController:sendAction": no corresponding services exist for the referenced types.
+Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\MessageController:sentboxAction": no corresponding services exist for the referenced types.
 Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\ParentalController:addAction": no corresponding services exist for the referenced types.
 Symfony\Component\HttpKernel\DependencyInjection\RemoveEmptyControllerArgumentLocatorsPass: Removing service-argument resolver for controller "UserBundle\Controller\ParentalController:showAction": no corresponding services exist for the referenced types.
 Symfony\Component\DependencyInjection\Compiler\RemovePrivateAliasesPass: Removed service "Psr\Container\ContainerInterface"; reason: private alias.
@@ -195,6 +203,7 @@ Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPas
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "security.validator.user_password" previously pointing to "security.encoder_factory.generic" to "security.encoder_factory".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "security.authentication.provider.dao.main" previously pointing to "security.encoder_factory.generic" to "security.encoder_factory".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "twig" previously pointing to "twig.loader.filesystem" to "twig.loader".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "twig" previously pointing to "fos_message.twig_extension.default" to "fos_message.twig_extension".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "twig.extension.trans" previously pointing to "translator.data_collector" to "translator".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "twig.extension.routing" previously pointing to "router.default" to "router".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "swiftmailer.email_sender.listener" previously pointing to "monolog.logger" to "logger".
@@ -213,6 +222,17 @@ Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPas
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_user.listener.flash" previously pointing to "translator.data_collector" to "translator".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_user.user_to_username_transformer" previously pointing to "fos_user.user_manager.default" to "fos_user.user_manager".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_user.listener.resetting" previously pointing to "router.default" to "router".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.search_finder.default" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.search_finder.default" previously pointing to "fos_message.thread_manager.default" to "fos_message.thread_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.new_thread_multiple_form.handler" previously pointing to "fos_message.composer.default" to "fos_message.composer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.new_thread_multiple_form.handler" previously pointing to "fos_message.sender.default" to "fos_message.sender".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.new_thread_multiple_form.handler" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.validator.authorization" previously pointing to "fos_message.authorizer.default" to "fos_message.authorizer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.validator.reply_authorization" previously pointing to "fos_message.authorizer.default" to "fos_message.authorizer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.validator.reply_authorization" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.validator.spam" previously pointing to "fos_message.noop_spam_detector" to "fos_message.spam_detector".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.validator.self_recipient" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.akismet_spam_detector" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "web_profiler.controller.profiler" previously pointing to "router.default" to "router".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "web_profiler.controller.router" previously pointing to "router.default" to "router".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "web_profiler.debug_toolbar" previously pointing to "router.default" to "router".
@@ -220,6 +240,32 @@ Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPas
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "swiftmailer.mailer.default.transport" previously pointing to "swiftmailer.mailer.default.spool.memory" to "swiftmailer.mailer.default.spool".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_user.mailer" previously pointing to "router.default" to "router".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_user.mailer" previously pointing to "templating.engine.twig" to "templating".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.thread_manager" previously pointing to "fos_message.message_manager.default" to "fos_message.message_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.sender" previously pointing to "fos_message.message_manager.default" to "fos_message.message_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.sender" previously pointing to "fos_message.thread_manager.default" to "fos_message.thread_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.composer" previously pointing to "fos_message.message_manager.default" to "fos_message.message_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.composer" previously pointing to "fos_message.thread_manager.default" to "fos_message.thread_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.provider" previously pointing to "fos_message.thread_manager.default" to "fos_message.thread_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.provider" previously pointing to "fos_message.message_manager.default" to "fos_message.message_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.provider" previously pointing to "fos_message.thread_reader.default" to "fos_message.thread_reader".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.provider" previously pointing to "fos_message.authorizer.default" to "fos_message.authorizer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.provider" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.authorizer" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.message_reader" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.message_reader" previously pointing to "fos_message.message_manager.default" to "fos_message.message_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.thread_reader" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.thread_reader" previously pointing to "fos_message.thread_manager.default" to "fos_message.thread_manager".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.deleter" previously pointing to "fos_message.authorizer.default" to "fos_message.authorizer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.deleter" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.twig_extension" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.twig_extension" previously pointing to "fos_message.provider.default" to "fos_message.provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.twig_extension" previously pointing to "fos_message.authorizer.default" to "fos_message.authorizer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.new_thread_form.handler" previously pointing to "fos_message.composer.default" to "fos_message.composer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.new_thread_form.handler" previously pointing to "fos_message.sender.default" to "fos_message.sender".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.new_thread_form.handler" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.reply_form.handler" previously pointing to "fos_message.composer.default" to "fos_message.composer".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.reply_form.handler" previously pointing to "fos_message.sender.default" to "fos_message.sender".
+Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "fos_message.reply_form.handler" previously pointing to "fos_message.participant_provider.default" to "fos_message.participant_provider".
 Symfony\Component\DependencyInjection\Compiler\ReplaceAliasByActualDefinitionPass: Changed reference of service "console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand" previously pointing to "security.encoder_factory.generic" to "security.encoder_factory".
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "cache.adapter.system"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "cache.adapter.apcu"; reason: abstract.
@@ -323,6 +369,8 @@ Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Re
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "abstract.instanceof.UserBundle\Controller\EleveController"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\EnseignantController"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "abstract.instanceof.UserBundle\Controller\EnseignantController"; reason: abstract.
+Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\MessageController"; reason: abstract.
+Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "abstract.instanceof.UserBundle\Controller\MessageController"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.UserBundle\Controller\ParentalController"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "abstract.instanceof.UserBundle\Controller\ParentalController"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "instanceof.Symfony\Component\Form\FormTypeInterface.0.UserBundle\Form\AbsenceType"; reason: abstract.
@@ -337,7 +385,7 @@ Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Re
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "abstract.instanceof.UserBundle\Form\ParentalType"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "instanceof.Symfony\Component\Form\FormTypeInterface.0.UserBundle\Form\UserType"; reason: abstract.
 Symfony\Component\DependencyInjection\Compiler\RemoveAbstractDefinitionsPass: Removed service "abstract.instanceof.UserBundle\Form\UserType"; reason: abstract.
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "service_locator.ae1af4a9497b4b2960408ed449fba502" to "argument_resolver.service".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "service_locator.3859a0273803cad4b039e7cd7bbbf407" to "argument_resolver.service".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "templating.cache_warmer.template_paths" to "cache_warmer".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "validator.mapping.cache_warmer" to "cache_warmer".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "translation.warmer" to "cache_warmer".
@@ -351,7 +399,7 @@ Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inl
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "1_cbb0f892d69f14cc3541ccaff81806924efd42bb4d7ae21d96746b31f4d737e0" to "session_listener".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "1_13c5f4b245d07530337dde2ae562d880914d6833b05b69fedcfd0b5e920b9899" to "form.resolved_type_factory".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "form.extension" to "form.registry".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "service_locator.88781b9d0d2bd5308b0f059bc94e3cdb" to "form.extension".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "service_locator.aefdec3f06c5f7c14d1840d438b71ef8" to "form.extension".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "form.choice_list_factory.default" to "form.choice_list_factory.property_access".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "form.choice_list_factory.property_access" to "form.choice_list_factory.cached".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "form.choice_list_factory.cached" to "form.type.choice".
@@ -363,7 +411,7 @@ Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inl
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "fos_user.validator.initializer" to "validator.builder".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "1_b42552a81c2181493033e9b09a05d3e57aba56c2f8bf8d703e49a85aa9766d6d" to "validator.mapping.cache.symfony".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "2_b42552a81c2181493033e9b09a05d3e57aba56c2f8bf8d703e49a85aa9766d6d" to "validator.mapping.cache.doctrine.apc".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "service_locator.39e66930232432ca5ba91e98fdd8a17b" to "validator.validator_factory".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "service_locator.d1035efbd4e2f2796cab4e77371ef95b" to "validator.validator_factory".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "service_locator.20ccd3ddf0f78b2202986f924e362585" to "translator.default".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "translator.selector" to "translator.default".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "profiler.storage" to "profiler".
@@ -460,10 +508,11 @@ Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inl
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "doctrine.orm.default_annotation_metadata_driver" to "doctrine.orm.default_metadata_driver".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "doctrine.orm.default_annotation_metadata_driver" to "doctrine.orm.default_metadata_driver".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "doctrine.orm.default_annotation_metadata_driver" to "doctrine.orm.default_metadata_driver".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "doctrine.orm.default_xml_metadata_driver" to "doctrine.orm.default_metadata_driver".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "doctrine.orm.default_configuration" to "doctrine.orm.default_entity_manager".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "doctrine.orm.default_entity_manager.metadata_factory" to "doctrine.orm.default_entity_manager.property_info_extractor".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "sensio_framework_extra.security.expression_language.default" to "sensio_framework_extra.security.listener".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "fos_user.user_to_username_transformer" to "fos_user.username_form_type".
+Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "fos_message.recipients_data_transformer" to "fos_message.recipients_selector".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "var_dumper.html_dumper" to "twig.extension.dump".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "1_6672bb395b2a515165936ba572e016795ac10dbf648153bd44893a4a4f2fd76d" to "web_profiler.csp.handler".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "2_6672bb395b2a515165936ba572e016795ac10dbf648153bd44893a4a4f2fd76d" to "twig.extension.webprofiler".
@@ -623,6 +672,7 @@ Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Remo
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "doctrine.orm.quote_strategy.ansi"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "doctrine.orm.default_configuration"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "doctrine.orm.default_annotation_metadata_driver"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "doctrine.orm.default_xml_metadata_driver"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "doctrine.orm.default_metadata_driver"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "doctrine.orm.default_entity_manager.metadata_factory"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "sensio_framework_extra.routing.loader.annot_dir"; reason: unused.
@@ -634,7 +684,12 @@ Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Remo
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_user.user_provider.username_email"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_user.mailer.twig_swift"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_user.mailer.noop"; reason: unused.
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_user.user_to_username_transformer"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_message.new_thread_form.type.default"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_message.new_thread_multiple_form.type"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_message.reply_form.type.default"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_message.new_thread_multiple_form.handler"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_message.recipients_data_transformer"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "fos_message.akismet_spam_detector"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "twig.extension.dump"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "var_dumper.html_dumper"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "2_6672bb395b2a515165936ba572e016795ac10dbf648153bd44893a4a4f2fd76d"; reason: unused.
@@ -645,17 +700,18 @@ Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Remo
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.9ce02a64c1e4a87075ae589a268509d1"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.53f3e323f441db08426950ee59cd90d4"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.56c238d15bfa38177cd65410ae6bfa06"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.c0d60a54df14687758cf91b5771f0604"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.020ba0af70b7ed1a76ae4d6d2cdfe35d"; reason: unused.
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.ae1af4a9497b4b2960408ed449fba502"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.3859a0273803cad4b039e7cd7bbbf407"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.20ccd3ddf0f78b2202986f924e362585"; reason: unused.
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.88781b9d0d2bd5308b0f059bc94e3cdb"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.aefdec3f06c5f7c14d1840d438b71ef8"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.6f24348b77840ec12a20c22a3f985cf7"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "debug.event_dispatcher.inner"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "debug.controller_resolver.inner"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "debug.argument_resolver.inner"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "debug.security.access.decision_manager.inner"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.26ac001b3ede28481ac0de703666b4d7"; reason: unused.
-Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.39e66930232432ca5ba91e98fdd8a17b"; reason: unused.
+Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.d1035efbd4e2f2796cab4e77371ef95b"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\RemoveUnusedDefinitionsPass: Removed service "service_locator.8925f20c49cbd61fcb37adf8c595459e"; reason: unused.
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "templating.finder" to "cache_warmer".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service "templating.finder" to "cache_warmer".

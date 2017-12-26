@@ -16,3 +16,7 @@ use:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     prefix:   /{_locale}/
+
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix:   /{_locale}/

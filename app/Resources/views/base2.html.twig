@@ -23,7 +23,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <!-- <a href="#">SCHOOLIUM</a> -->
+                        <a href="#">SCHOOLIUM</a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -102,6 +102,12 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                             <!-- Messagerie -->
+                            <li>
+                                <a href="{{ path('message_inbox') }}">
+                                    <span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span>
+                                </a>
                             </li>
                            
                         {% endif %}
@@ -190,7 +196,7 @@
                             <li><a href="#"><span class="fa fa-money"></span> <span class="xn-text">Payement</span></a></li>
 
                             <!-- Messagerie -->
-                            <li><a href="#"><span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span></a></li>
+                            <li><a href="{{ path('message_inbox') }}"><span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span></a></li>
 
                             <!-- Ressources pédagogiques -->
                             <li><a href="#"><span class="fa fa-leanpub"></span> <span class="xn-text">Ressources pédagogiques</span></a></li>
@@ -250,39 +256,23 @@
                     <!-- MESSAGES -->
                     <li class="xn-icon-button pull-right">
                         <a href="#"><span class="fa fa-comments"></span></a>
-                        <div class="informer informer-danger">4</div>
+                        <div class="informer informer-danger">{{newMessages}}</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>                                
                                 <div class="pull-right">
-                                    <span class="label label-danger">4 new</span>
+                                    <span class="label label-danger">{{newMessages}} new</span>
                                 </div>
                             </div>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-online"></div>
-                                    <img src="{{asset('uploads/photos/avatar.png')}}" class="pull-left" alt="John Doe"/>
-                                    <span class="contacts-title">John Doe</span>
-                                    <p>Praesent placerat tellus id augue condimentum</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="{{asset('uploads/photos/avatar.png')}}" class="pull-left" alt="Dmitry Ivaniuk"/>
-                                    <span class="contacts-title">Dmitry Ivaniuk</span>
-                                    <p>Donec risus sapien, sagittis et magna quis</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="{{asset('uploads/photos/avatar.png')}}" class="pull-left" alt="Nadia Ali"/>
-                                    <span class="contacts-title">Nadia Ali</span>
-                                    <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-offline"></div>
-                                    <img src="{{asset('uploads/photos/avatar.png')}}" class="pull-left" alt="Darth Vader"/>
-                                    <span class="contacts-title">Darth Vader</span>
-                                    <p>I want my money back!</p>
-                                </a>
+                                {% for msg in inbox %}
+                                    <a href="{{ path('message_show',{'id':msg.id})}}" class="list-group-item">
+                                        <div class="list-group-status status-online"></div>
+                                        <img src="{{asset('uploads/photos/'~ msg.createdBy.photo)}}" class="pull-left" alt="John Doe"/>
+                                        <span class="contacts-title">{{msg.createdBy.nom}} {{msg.createdBy.prenom}}</span>
+                                        <p>{{msg.subject}}</p>
+                                    </a>
+                                {% endfor %}
                             </div>     
                             <div class="panel-footer text-center">
                                 <a href="pages-messages.html">Show all messages</a>

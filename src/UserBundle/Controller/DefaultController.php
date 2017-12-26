@@ -23,18 +23,17 @@ class DefaultController extends Controller
     public function dashAction(Request $request)
     {
         $user= $this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($user->hasRole('ROLE_SUPER_ADMIN')){
-            return $this->render('default/dashSuperAdmin.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-            ]);
+            return $this->render('default/dashSuperAdmin.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR));
         }else if($user->hasRole('ROLE_ADMIN')){
-            return $this->render('default/dashAdmin.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-            ]);
+            return $this->render('default/dashAdmin.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR));
         }else{
-            return $this->render('default/dashAdmin.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-            ]);
+            return $this->render('default/dashAdmin.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR));
         }
         
     }

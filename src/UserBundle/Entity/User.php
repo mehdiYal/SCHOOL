@@ -5,6 +5,7 @@ namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\MessageBundle\Model\ParticipantInterface;
 
 /**
  * @ORM\Entity
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="type", type="string", length=255)
  * @ORM\DiscriminatorMap({"admin" = "Admin","enseignant"="Enseignant","parental"="Parental","eleve"="Eleve","user"="User"})
  */
-class User extends BaseUser
+class User extends BaseUser implements ParticipantInterface
 {
     /**
      * @var integer $id

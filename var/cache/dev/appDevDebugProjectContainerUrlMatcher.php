@@ -602,6 +602,61 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'enseignant_liste_classes')), array (  '_controller' => 'UserBundle\\Controller\\EnseignantController::showClasseAction',));
         }
 
+        // message_show
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_show;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_show')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::showAction',));
+        }
+        not_message_show:
+
+        // message_inbox
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/inbox$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_inbox;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_inbox')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::inboxAction',));
+        }
+        not_message_inbox:
+
+        // message_sentbox
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/sentbox$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_sentbox;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_sentbox')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::sentboxAction',));
+        }
+        not_message_sentbox:
+
+        // message_new
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/new$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_new;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_new')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::newAction',));
+        }
+        not_message_new:
+
+        // message_send
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/send$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_send;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_send')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::sendAction',));
+        }
+        not_message_send:
+
         // addParental
         if (preg_match('#^/(?P<_locale>[^/]++)/parental/add$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'addParental')), array (  '_controller' => 'UserBundle\\Controller\\ParentalController::addAction',));
@@ -793,6 +848,62 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_user_change_password')), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ChangePasswordController::changePasswordAction',));
         }
         not_fos_user_change_password:
+
+        // fos_message_inbox
+        if (preg_match('#^/(?P<_locale>[^/]++)/?$#s', $pathinfo, $matches)) {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'fos_message_inbox');
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_inbox')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::inboxAction',));
+        }
+
+        // fos_message_sent
+        if (preg_match('#^/(?P<_locale>[^/]++)/sent$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_sent')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::sentAction',));
+        }
+
+        // fos_message_deleted
+        if (preg_match('#^/(?P<_locale>[^/]++)/deleted$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_deleted')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::deletedAction',));
+        }
+
+        // fos_message_search
+        if (preg_match('#^/(?P<_locale>[^/]++)/search$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_search')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::searchAction',));
+        }
+
+        // fos_message_thread_new
+        if (preg_match('#^/(?P<_locale>[^/]++)/new$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_new')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::newThreadAction',));
+        }
+
+        // fos_message_thread_delete
+        if (preg_match('#^/(?P<_locale>[^/]++)/(?P<threadId>[^/]++)/delete$#s', $pathinfo, $matches)) {
+            if (!in_array($requestMethod, array('POST', 'DELETE'))) {
+                $allow = array_merge($allow, array('POST', 'DELETE'));
+                goto not_fos_message_thread_delete;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_delete')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::deleteAction',));
+        }
+        not_fos_message_thread_delete:
+
+        // fos_message_thread_undelete
+        if (preg_match('#^/(?P<_locale>[^/]++)/(?P<threadId>[^/]++)/undelete$#s', $pathinfo, $matches)) {
+            if ('POST' !== $canonicalMethod) {
+                $allow[] = 'POST';
+                goto not_fos_message_thread_undelete;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_undelete')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::undeleteAction',));
+        }
+        not_fos_message_thread_undelete:
+
+        // fos_message_thread_view
+        if (preg_match('#^/(?P<_locale>[^/]++)/(?P<threadId>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_view')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::threadAction',));
+        }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
