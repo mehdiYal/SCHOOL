@@ -1,0 +1,145 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+<!-- PAGE TITLE -->
+                <div class="page-title">                    
+                    <h2><span class="fa fa-users"></span> Contacts</h2>
+                </div>
+                <!-- END PAGE TITLE -->                
+                
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    
+                    <!-- PAGE CONTENT TABBED -->
+                    <div class="page-tabs">
+                        <a href="#first-tab" class="active">Enseignants</a>
+                        <a href="#second-tab">Parents</a>
+                        <a href="#third-tab">Eleves</a>
+                    </div>
+                    
+                    <div class="page-content-wrap page-tabs-item active" id="first-tab">
+                    
+                        <div class="row">
+                                {% for en in ens %}
+                                    <div class="col-md-3">
+                                        <!-- CONTACT ITEM -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-body profile">
+                                                <div class="profile-image">
+                                                    <img src="{% if en.photo %}{{ asset('uploads/photos/' ~ en.photo) }}{% else %}{{ asset('uploads/photos/avatar.png') }}{% endif %}" alt="{{en.nom}}"/>
+                                                </div>
+                                                <div class="profile-data">
+                                                    <div class="profile-data-name">{{en.nom}} {{en.prenom}}</div>
+                                                    <div class="profile-data-title">Enseignant</div>
+                                                </div>
+                                                <div class="profile-controls">
+                                                    <a href="{{ path('profileParental',{'id':en.id})}}" class="profile-control-left"><span class="fa fa-info"></span></a>
+                                                    <a href="{{ path('message_new',{'id':en.id}) }}" class="profile-control-right"><span class="fa fa-phone"></span></a>
+                                                </div>
+                                            </div>                                
+                                            <div class="panel-body">                                    
+                                                <div class="contact-info">
+                                                    <p><small>Mobile</small><br/>{{en.telephone}}</p>
+                                                    <p><small>Email</small><br/>{{en.email}}</p>
+                                                    <p><small>Address</small><br/>{{en.adresse}}</p>                                   
+                                                </div>
+                                            </div>                                
+                                        </div>
+                                        <!-- END CONTACT ITEM -->
+                                    </div>
+                                {% endfor %}
+                                <div class="navigation">
+                                    {{ knp_pagination_render(ens) }}
+                                </div>
+                        </div>
+                    
+                    </div>
+                    <div class="page-content-wrap page-tabs-item" id="second-tab">
+                        <div class="row">
+                                {% for parent in parents %}
+                                    <div class="col-md-3">
+                                        <!-- CONTACT ITEM -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-body profile">
+                                                <div class="profile-image">
+                                                    <img src="{{ asset('uploads/photos/avatar.png') }}" alt="{{parent.nom}}"/>
+                                                </div>
+                                                <div class="profile-data">
+                                                    <div class="profile-data-name">{{parent.nom}} {{parent.prenom}}</div>
+                                                    <div class="profile-data-title">Parent d' eleve</div>
+                                                </div>
+                                                <div class="profile-controls">
+                                                    <a href="{{ path('profileParental',{'id':parent.id})}}" class="profile-control-left"><span class="fa fa-info"></span></a>
+                                                    <a href="{{ path('message_new',{'id':parent.id}) }}" class="profile-control-right"><span class="fa fa-phone"></span></a>
+                                                </div>
+                                            </div>                                
+                                            <div class="panel-body">                                    
+                                                <div class="contact-info">
+                                                    <p><small>Mobile</small><br/>{{parent.telephone}}</p>
+                                                    <p><small>Email</small><br/>{{parent.email}}</p>
+                                                    <p><small>Address</small><br/>{{parent.adresse}}</p>                                   
+                                                </div>
+                                            </div>                                
+                                        </div>
+                                        <!-- END CONTACT ITEM -->
+                                    </div>
+                                {% endfor %}
+                                <div class="navigation">
+                                    {{ knp_pagination_render(parents) }}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="page-content-wrap page-tabs-item" id="third-tab">
+                    
+                        <div class="row">
+                                {% for eleve in eleves %}
+                                    <div class="col-md-3">
+                                        <!-- CONTACT ITEM -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-body profile">
+                                                <div class="profile-image">
+                                                    <img src="{% if eleve.photo %}{{ asset('uploads/photos/' ~ eleve.photo) }}{% else %}{{ asset('uploads/photos/avatar.png') }}{% endif %}" alt="{{eleve.nom}}" alt="{{eleve.nom}}"/>
+                                                </div>
+                                                <div class="profile-data">
+                                                    <div class="profile-data-name">{{eleve.nom}} {{eleve.prenom}}</div>
+                                                    <div class="profile-data-title">Eleve</div>
+                                                </div>
+                                                <div class="profile-controls">
+                                                    <a href="{{ path('profileParental',{'id':eleve.id})}}" class="profile-control-left"><span class="fa fa-info"></span></a>
+                                                    <a href="{{ path('message_new',{'id':eleve.id}) }}" class="profile-control-right"><span class="fa fa-phone"></span></a>
+                                                </div>
+                                            </div>                                
+                                            <div class="panel-body">                                    
+                                                <div class="contact-info">
+                                                    <p><small>Mobile</small><br/>{{eleve.telephone}}</p>
+                                                    <p><small>Email</small><br/>{{eleve.email}}</p>
+                                                    <p><small>Address</small><br/>{{eleve.adresse}}</p>                                   
+                                                </div>
+                                            </div>                                
+                                        </div>
+                                        <!-- END CONTACT ITEM -->
+                                    </div>
+                                {% endfor %}
+                                <div class="navigation">
+                                    {{ knp_pagination_render(parents) }}
+                                </div>
+                        </div>
+                    
+                    </div>
+                    <!-- END PAGE CONTENT TABBED -->
+                </div>            
+                <!-- END PAGE CONTENT -->
+            </div>
+            <!-- END PAGE CONTAINER -->
+                    
+                    
+                </div>
+                <!-- END PAGE CONTENT WRAPPER -->             
+                
+{% endblock %}
+
+
+{% block javascripts %}
+           
+
+{% endblock %}

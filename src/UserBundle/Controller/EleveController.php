@@ -51,7 +51,11 @@ class EleveController extends Controller
             return $this->redirectToRoute('listEleves');
         }
 
-        return $this->render('elevesViews/addEleve.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('elevesViews/addEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form"=>$form->createView()));
     }
 
 
@@ -84,7 +88,11 @@ class EleveController extends Controller
             return $this->redirectToRoute('listEleves');
         }
 
-        return $this->render('elevesViews/addEleve.html.twig',array("edit"=>true,"form"=>$form->createView()));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('elevesViews/addEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form"=>$form->createView()));
     }
 
 
@@ -155,7 +163,11 @@ class EleveController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("UserBundle:Eleve");
         $eleves=$repository->findAll();
-        return $this->render('elevesViews/listEleves.html.twig',array("eleves"=>$eleves));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('elevesViews/listEleves.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"eleves"=>$eleves));
     }
 
      /**

@@ -635,8 +635,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_message_sentbox:
 
+        // message_adressBook
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/adressBook$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_adressBook;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_adressBook')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::adressBookAction',));
+        }
+        not_message_adressBook:
+
         // message_new
-        if (preg_match('#^/(?P<_locale>[^/]++)/message/new$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/new/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($canonicalMethod, array('GET', 'POST'))) {
                 $allow = array_merge($allow, array('GET', 'POST'));
                 goto not_message_new;

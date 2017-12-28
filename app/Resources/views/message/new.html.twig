@@ -68,7 +68,10 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">To:</label>
                                 <div class="col-md-9">                                        
-                                    <input name="recipient" type="text" class="tagsinput" value="" data-placeholder="add email"/>                                
+                                    <input name="" type="text" disabled="" class="form-control" value="{{recipient.nom}} {{recipient.prenom}}" data-placeholder="add email"/>                                
+                                </div>
+                                <div class="col-md-9">                                        
+                                    <input name="recipient" type="hidden" value="{{recipient.id}}" data-placeholder="add email"/>                                
                                 </div>
                                <!--  <div class="col-md-1">
                                     <button class="btn btn-link toggle" data-toggle="mail-cc">Cc</button>
