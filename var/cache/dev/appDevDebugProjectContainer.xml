@@ -143,6 +143,8 @@
     <parameter key="uploads_cours_annexe">uploads/cours/annexe</parameter>
     <parameter key="uploads_matiere_prog_annuel">uploads/matiere/programme</parameter>
     <parameter key="uploads_devoir">uploads/devoir</parameter>
+    <parameter key="uploads_homework">uploads/travailafaire</parameter>
+    <parameter key="uploads_ressource">uploads/ressource</parameter>
     <parameter key="locale">fr</parameter>
     <parameter key="photo_directory">/Applications/MAMP/htdocs/Schoolium/web/uploads/photos</parameter>
     <parameter key="logo_directory">/Applications/MAMP/htdocs/Schoolium/web/uploads/logos</parameter>
@@ -773,8 +775,13 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
+<<<<<<< Updated upstream
       <argument>EHclYYEGmam9-MwG5qeqnb</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+=======
+      <argument>FagTicg6DuP0AH68X5zXo6</argument>
+      <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+>>>>>>> Stashed changes
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -783,7 +790,11 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
+<<<<<<< Updated upstream
       <argument>EHclYYEGmam9-MwG5qeqnb</argument>
+=======
+      <argument>FagTicg6DuP0AH68X5zXo6</argument>
+>>>>>>> Stashed changes
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2548,13 +2559,13 @@
         <argument type="service" id="routing.loader.service"/>
       </call>
       <call method="addLoader">
+        <argument type="service" id="sensio_framework_extra.routing.loader.annot_class"/>
+      </call>
+      <call method="addLoader">
         <argument type="service" id="sensio_framework_extra.routing.loader.annot_dir"/>
       </call>
       <call method="addLoader">
         <argument type="service" id="sensio_framework_extra.routing.loader.annot_file"/>
-      </call>
-      <call method="addLoader">
-        <argument type="service" id="sensio_framework_extra.routing.loader.annot_class"/>
       </call>
     </service>
     <service id="routing.loader.xml" class="Symfony\Component\Routing\Loader\XmlFileLoader" public="false">
@@ -3255,12 +3266,20 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
+<<<<<<< Updated upstream
       <argument>5a46cd52c5d2a8.74874391</argument>
+=======
+      <argument>5a476e0a9f1e20.19369410</argument>
+>>>>>>> Stashed changes
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
+<<<<<<< Updated upstream
       <argument>5a46cd52c5d2a8.74874391</argument>
+=======
+      <argument>5a476e0a9f1e20.19369410</argument>
+>>>>>>> Stashed changes
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -4225,6 +4244,10 @@
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="annotations.cached_reader"/>
     </service>
+    <service id="sensio_framework_extra.routing.loader.annot_class" class="Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader" public="false">
+      <tag name="routing.loader"/>
+      <argument type="service" id="annotations.cached_reader"/>
+    </service>
     <service id="sensio_framework_extra.routing.loader.annot_dir" class="Symfony\Component\Routing\Loader\AnnotationDirectoryLoader" public="false">
       <tag name="routing.loader"/>
       <argument type="service" id="file_locator"/>
@@ -4234,10 +4257,6 @@
       <tag name="routing.loader"/>
       <argument type="service" id="file_locator"/>
       <argument type="service" id="sensio_framework_extra.routing.loader.annot_class"/>
-    </service>
-    <service id="sensio_framework_extra.routing.loader.annot_class" class="Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader" public="false">
-      <tag name="routing.loader"/>
-      <argument type="service" id="annotations.cached_reader"/>
     </service>
     <service id="sensio_framework_extra.converter.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener">
       <tag name="kernel.event_subscriber"/>
@@ -5215,32 +5234,52 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>pa5OcqjSWU</argument>
       <argument>0</argument>
+<<<<<<< Updated upstream
       <argument>EHclYYEGmam9-MwG5qeqnb</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+=======
+      <argument>FagTicg6DuP0AH68X5zXo6</argument>
+      <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+>>>>>>> Stashed changes
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>s0usrvYPSv</argument>
       <argument>0</argument>
+<<<<<<< Updated upstream
       <argument>EHclYYEGmam9-MwG5qeqnb</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+=======
+      <argument>FagTicg6DuP0AH68X5zXo6</argument>
+      <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+>>>>>>> Stashed changes
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>b8+C7eL5rw</argument>
       <argument>0</argument>
+<<<<<<< Updated upstream
       <argument>EHclYYEGmam9-MwG5qeqnb</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+=======
+      <argument>FagTicg6DuP0AH68X5zXo6</argument>
+      <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+>>>>>>> Stashed changes
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>bQfurwaqgO</argument>
       <argument>0</argument>
+<<<<<<< Updated upstream
       <argument>EHclYYEGmam9-MwG5qeqnb</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+=======
+      <argument>FagTicg6DuP0AH68X5zXo6</argument>
+      <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+>>>>>>> Stashed changes
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>

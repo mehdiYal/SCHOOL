@@ -1,0 +1,61 @@
+{% extends 'baseList.html.twig' %}
+
+
+{% block  bodyList %}
+	<div class="table-responsive">
+		<a style="margin-bottom:2%;" class="btn btn-info" href="{{path('new_travailafaire')}}">
+			<span class="fa fa-plus"></span>{{'travail.add'|trans}}
+		</a>
+        <table id="customers2" class="table datatable">
+            <thead>
+                <tr>
+                    <th class="text-center" style="width:20%;">{{'classe'|trans}}</th>
+                   	<th class="text-center" style="width:10%;">{{'matiere'|trans}}</th>
+                    <th class="text-center" style="width:10%;">{{'global.datelimite'|trans}}</th>
+                    <th class="text-center" style="width:10%;">{{'travail.todo'|trans}}</th>
+                    <th class="text-center" style="width:30%;">{{'form.comment'|trans}}</th>
+                    <th class="text-center" style="width:20%;">{{'global.action'|trans}}</th>
+                </tr>
+            </thead>
+            <tbody>
+               	{% for travail in data %}
+					<tr>
+						<td class="text-center">{{travail.annee.nom~' '~travail.annee.niveau~' '~travail.classe.nom}}</td>
+						<td class="text-center">{{travail.matiere.nom}}</td>
+						<td class="text-center">{{travail.datelimite|date('d/m/Y')~' '~travail.timelimite|date('H:i')}}</td>
+						<td class="text-center">
+							<a class="btn btn-condensed btn-info" href="{{asset('uploads_homework'~'/'~travail.travail)}}">
+								<span class="fa fa-file"></span>
+							</a>
+						</td>
+						<td class="text-center">{{travail.commentaire}}</td>
+						<td class="text-center">
+							<a class="btn btn-condensed btn-info" href="{{path('edit_travail',{'id':travail.id})}}">
+								<span class="fa fa-edit"></span>
+							</a>
+							<a class="btn btn-condensed btn-danger" href="{{path('delete_travail',{'id':travail.id})}}">
+								<span class="fa fa-trash"></span>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    
+<script type="text/javascript">
+	
+     $( document ).ready( function() {
+
+                $('#customers2').dataTable();
+                $('.active').removeClass('active');
+                $('.GC').addClass('active');
+                $('.showTravail').addClass('active');
+            });
+</script>
+
+{% endblock %}

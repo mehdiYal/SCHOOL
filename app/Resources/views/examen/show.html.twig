@@ -1,0 +1,217 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+
+  <div class="content-frame-body padding-bottom-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="alert_holder"></div>
+                <div class="calendar">                                
+            <div id="calendar"></div>                            
+                </div>
+            </div>
+        </div>
+    </div>   
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    
+    
+
+  <script type="text/javascript" src="{{ asset('js/plugins/fullcalendar/fullcalendar.min.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('js/plugins/fullcalendar/lang/fr.js')}}"></script>
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+     
+      
+
+    var calendar = $('#calendar').fullCalendar({
+      
+        editable: false,
+        
+        minTime: "8:00",
+
+                maxTime: "18:00",
+
+                firstDay: 0,
+
+                hiddenDays: [ 5, 6 ],
+
+        lang: 'fr',
+
+        defaultView: 'agendaWeek',
+          
+          header: {
+          left: 'prev,next today',
+            center: 'title',
+            right: 'agendaWeek,agendaDay'
+          },
+
+
+         events: "events.php",
+         
+         eventRender: function(event, element, view) {
+
+            if (event.allDay === 'true') {
+
+             event.allDay = true;
+
+            } else {
+
+             event.allDay = false;
+
+            }
+
+         },
+
+           //selectable: true,
+
+           selectHelper: true,
+
+           /*select: function(start, end, allDay) {
+
+             var title = prompt('Event Title:');
+
+
+             if (title) {
+
+          
+               $.ajax({
+
+                 url: 'add_events.php',
+
+                 data: 'title='+ title+'&start='+ start +'&end='+ end,
+
+                 type: "POST",
+
+                 success: function(json) {
+
+                 alert('Added Successfully');
+
+                 }
+
+               }); 
+
+               calendar.fullCalendar('renderEvent',{
+
+                   title: title,
+
+                   start: start,
+
+                   end: end,
+
+                  },true
+              );
+
+             }
+
+              calendar.fullCalendar('unselect');
+
+           },*/
+
+           /*
+           eventDrop: function(event, delta) {
+
+             var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+
+             var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+
+             $.ajax({
+
+               url: 'update_events.php',
+
+               data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+
+               type: "POST",
+
+               success: function(json) {
+
+                alert("Updated Successfully");
+
+               }
+
+             });
+
+           },
+
+           eventClick: function(event) {
+
+            var decision = confirm("Do you really want to do that?"); 
+
+            if (decision) {
+
+              $.ajax({
+
+                type: "POST",
+
+                url: "delete_event.php",
+
+                data: "&id=" + event.id,
+
+                 success: function(json) {
+
+                   $('#calendar').fullCalendar('removeEvents', event.id);
+
+                    alert("Updated Successfully");}
+
+              });
+
+            }
+
+            },
+
+           eventResize: function(event) {
+
+             var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
+
+             var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+
+             $.ajax({
+
+              url: 'update_events.php',
+
+              data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+
+              type: "POST",
+
+              success: function(json) {
+
+               alert("Updated Successfully");
+
+              }
+
+             });
+
+          } */
+    });
+        
+      });
+
+    </script>
+{% endblock %}

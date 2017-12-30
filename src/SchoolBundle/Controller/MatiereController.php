@@ -25,7 +25,13 @@ class MatiereController extends Controller
      * @Route("/add", name="addMatiere")
      */
     public function addAction(Request $request)
-    {
+    {   
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $matiere = new Matiere();
         $form=$this->createForm(MatiereType::class,$matiere);
         $form->handleRequest($request);
@@ -37,7 +43,7 @@ class MatiereController extends Controller
             return $this->redirectToRoute('listMatieres');
         }
 
-        return $this->render('matieresViews/addMatiere.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('matieresViews/addMatiere.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
 
@@ -45,17 +51,29 @@ class MatiereController extends Controller
      * @Route("/list", name="listMatieres")
      */
     public function showAction(Request $request)
-    {
+    {   
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $repository=$this->getDoctrine()->getRepository("SchoolBundle:Matiere");
         $matieres=$repository->findAll();
-        return $this->render('matieresViews/listMatieres.html.twig',array("matieres"=>$matieres));
+        return $this->render('matieresViews/listMatieres.html.twig',array("matieres"=>$matieres,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
      /**
      * @Route("/edit/{id}", name="editMatiere")
      */
     public function editAction(Request $request,Matiere $matiere)
-    {
+    {   
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $form=$this->createForm(MatiereType::class,$matiere);
         $form->handleRequest($request);
 
@@ -66,7 +84,7 @@ class MatiereController extends Controller
             return $this->redirectToRoute('listMatieres');
         }
 
-        return $this->render('matieresViews/addMatiere.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('matieresViews/addMatiere.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
 
@@ -74,11 +92,17 @@ class MatiereController extends Controller
      * @Route("/remove/{id}", name="removeMatiere")
      */
     public function removeAction(Matiere $matiere)
-    {
+    {   
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $em=$this->getDoctrine()->getManager();
         $em->remove($matiere);
         $em->flush();
-        return $this->redirectToRoute('listMatieres'); 
+        return $this->redirectToRoute('listMatieres',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user)); 
     }
 
      /**
@@ -86,6 +110,13 @@ class MatiereController extends Controller
      * @Method({"GET", "POST"})
      */
     public function showEleveAction(Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         // Connection BDD
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
@@ -127,7 +158,7 @@ class MatiereController extends Controller
         $datas['evaluations']=$evaluations;
         $datas['cours']=$em->getRepository('SchoolBundle:Cours')->findBy(array('matiere'=>$idMatiere,'classe'=>$idClasse));
         
-        return $this->render('matieresViews/eleves.html.twig',array("datas"=>$datas));
+        return $this->render('matieresViews/eleves.html.twig',array("datas"=>$datas,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
      /**
@@ -135,6 +166,13 @@ class MatiereController extends Controller
      * @Method({"GET", "POST"})
      */
     public function addNoteAction(Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         // Connection BDD
         $em = $this->getDoctrine()->getManager();
         extract($_POST);
@@ -186,14 +224,20 @@ class MatiereController extends Controller
 
         //Initialisation des ids
         
-        return $this->redirectToRoute('showEleve', array('idClasse' => $idClasse,'idMatiere' => $idMatiere));
+        return $this->redirectToRoute('showEleve', array('idClasse' => $idClasse,'idMatiere' => $idMatiere,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
       /**
      * @Route("/delete/{id}", name="delete_note")
      */
     public function deleteAction(Request $request)
-    {
+    { 
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $em=$this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
         $matiereEleve=$em->getRepository('SchoolBundle:MatiereEleve')->findOneBy(array('id'=> $id));
@@ -214,6 +258,12 @@ class MatiereController extends Controller
      */
     public function programAction(Request $request)
     {
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         extract($_POST);
         $em=$this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
@@ -260,7 +310,7 @@ class MatiereController extends Controller
                 return $this->redirectToRoute('matiere_program_annual_add',array('id' => $id));
             }
 
-        return $this->render('matieresViews/listProgram.html.twig',array("data"=>$ensMatiere,'form'=>$form));
+        return $this->render('matieresViews/listProgram.html.twig',array("data"=>$ensMatiere,'form'=>$form,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
         
     }    
 
@@ -268,6 +318,13 @@ class MatiereController extends Controller
      * @Route("/program/annual/delete/{id}", name="matiere_program_annual_delete")
      */
     public function programDeleteAction(Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        
         $em=$this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
         $ensMat=$em->getRepository('SchoolBundle:EnsMat')->findOneBy(array('id'=> $id));

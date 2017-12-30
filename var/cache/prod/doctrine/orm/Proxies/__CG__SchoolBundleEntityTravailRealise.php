@@ -64,10 +64,10 @@ class TravailRealise extends \SchoolBundle\Entity\TravailRealise implements \Doc
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'annee', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'enseignant', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'matiere', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'classe', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'travail', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'date'];
+            return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'annee', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'enseignant', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'matiere', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'classe', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'travail', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'date', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'commentaire'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'annee', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'enseignant', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'matiere', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'classe', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'travail', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'date'];
+        return ['__isInitialized__', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'annee', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'enseignant', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'matiere', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'classe', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'id', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'travail', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'date', '' . "\0" . 'SchoolBundle\\Entity\\TravailRealise' . "\0" . 'commentaire'];
     }
 
     /**
@@ -318,6 +318,28 @@ class TravailRealise extends \SchoolBundle\Entity\TravailRealise implements \Doc
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAnnee', []);
 
         return parent::getAnnee();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCommentaire($commentaire)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCommentaire', [$commentaire]);
+
+        return parent::setCommentaire($commentaire);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCommentaire()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCommentaire', []);
+
+        return parent::getCommentaire();
     }
 
 }

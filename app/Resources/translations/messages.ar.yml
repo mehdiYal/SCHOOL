@@ -113,9 +113,17 @@ global:
     delete: حذف
     edit: تعديل
     show: عرض
+    close: Fermer
+    title: Titre
+    date: Date
+    datelimite: Date limite
     search: بحث
     action: فعل
     type: Type
+    ressource:
+        title: Ressource
+        external: Ressource externes
+        my: Mes ressources
     annual:
         program: البرنامج السنوي
 
@@ -134,3 +142,5 @@ retard:
 travail: 
     title: Travail Réalisé
     add: Ajouter un travail
+    done: Travail fait
+    todo: Travail à faire

@@ -334,12 +334,12 @@ class Classe extends \SchoolBundle\Entity\Classe implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
-    public function addElefe(\UserBundle\Entity\Eleve $eleve)
+    public function addEleve(\UserBundle\Entity\Eleve $eleve)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addElefe', [$eleve]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addEleve', [$eleve]);
 
-        return parent::addElefe($eleve);
+        return parent::addEleve($eleve);
     }
 
     /**

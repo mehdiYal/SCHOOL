@@ -27,7 +27,7 @@
 						{{ form_label(form.classe,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
 						<div class="col-md-6 col-xs-12">
 							<div class="input-group">
-								{{ form_widget(form.classe,{ 'id':'selectMatiere', 'label_attr': {'class': 'form-control select'} }) }}
+								{{ form_widget(form.classe,{ 'id':'selectClasse', 'label_attr': {'class': 'form-control select'} }) }}
 					  		</div>
 							{{ form_errors(form.classe) }}
 						</div>
@@ -43,10 +43,27 @@
 						</div>
 					</div>
 					<div class="form-group">
+						{{ form_label(form.time,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+						<div class="col-md-6 col-xs-12">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+					   			{{ form_widget(form.time) }}
+					  		</div>
+							{{ form_errors(form.time) }}
+						</div>
+					</div>
+					<div class="form-group">
 						{{ form_label(form.travail,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
 						<div class="col-md-6 col-xs-12">
 		                       	{{ form_widget(form.travail,{ 'attr': {'class': 'fileinput btn-primary'} } ) }}
 							{{ form_errors(form.travail) }}
+						</div>
+					</div>
+					<div class="form-group">
+						{{ form_label(form.commentaire,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+						<div class="col-md-6 col-xs-12">
+		                       	{{ form_widget(form.commentaire)}}
+							{{ form_errors(form.commentaire) }}
 						</div>
 					</div>
 				<div class="panel-footer">                                    
@@ -62,15 +79,26 @@
 
 {% block javascripts %}
 	<script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-file-input.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
 <script type="text/javascript">
 
      $( document ).ready( function() {
 
                 $('.dp-3').datepicker({startView: 2,format: 'yyyy-mm-dd' });
-                /*$('#selectMatiere').selectpicker({
+                $('#selectMatiere').selectpicker({
  					style: 'btn-default',
   					size: 4
-				});*/
+				});
+
+				$('.timeForm').timepicker({
+				    showMeridian: false,
+	                defaultTime: '08:00'
+	            });
+
+				$('#selectClasse').selectpicker({
+ 					style: 'btn-default',
+  					size: 4
+				});
 				
             });
 </script>

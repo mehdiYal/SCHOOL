@@ -113,12 +113,20 @@ global:
     delete: supprimer
     edit: Modifier
     show: Afficher
+    close: Fermer
+    title: Titre
     search: Rechercher
     parcourir: Parcourir
     action: Action
     remark: Remarque
     date: Date
+    datelimite: Date limite
     type: Type
+    ressource:
+        title: Ressource
+        external: Ressource externes
+        my: Mes ressources
+        add: Ajouter une ressource
     annual:
         program: Programme Annuel
 
@@ -137,4 +145,6 @@ retard:
 travail: 
     title: Travail Réalisé
     add: Ajouter un travail
+    done: Travail fait
+    todo: Travail à faire
 

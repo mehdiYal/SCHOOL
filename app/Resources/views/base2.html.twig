@@ -76,10 +76,22 @@
                                     </li>
                                     <li class="showTravail">
                                         <a href="{{path('show_travail',{ 'id': app.user.id})}}">
-                                            <span class="xn-text">Travail à réaliser </span>
+                                            <span class="xn-text">{{'travail.done'|trans}}</span>
+                                        </a>
+                                    </li>
+                                    <li class="showToDo">
+                                        <a href="{{path('show_travailafaire',{ 'id': app.user.id})}}">
+                                            <span class="xn-text">{{'travail.todo'|trans}}</span>
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <!-- Ressource pédagogiques -->
+                            <li class="abs">
+                               <a href="{{path('show_ressource',{ 'id': app.user.id})}}">
+                                    <span class="fa fa-book"></span> 
+                                    <span class="xn-text">{{'global.ressource.my'|trans}}</span>
+                                </a>
                             </li>
                             <!-- Gestion des absences/retard -->
                             <li class="abs">
@@ -99,6 +111,11 @@
                                     <li class="pl">
                                         <a href="{{ path('program_show_enseignant', { 'id': app.user.id}) }}">
                                             <span class="xn-text">Mon Emploi du temps</span>
+                                        </a>
+                                    </li>
+                                    <li class="pl">
+                                        <a href="{{ path('new_examen')}}">
+                                            <span class="xn-text">Emploi du temps des examens</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -419,9 +436,9 @@
         <!-- START TEMPLATE -->
         <script type="text/javascript" src="{{ asset('js/settings.js') }}"></script>
         
-        <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>        
-        <script type="text/javascript" src="{{ asset('js/actions.js') }}"></script>
-        
+       <!-- <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>        
+       --> <script type="text/javascript" src="{{ asset('js/actions.js') }}"></script>
+        <script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-timepicker.min.js') }}"></script>
         <!-- <script type="text/javascript" src="{{ asset('js/demo_dashboard.js') }}"></script> -->
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS --> 

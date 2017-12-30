@@ -85,6 +85,21 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'affectProf')), array (  '_controller' => 'SchoolBundle\\Controller\\ClasseController::affectProf',));
         }
 
+        // affectEleves
+        if (preg_match('#^/(?P<_locale>[^/]++)/classe/affectEleves/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'affectEleves')), array (  '_controller' => 'SchoolBundle\\Controller\\ClasseController::affectEleves',));
+        }
+
+        // affectEleveClasse
+        if (preg_match('#^/(?P<_locale>[^/]++)/classe/affectEleveClasse/(?P<id>[^/]++)/(?P<eleveID>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'affectEleveClasse')), array (  '_controller' => 'SchoolBundle\\Controller\\ClasseController::affectEleveClasse',));
+        }
+
+        // remettreEleveClasse
+        if (preg_match('#^/(?P<_locale>[^/]++)/classe/remettreEleveClasse/(?P<id>[^/]++)/(?P<eleveID>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'remettreEleveClasse')), array (  '_controller' => 'SchoolBundle\\Controller\\ClasseController::remettreEleveClasse',));
+        }
+
         // new_cours
         if (preg_match('#^/(?P<_locale>[^/]++)/cours/new/classe/(?P<idClasse>[^/]++)/matiere/(?P<idMatiere>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($canonicalMethod, array('GET', 'POST'))) {
@@ -211,35 +226,14 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
         }
         not_program_new:
 
-        // programme_new
-        if (preg_match('#^/(?P<_locale>[^/]++)/program/new$#s', $pathinfo, $matches)) {
-            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
-                $allow = array_merge($allow, array('GET', 'POST'));
-                goto not_programme_new;
-            }
-
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'programme_new')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::newAction',));
-        }
-        not_programme_new:
-
         // program_show_class
         if (preg_match('#^/(?P<_locale>[^/]++)/program/show/class/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'program_show_class')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showClasseAction',));
         }
 
-        // showClasse
-        if (preg_match('#^/(?P<_locale>[^/]++)/program/show/classe/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'showClasse')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showClasseAction',));
-        }
-
         // program_show_enseignant
         if (preg_match('#^/(?P<_locale>[^/]++)/program/show/enseignant/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'program_show_enseignant')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showEnseignantAction',));
-        }
-
-        // showEnseignant
-        if (preg_match('#^/(?P<_locale>[^/]++)/program/show/enseignant/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'showEnseignant')), array (  '_controller' => 'SchoolBundle\\Controller\\ProgrammeController::showEnseignantAction',));
         }
 
         // addSalle
@@ -260,6 +254,41 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
         // removeSalle
         if (preg_match('#^/(?P<_locale>[^/]++)/salle/remove/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'removeSalle')), array (  '_controller' => 'SchoolBundle\\Controller\\SalleController::removeAction',));
+        }
+
+        // addSchool
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/add$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'addSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::addAction',));
+        }
+
+        // listSchools
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/list$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'listSchools')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::showAction',));
+        }
+
+        // editSchool
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'editSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::editAction',));
+        }
+
+        // editMySchool
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/editMy/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'editMySchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::editMyAction',));
+        }
+
+        // removeSchool
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/remove/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'removeSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::removeAction',));
+        }
+
+        // profileSchool
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/profile/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'profileSchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::profileAction',));
+        }
+
+        // mySchool
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/mySchool$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'mySchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::mySchoolAction',));
         }
 
         // addTransport
@@ -500,6 +529,61 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'enseignant_liste_classes')), array (  '_controller' => 'UserBundle\\Controller\\EnseignantController::showClasseAction',));
         }
 
+        // message_show
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_show;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_show')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::showAction',));
+        }
+        not_message_show:
+
+        // message_inbox
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/inbox$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_inbox;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_inbox')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::inboxAction',));
+        }
+        not_message_inbox:
+
+        // message_sentbox
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/sentbox$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_sentbox;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_sentbox')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::sentboxAction',));
+        }
+        not_message_sentbox:
+
+        // message_new
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/new$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_new;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_new')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::newAction',));
+        }
+        not_message_new:
+
+        // message_send
+        if (preg_match('#^/(?P<_locale>[^/]++)/message/send$#s', $pathinfo, $matches)) {
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_message_send;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'message_send')), array (  '_controller' => 'UserBundle\\Controller\\MessageController::sendAction',));
+        }
+        not_message_send:
+
         // addParental
         if (preg_match('#^/(?P<_locale>[^/]++)/parental/add$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'addParental')), array (  '_controller' => 'UserBundle\\Controller\\ParentalController::addAction',));
@@ -691,6 +775,62 @@ class appProdProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBundle\R
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_user_change_password')), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ChangePasswordController::changePasswordAction',));
         }
         not_fos_user_change_password:
+
+        // fos_message_inbox
+        if (preg_match('#^/(?P<_locale>[^/]++)/?$#s', $pathinfo, $matches)) {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'fos_message_inbox');
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_inbox')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::inboxAction',));
+        }
+
+        // fos_message_sent
+        if (preg_match('#^/(?P<_locale>[^/]++)/sent$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_sent')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::sentAction',));
+        }
+
+        // fos_message_deleted
+        if (preg_match('#^/(?P<_locale>[^/]++)/deleted$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_deleted')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::deletedAction',));
+        }
+
+        // fos_message_search
+        if (preg_match('#^/(?P<_locale>[^/]++)/search$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_search')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::searchAction',));
+        }
+
+        // fos_message_thread_new
+        if (preg_match('#^/(?P<_locale>[^/]++)/new$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_new')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::newThreadAction',));
+        }
+
+        // fos_message_thread_delete
+        if (preg_match('#^/(?P<_locale>[^/]++)/(?P<threadId>[^/]++)/delete$#s', $pathinfo, $matches)) {
+            if (!in_array($requestMethod, array('POST', 'DELETE'))) {
+                $allow = array_merge($allow, array('POST', 'DELETE'));
+                goto not_fos_message_thread_delete;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_delete')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::deleteAction',));
+        }
+        not_fos_message_thread_delete:
+
+        // fos_message_thread_undelete
+        if (preg_match('#^/(?P<_locale>[^/]++)/(?P<threadId>[^/]++)/undelete$#s', $pathinfo, $matches)) {
+            if ('POST' !== $canonicalMethod) {
+                $allow[] = 'POST';
+                goto not_fos_message_thread_undelete;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_undelete')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::undeleteAction',));
+        }
+        not_fos_message_thread_undelete:
+
+        // fos_message_thread_view
+        if (preg_match('#^/(?P<_locale>[^/]++)/(?P<threadId>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_message_thread_view')), array (  '_controller' => 'FOS\\MessageBundle\\Controller\\MessageController::threadAction',));
+        }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

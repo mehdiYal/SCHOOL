@@ -42,6 +42,16 @@
 						</div>
 					</div>
 					<div class="form-group">
+						{{ form_label(edit_form.time,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+						<div class="col-md-6 col-xs-12">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+					   			{{ form_widget(edit_form.time) }}
+					  		</div>
+							{{ form_errors(edit_form.time) }}
+						</div>
+					</div>
+					<div class="form-group">
 						{{ form_label(edit_form.travail,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
 						<div class="col-md-6 col-xs-12">
 							<a class="file-input-wrapper btn btn-default  fileinput">
@@ -49,6 +59,13 @@
 		                       	{{ form_widget(edit_form.travail,{ 'label_attr': {'class': 'fileinput'} } ) }}
 				  			</a>
 							{{ form_errors(edit_form.travail) }}
+						</div>
+					</div>
+					<div class="form-group">
+						{{ form_label(edit_form.commentaire,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+						<div class="col-md-6 col-xs-12">
+		                       	{{ form_widget(edit_form.commentaire)}}
+							{{ form_errors(edit_form.commentaire) }}
 						</div>
 					</div>
 				</div>
