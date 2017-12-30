@@ -5,6 +5,7 @@ namespace SchoolBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SchoolBundle\Entity\Ecole;
+use UserBundle\Entity\Eleve;
 use SchoolBundle\Form\EcoleType;
 use SchoolBundle\Form\EcoleEditType;
 use Symfony\Component\HttpFoundation\Request;
@@ -153,5 +154,17 @@ class SchoolController extends Controller
     public function mySchoolAction()
     {
         return $this->render('SchoolsViews/profileSchool.html.twig',array("ecole"=>$this->getUser()->getEcole()));
+    }
+
+    /**
+     * @Route("/cantineTrans/{id}", name="ecole_cantineTrans")
+     */
+    public function cantineTransAction(Ecole $ecole)
+    {
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('schoolsViews/cantineTrans.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"ecole"=>$ecole));
     }
 }

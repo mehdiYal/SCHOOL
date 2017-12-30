@@ -163,6 +163,18 @@ class TravailRealiseController extends Controller
         return $this->render('travailrealise/edit.html.twig',array("edit_form"=>$edit_form->createView(),"data"=>$matieres));
    
     }
+    
+     /**
+     * @Route("/travailParent", name="travailParent")
+     */
+    public function travailParentAction()
+    {
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('travailrealise/showParent.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));  
+    }
 
 
 }

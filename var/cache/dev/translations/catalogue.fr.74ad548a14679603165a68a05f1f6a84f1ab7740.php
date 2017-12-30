@@ -227,6 +227,14 @@ L\'équipe
     'recipients' => 'Destinataires',
     'body' => 'Corps',
   ),
+<<<<<<< HEAD
+=======
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
+  ),
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
   'messages' => 
   array (
     'edit' => 'Modifier',

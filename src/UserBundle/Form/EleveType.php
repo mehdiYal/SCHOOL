@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use UserBundle\Form\ParentalType;
 
 class EleveType extends AbstractType
 {
@@ -25,20 +26,11 @@ class EleveType extends AbstractType
         ->add('nom',null,array('label' => 'form.name'))
         ->add('prenom',null,array('label' => 'form.lastName'))
         ->add('annee')
+        ->add('parent')
         ->add('dateDeNaissance',null,array('label' => 'form.dateN',
                                             'widget' => 'single_text',
                                             'html5' => false,))
-        // ->add('lieuDeNaissance',null,array('label' => 'form.lieuN'))
-        // ->add('nationalite',null,array('label' => 'form.nationalite'))
-        // ->add('adresse',null,array('label' => 'form.adresse'))
-        // ->add('codePostal',null,array('label' => 'form.codePostal'))
-        // ->add('mobile',null,array('label' => 'form.mobile'))
-        // ->add('telephone',null,array('label' => 'form.tel'))
-        // ->add('genre',null,array('label' => 'form.genre'))
-        // ->add('ecoleID',null,array('label' => 'form.ecoleID'))
-        // ->add('groupeSanguin',null,array('label' => 'form.groupeSanguin'))
-        // ->add('commentaire',null,array('label' => 'form.comment'))
-        ->add('email',EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
+        // ->add('email',EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
         ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
         ->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,

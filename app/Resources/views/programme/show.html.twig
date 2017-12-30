@@ -1,5 +1,6 @@
-{% extends 'base2.html.twig' %}
-
+{% extends 'ROLE_PARENT' in app.user.roles 
+    ? 'baseParent.html.twig' 
+    : 'base2.html.twig' %}
 {% block body %}
 
 	<div class="content-frame-body padding-bottom-0">

@@ -6,6 +6,9 @@ namespace UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\MessageBundle\Model\ParticipantInterface;
+use Doctrine\ORM\Mapping\AttributeOverrides;
+use Doctrine\ORM\Mapping\AttributeOverride;
+
 
 /**
  * @ORM\Entity
@@ -13,6 +16,27 @@ use FOS\MessageBundle\Model\ParticipantInterface;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string", length=255)
  * @ORM\DiscriminatorMap({"admin" = "Admin","enseignant"="Enseignant","parental"="Parental","eleve"="Eleve","user"="User"})
+ *
+ * @AttributeOverrides({
+ *     @AttributeOverride(name="email",
+ *         column=@ORM\Column(
+ *             name="email",
+ *             type="string",
+ *             length=255,
+ *             unique=false,
+ *             nullable=true
+ *         )
+ *     ),
+ *      @AttributeOverride(name="emailCanonical",
+ *         column=@ORM\Column(
+ *             name="email_canonical",
+ *             type="string",
+ *             length=255,
+ *             unique=false,
+ *             nullable=true
+ *         )
+ *     )
+ * })
  */
 class User extends BaseUser implements ParticipantInterface
 {

@@ -62,7 +62,11 @@ class ProgrammeController extends Controller
         $data['programme']= $em->getRepository('SchoolBundle:Programme')->findBy(array('classe'=>$id));
         $data['jour']= $em->getRepository('SchoolBundle:Jour')->findAll();
         $data['horraire']= $em->getRepository('SchoolBundle:Horraire')->findAll();
-        return $this->render('programme/show.html.twig',array("data"=>$data));
+         $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('programme/show.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
       
     }   
 

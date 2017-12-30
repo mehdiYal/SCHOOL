@@ -12,6 +12,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Parental extends User
 {
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    private $photo;
+
     /**
      * @var Ecole
      *
@@ -506,5 +514,29 @@ class Parental extends User
     public function removeElefe(\UserBundle\Entity\Eleve $elefe)
     {
         $this->eleves->removeElement($elefe);
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return Parental
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

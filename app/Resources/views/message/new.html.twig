@@ -1,4 +1,6 @@
-{% extends 'base2.html.twig' %}
+{% extends 'ROLE_PARENT' in app.user.roles 
+    ? 'baseParent.html.twig' 
+    : 'base2.html.twig' %}
 
 {% block body %}
 
@@ -68,7 +70,10 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">To:</label>
                                 <div class="col-md-9">                                        
-                                    <input name="recipient" type="text" class="tagsinput" value="" data-placeholder="add email"/>                                
+                                    <input name="" type="text" disabled="" class="form-control" value="{{recipient.nom}} {{recipient.prenom}}" data-placeholder="add email"/>                                
+                                </div>
+                                <div class="col-md-9">                                        
+                                    <input name="recipient" type="hidden" value="{{recipient.id}}" data-placeholder="add email"/>                                
                                 </div>
                                <!--  <div class="col-md-1">
                                     <button class="btn btn-link toggle" data-toggle="mail-cc">Cc</button>
@@ -149,6 +154,10 @@
     <script type='text/javascript' src="{{ asset('js/plugins/summernote/summernote.js') }}"></script>  
     <script type='text/javascript' src="{{ asset('js/plugins/tagsinput/jquery.tagsinput.min.js') }}"></script> 
     <script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-select.js') }}"></script> 
-    <script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-file-input.js') }}"></script>          
+    <script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-file-input.js') }}"></script>  
+    <script>
+        $('.active').removeClass('active');
+        $('.msg').addClass('active');
+    </script>        
 
 {% endblock %}

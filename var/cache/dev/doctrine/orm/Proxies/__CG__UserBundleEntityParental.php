@@ -64,10 +64,10 @@ class Parental extends \UserBundle\Entity\Parental implements \Doctrine\ORM\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'ecole', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'eleves', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'typeUser', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'cIN', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionPere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'adresse', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'codePostal', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'telephone', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'mobil', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
+            return ['__isInitialized__', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'photo', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'ecole', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'eleves', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'typeUser', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'cIN', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionPere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'adresse', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'codePostal', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'telephone', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'mobil', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'ecole', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'eleves', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'typeUser', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'cIN', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionPere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'adresse', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'codePostal', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'telephone', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'mobil', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
+        return ['__isInitialized__', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'photo', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'ecole', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'eleves', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'typeUser', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenomMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'nom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'prenom', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'cIN', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionPere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'professionMere', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'adresse', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'codePostal', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'telephone', '' . "\0" . 'UserBundle\\Entity\\Parental' . "\0" . 'mobil', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'roles'];
     }
 
     /**
@@ -534,6 +534,28 @@ class Parental extends \UserBundle\Entity\Parental implements \Doctrine\ORM\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeElefe', [$elefe]);
 
         return parent::removeElefe($elefe);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhoto($photo)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhoto', [$photo]);
+
+        return parent::setPhoto($photo);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhoto()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhoto', []);
+
+        return parent::getPhoto();
     }
 
     /**

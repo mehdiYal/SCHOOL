@@ -22,6 +22,7 @@
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="PaymentBundle">PaymentBundle\PaymentBundle</parameter>
       <parameter key="FOSMessageBundle">FOS\MessageBundle\FOSMessageBundle</parameter>
+      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -93,6 +94,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle</parameter>
         <parameter key="namespace">FOS\MessageBundle</parameter>
+      </parameter>
+      <parameter key="KnpPaginatorBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle</parameter>
+        <parameter key="namespace">Knp\Bundle\PaginatorBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -428,6 +434,12 @@
     <parameter key="fos_message.new_thread_form.name">message</parameter>
     <parameter key="fos_message.reply_form.model">FOS\MessageBundle\FormModel\ReplyMessage</parameter>
     <parameter key="fos_message.reply_form.name">message</parameter>
+    <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
+    <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
+    <parameter key="knp_paginator.template.pagination">@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig</parameter>
+    <parameter key="knp_paginator.template.filtration">@KnpPaginator/Pagination/filtration.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">@KnpPaginator/Pagination/sortable_link.html.twig</parameter>
+    <parameter key="knp_paginator.page_range">5</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -597,7 +609,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.3859a0273803cad4b039e7cd7bbbf407"/>
+      <argument type="service" id="service_locator.f7ff8662bdf1b83f103b563960da6d9c"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -761,8 +773,13 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>WIbcac9zYonxcb+nLAsAjW</argument>
       <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+=======
+      <argument>EHclYYEGmam9-MwG5qeqnb</argument>
+      <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -771,7 +788,11 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>WIbcac9zYonxcb+nLAsAjW</argument>
+=======
+      <argument>EHclYYEGmam9-MwG5qeqnb</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -1313,6 +1334,7 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.cy.xlf</argument>
           </argument>
           <argument key="da" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.da.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.da.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.da.xlf</argument>
@@ -1326,6 +1348,23 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.de.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.de.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.de.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.da.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.da.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.da.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.da.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.da.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.da.xliff</argument>
+          </argument>
+          <argument key="de" type="collection">
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.de.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.de.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.de.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.de.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.de.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="el" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.el.xlf</argument>
@@ -1335,6 +1374,7 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.el.yml</argument>
           </argument>
           <argument key="en" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.en.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.en.xlf</argument>
@@ -1350,6 +1390,25 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.es.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.es.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.es.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.en.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.en.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.en.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.en.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.en.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.en.xliff</argument>
+          </argument>
+          <argument key="es" type="collection">
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.es.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.es.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.es.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.es.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.es.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.es.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="et" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.et.xlf</argument>
@@ -1363,12 +1422,22 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.eu.yml</argument>
           </argument>
           <argument key="fa" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.fa.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.fa.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.fa.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.fa.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.fa.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fa.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fa.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.fa.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fa.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fa.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.fa.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.fa.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="fi" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.fi.xlf</argument>
@@ -1377,6 +1446,7 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.fi.yml</argument>
           </argument>
           <argument key="fr" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.fr.xlf</argument>
@@ -1385,6 +1455,17 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.fr.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\validators.fr.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\app/Resources/translations\messages.fr.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fr.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fr.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.fr.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.fr.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.fr.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.fr.xliff</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/app/Resources/translations/messages.fr.yml</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.gl.xlf</argument>
@@ -1407,17 +1488,27 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.hr.yml</argument>
           </argument>
           <argument key="hu" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.hu.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.hu.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.hu.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hu.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hu.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.hu.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hu.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hu.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.hu.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.hy.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.hy.xlf</argument>
           </argument>
           <argument key="id" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.id.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.id.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.id.xlf</argument>
@@ -1431,6 +1522,23 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.it.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.it.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.it.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.id.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.id.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.id.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.id.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.id.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.id.xliff</argument>
+          </argument>
+          <argument key="it" type="collection">
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.it.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.it.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.it.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.it.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.it.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.it.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.it.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.ja.xlf</argument>
@@ -1446,11 +1554,20 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.lb.yml</argument>
           </argument>
           <argument key="lt" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.lt.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.lt.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.lt.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lt.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lt.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.lt.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lt.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lt.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.lt.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="lv" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.lv.xlf</argument>
@@ -1464,12 +1581,22 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.mn.xlf</argument>
           </argument>
           <argument key="nl" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.nl.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.nl.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.nl.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.nl.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.nl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.nl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.nl.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.nn.xlf</argument>
@@ -1480,6 +1607,7 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.no.xlf</argument>
           </argument>
           <argument key="pl" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.pl.xlf</argument>
@@ -1487,6 +1615,16 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.pl.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.pl.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\validators.pl.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.pl.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.pl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.pl.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.pl.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.pt.xlf</argument>
@@ -1502,6 +1640,7 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.pt_BR.yml</argument>
           </argument>
           <argument key="ro" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.ro.xlf</argument>
@@ -1516,6 +1655,24 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ru.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.ru.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\validators.ru.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ro.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ro.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ro.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ro.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ro.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.ro.xliff</argument>
+          </argument>
+          <argument key="ru" type="collection">
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ru.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ru.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.ru.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ru.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ru.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.ru.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/validators.ru.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.ru.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.sk.xlf</argument>
@@ -1549,12 +1706,22 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.sr_Latn.yml</argument>
           </argument>
           <argument key="sv" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.sv.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/translations\validators.sv.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Security\Core/Resources/translations\security.sv.xlf</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.sv.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.sv.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\message-bundle\FOS\MessageBundle/Resources/translations\FOSMessageBundle.sv.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sv.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sv.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.sv.xlf</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sv.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sv.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/message-bundle/FOS/MessageBundle/Resources/translations/FOSMessageBundle.sv.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.sv.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="th" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Component\Validator/Resources/translations\validators.th.xlf</argument>
@@ -1609,12 +1776,21 @@
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.eo.yml</argument>
           </argument>
           <argument key="ky" type="collection">
+<<<<<<< HEAD
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.ky.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.ky.yml</argument>
+=======
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ky.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ky.yml</argument>
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.ky.xliff</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
           </argument>
           <argument key="nb" type="collection">
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\FOSUserBundle.nb.yml</argument>
             <argument>C:\wamp64\www\SCHOOL\vendor\friendsofsymfony\user-bundle/Resources/translations\validators.nb.yml</argument>
+          </argument>
+          <argument key="sw" type="collection">
+            <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/translations/KnpPaginatorBundle.sw.xliff</argument>
           </argument>
         </argument>
       </argument>
@@ -1994,6 +2170,14 @@
         <argument type="collection">
           <argument type="service" id="data_collector.router"/>
           <argument>onKernelController</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.sliding_pagination"/>
+          <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -2436,6 +2620,46 @@
           <argument>onKernelResponse</argument>
         </argument>
         <argument>-128</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.paginate"/>
+          <argument>before</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.paginate"/>
+          <argument>pagination</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.sortable"/>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.filtration"/>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument type="service" id="knp_paginator.subscriber.sliding_pagination"/>
+          <argument>pagination</argument>
+        </argument>
+        <argument>1</argument>
       </call>
     </service>
     <service id="debug.controller_resolver" class="Symfony\Component\HttpKernel\Controller\TraceableControllerResolver">
@@ -3176,12 +3400,20 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
+<<<<<<< HEAD
       <argument>5a450ceddef960.90543534</argument>
+=======
+      <argument>5a46cd52c5d2a8.74874391</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
+<<<<<<< HEAD
       <argument>5a450ceddef960.90543534</argument>
+=======
+      <argument>5a46cd52c5d2a8.74874391</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3310,6 +3542,9 @@
         <argument type="service" id="fos_message.twig_extension.default"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="knp_paginator.twig.extension.pagination"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.dump"/>
       </call>
       <call method="addExtension">
@@ -3424,7 +3659,15 @@
         <argument>FOSMessage</argument>
       </call>
       <call method="addPath">
+<<<<<<< HEAD
         <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
+=======
+        <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
         <argument>Debug</argument>
       </call>
       <call method="addPath">
@@ -3586,7 +3829,15 @@
         <argument>FOSMessage</argument>
       </call>
       <call method="addPath">
+<<<<<<< HEAD
         <argument>C:\wamp64\www\SCHOOL\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
+=======
+        <argument>/Applications/MAMP/htdocs/Schoolium/vendor/knplabs/knp-paginator-bundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/Schoolium/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
         <argument>Debug</argument>
       </call>
       <call method="addPath">
@@ -4478,6 +4729,46 @@
       <argument type="service" id="ornicar_akismet"/>
       <argument type="service" id="fos_message.participant_provider.default"/>
     </service>
+    <service id="knp_paginator" class="Knp\Component\Pager\Paginator" lazy="true">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <call method="setDefaultPaginatorOptions">
+        <argument type="collection">
+          <argument key="pageParameterName">page</argument>
+          <argument key="sortFieldParameterName">sort</argument>
+          <argument key="sortDirectionParameterName">direction</argument>
+          <argument key="filterFieldParameterName">filterField</argument>
+          <argument key="filterValueParameterName">filterValue</argument>
+          <argument key="distinct">true</argument>
+        </argument>
+      </call>
+    </service>
+    <service id="knp_paginator.subscriber.paginate" class="Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sortable" class="Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.filtration" class="Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sliding_pagination" class="Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <argument type="collection">
+        <argument key="defaultPaginationTemplate">@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig</argument>
+        <argument key="defaultSortableTemplate">@KnpPaginator/Pagination/sortable_link.html.twig</argument>
+        <argument key="defaultFiltrationTemplate">@KnpPaginator/Pagination/filtration.html.twig</argument>
+        <argument key="defaultPageRange">5</argument>
+      </argument>
+    </service>
+    <service id="knp_paginator.helper.processor" class="Knp\Bundle\PaginatorBundle\Helper\Processor">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="translator.data_collector"/>
+    </service>
+    <service id="knp_paginator.twig.extension.pagination" class="Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -4755,6 +5046,12 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
+    <service id="service_locator.a2b41ba95495077808828d8f1ec4e874" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service" id="autowired.UserBundle\Entity\User"/>
+      </argument>
+    </service>
     <service id="service_locator.020ba0af70b7ed1a76ae4d6d2cdfe35d" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
@@ -4771,7 +5068,7 @@
         <argument key="parental" type="service" id="autowired.UserBundle\Entity\Parental"/>
       </argument>
     </service>
-    <service id="service_locator.3859a0273803cad4b039e7cd7bbbf407" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.f7ff8662bdf1b83f103b563960da6d9c" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="UserBundle\Controller\AbsenceController:editAction" type="service" id="service_locator.9a7dbe7c3f50eff43f96708a6d342f79"/>
@@ -4781,6 +5078,7 @@
         <argument key="UserBundle\Controller\AdminController:removeAction" type="service" id="service_locator.59e32f74c7658ead700232546883997b"/>
         <argument key="UserBundle\Controller\AdminController:schoolAction" type="service" id="service_locator.59e32f74c7658ead700232546883997b"/>
         <argument key="UserBundle\Controller\EleveController:absenceAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
+        <argument key="UserBundle\Controller\EleveController:absenceEleveAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
         <argument key="UserBundle\Controller\EleveController:assoParentAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
         <argument key="UserBundle\Controller\EleveController:editAction" type="service" id="service_locator.3382e150c9fcac7de9bbf640fd48d808"/>
         <argument key="UserBundle\Controller\EleveController:parentAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
@@ -4790,6 +5088,7 @@
         <argument key="UserBundle\Controller\EnseignantController:editAction" type="service" id="service_locator.7777ac7d125f850c85874200b0e20cdd"/>
         <argument key="UserBundle\Controller\EnseignantController:profileAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
         <argument key="UserBundle\Controller\EnseignantController:removeAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
+        <argument key="UserBundle\Controller\MessageController:newAction" type="service" id="service_locator.a2b41ba95495077808828d8f1ec4e874"/>
         <argument key="UserBundle\Controller\MessageController:showAction" type="service" id="service_locator.61b7ce76edea1fb8a8579609fa72e28c"/>
         <argument key="UserBundle\Controller\ParentalController:editAction" type="service" id="service_locator.5088ad102906363d71e711956108d3ef"/>
         <argument key="UserBundle\Controller\ParentalController:profileAction" type="service" id="service_locator.eff5e9bca454bfd26380c3a61f8bcdb3"/>
@@ -4801,6 +5100,7 @@
         <argument key="UserBundle\Controller\AdminController::removeAction" type="service" id="service_locator.59e32f74c7658ead700232546883997b"/>
         <argument key="UserBundle\Controller\AdminController::schoolAction" type="service" id="service_locator.59e32f74c7658ead700232546883997b"/>
         <argument key="UserBundle\Controller\EleveController::absenceAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
+        <argument key="UserBundle\Controller\EleveController::absenceEleveAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
         <argument key="UserBundle\Controller\EleveController::assoParentAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
         <argument key="UserBundle\Controller\EleveController::editAction" type="service" id="service_locator.3382e150c9fcac7de9bbf640fd48d808"/>
         <argument key="UserBundle\Controller\EleveController::parentAction" type="service" id="service_locator.fc8554f0a96ce751bd280654312a82ba"/>
@@ -4810,6 +5110,7 @@
         <argument key="UserBundle\Controller\EnseignantController::editAction" type="service" id="service_locator.7777ac7d125f850c85874200b0e20cdd"/>
         <argument key="UserBundle\Controller\EnseignantController::profileAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
         <argument key="UserBundle\Controller\EnseignantController::removeAction" type="service" id="service_locator.26c2d81829340471690e58b234657ad4"/>
+        <argument key="UserBundle\Controller\MessageController::newAction" type="service" id="service_locator.a2b41ba95495077808828d8f1ec4e874"/>
         <argument key="UserBundle\Controller\MessageController::showAction" type="service" id="service_locator.61b7ce76edea1fb8a8579609fa72e28c"/>
         <argument key="UserBundle\Controller\ParentalController::editAction" type="service" id="service_locator.5088ad102906363d71e711956108d3ef"/>
         <argument key="UserBundle\Controller\ParentalController::profileAction" type="service" id="service_locator.eff5e9bca454bfd26380c3a61f8bcdb3"/>
@@ -5036,6 +5337,7 @@
     <service id="autowired.UserBundle\Entity\Eleve" class="UserBundle\Entity\Eleve" public="false" autowire="true"/>
     <service id="autowired.UserBundle\Entity\Enseignant" class="UserBundle\Entity\Enseignant" public="false" autowire="true"/>
     <service id="autowired.UserBundle\Entity\Thread" class="UserBundle\Entity\Thread" public="false" autowire="true"/>
+    <service id="autowired.UserBundle\Entity\User" class="UserBundle\Entity\User" public="false" autowire="true"/>
     <service id="autowired.UserBundle\Entity\Parental" class="UserBundle\Entity\Parental" public="false" autowire="true"/>
     <service id="service_locator.d1035efbd4e2f2796cab4e77371ef95b" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -5074,32 +5376,52 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>Fm08fdiN4v</argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>WIbcac9zYonxcb+nLAsAjW</argument>
       <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+=======
+      <argument>EHclYYEGmam9-MwG5qeqnb</argument>
+      <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>+5iwfmCFQb</argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>WIbcac9zYonxcb+nLAsAjW</argument>
       <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+=======
+      <argument>EHclYYEGmam9-MwG5qeqnb</argument>
+      <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>7781Fcyia9</argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>WIbcac9zYonxcb+nLAsAjW</argument>
       <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+=======
+      <argument>EHclYYEGmam9-MwG5qeqnb</argument>
+      <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>LgqUqMhNtt</argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>WIbcac9zYonxcb+nLAsAjW</argument>
       <argument>C:\wamp64\www\SCHOOL\var\cache\dev/pools</argument>
+=======
+      <argument>EHclYYEGmam9-MwG5qeqnb</argument>
+      <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
+>>>>>>> f3e3582edf062798b0f383d4217954d11af62aa6
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -5221,6 +5543,7 @@
     <service id="fos_message.reply_form.handler" alias="fos_message.reply_form.handler.default"/>
     <service id="fos_message.search_query_factory" alias="fos_message.search_query_factory.default"/>
     <service id="fos_message.search_finder" alias="fos_message.search_finder.default"/>
+    <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand" alias="security.console.user_password_encoder_command"/>
