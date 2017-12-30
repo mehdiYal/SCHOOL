@@ -239,3 +239,7 @@ d8a210,::1,GET,http://localhost:8888/Schoolium/web/app_dev.php/fr/message/sentbo
 9bda3f,::1,GET,http://localhost:8888/Schoolium/web/app_dev.php/fr/message/inbox,1514326378,,200
 a7627a,::1,GET,http://localhost:8888/Schoolium/web/app_dev.php/fr/message/sentbox,1514326383,,200
 251012,::1,GET,http://localhost:8888/Schoolium/web/app_dev.php/fr/message/inbox,1514326408,,200
+c06347,::1,GET,http://localhost/SCHOOL/web/app_dev.php/fr/,1514474752,,302
+b2b082,::1,GET,http://localhost/SCHOOL/web/app_dev.php/fr/login,1514474755,,200
+b1a654,::1,POST,http://localhost/SCHOOL/web/app_dev.php/fr/login_check,1514474878,,302
+771026,::1,GET,http://localhost/SCHOOL/web/app_dev.php/fr/logpage,1514474886,,200
