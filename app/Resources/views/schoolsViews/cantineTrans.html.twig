@@ -1,0 +1,77 @@
+{% extends 'baseParent.html.twig' %}
+
+{% block body %}
+    <div class="page-title">                    
+        <h2><span class="fa fa-cutlery"></span> Cantine & transports de l'ecole {{ecole.nom}}</h2>
+    </div>
+        <!-- END PAGE TITLE -->                
+        
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+            
+            <!-- PAGE CONTENT TABBED -->
+            <div class="page-tabs">
+                <a href="#first-tab" class="active">Cantine</a>
+                <a href="#second-tab">Transports</a>
+            </div>
+            
+            <div class="page-content-wrap page-tabs-item active" id="first-tab">
+            
+                <div class="row table-responsive">
+                    <table id="customers2" class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Jour</th>
+                                <th>Menu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for menu in ecole.menus %}
+                                <tr>
+                                    <td>{{ menu.id}}</td>
+                                    <td>{{ menu.jour}}</td>
+                                    <td>{{ menu.menu}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>                                    
+                </div>
+            
+            </div>
+            <div class="page-content-wrap page-tabs-item" id="second-tab">
+                <div class="row table-responsive">
+                    <table id="customers2" class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Départ</th>
+                                <th>Trajet</th>
+                                <th>Heure Départ</th>
+                                <th>Capacité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trans in ecole.transports %}
+                                <tr>
+                                    <td>{{ trans.nom|upper}}</td>
+                                    <td>{{ trans.depart}}</td>
+                                    <td>{{ trans.trajet}}</td>
+                                    <td>{{ trans.heureDepart|date('h:m')}}</td>
+                                    <td>{{ trans.capacite}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>                                    
+                </div>
+            </div>
+            <!-- END PAGE CONTENT TABBED -->
+        </div>            
+        <!-- END PAGE CONTENT -->  
+
+{% endblock %}
+
+{% block javascripts %}
+           
+
+{% endblock %}

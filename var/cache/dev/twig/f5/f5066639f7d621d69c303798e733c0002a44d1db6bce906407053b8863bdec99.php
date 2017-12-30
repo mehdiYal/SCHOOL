@@ -7,8 +7,6 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
     {
         parent::__construct($env);
 
-        // line 1
-        $this->parent = $this->loadTemplate("base2.html.twig", "message/adressBook.html.twig", 1);
         $this->blocks = array(
             'body' => array($this, 'block_body'),
             'javascripts' => array($this, 'block_javascripts'),
@@ -17,36 +15,39 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
 
     protected function doGetParent(array $context)
     {
-        return "base2.html.twig";
+        // line 3
+        return $this->loadTemplate(((twig_in_filter("ROLE_PARENT", $this->getAttribute($this->getAttribute(        // line 1
+($context["app"] ?? $this->getContext($context, "app")), "user", array()), "roles", array()))) ? ("baseParent.html.twig") : ("base2.html.twig")), "message/adressBook.html.twig", 3);
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_a750f117aa28431fc0d401b1d64d2d198e93dd46b7895add3ee102b6669d7b76 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_a750f117aa28431fc0d401b1d64d2d198e93dd46b7895add3ee102b6669d7b76->enter($__internal_a750f117aa28431fc0d401b1d64d2d198e93dd46b7895add3ee102b6669d7b76_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "message/adressBook.html.twig"));
+        $__internal_a6394d6c0a1ea47a153623e29013402fb5e4d7760f1c5351deb29ea875263648 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_a6394d6c0a1ea47a153623e29013402fb5e4d7760f1c5351deb29ea875263648->enter($__internal_a6394d6c0a1ea47a153623e29013402fb5e4d7760f1c5351deb29ea875263648_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "message/adressBook.html.twig"));
 
-        $__internal_77175dec70fc01818f33814dfc58cd782e7e4339aa1132c8841b1fbf501cece0 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_77175dec70fc01818f33814dfc58cd782e7e4339aa1132c8841b1fbf501cece0->enter($__internal_77175dec70fc01818f33814dfc58cd782e7e4339aa1132c8841b1fbf501cece0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "message/adressBook.html.twig"));
+        $__internal_86e99320e311b32cd41f1159efee372d8d7a5278e6392448e4633c5dbba5a3fc = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_86e99320e311b32cd41f1159efee372d8d7a5278e6392448e4633c5dbba5a3fc->enter($__internal_86e99320e311b32cd41f1159efee372d8d7a5278e6392448e4633c5dbba5a3fc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "message/adressBook.html.twig"));
 
-        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        // line 3
+        $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_a750f117aa28431fc0d401b1d64d2d198e93dd46b7895add3ee102b6669d7b76->leave($__internal_a750f117aa28431fc0d401b1d64d2d198e93dd46b7895add3ee102b6669d7b76_prof);
+        $__internal_a6394d6c0a1ea47a153623e29013402fb5e4d7760f1c5351deb29ea875263648->leave($__internal_a6394d6c0a1ea47a153623e29013402fb5e4d7760f1c5351deb29ea875263648_prof);
 
         
-        $__internal_77175dec70fc01818f33814dfc58cd782e7e4339aa1132c8841b1fbf501cece0->leave($__internal_77175dec70fc01818f33814dfc58cd782e7e4339aa1132c8841b1fbf501cece0_prof);
+        $__internal_86e99320e311b32cd41f1159efee372d8d7a5278e6392448e4633c5dbba5a3fc->leave($__internal_86e99320e311b32cd41f1159efee372d8d7a5278e6392448e4633c5dbba5a3fc_prof);
 
     }
 
-    // line 3
+    // line 5
     public function block_body($context, array $blocks = array())
     {
-        $__internal_309ec701cea948f4d800d2c35dd24ac47f8a1c2af5d6492f38cf34747df9e43a = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_309ec701cea948f4d800d2c35dd24ac47f8a1c2af5d6492f38cf34747df9e43a->enter($__internal_309ec701cea948f4d800d2c35dd24ac47f8a1c2af5d6492f38cf34747df9e43a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_1de5675fbadec2b859369b3a3b7ae30d2014101a43d01c90325ea19d247ee66f = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_1de5675fbadec2b859369b3a3b7ae30d2014101a43d01c90325ea19d247ee66f->enter($__internal_1de5675fbadec2b859369b3a3b7ae30d2014101a43d01c90325ea19d247ee66f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        $__internal_291f2eb0fb256db5488fdd75471c3dcecf113574136e4554a29fe22003896c71 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_291f2eb0fb256db5488fdd75471c3dcecf113574136e4554a29fe22003896c71->enter($__internal_291f2eb0fb256db5488fdd75471c3dcecf113574136e4554a29fe22003896c71_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_3a8695939c998fdc390de367d3ca62b0f2a2912aff4c0b8f07cae640deae4fe2 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_3a8695939c998fdc390de367d3ca62b0f2a2912aff4c0b8f07cae640deae4fe2->enter($__internal_3a8695939c998fdc390de367d3ca62b0f2a2912aff4c0b8f07cae640deae4fe2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 4
+        // line 6
         echo "<!-- PAGE TITLE -->
                 <div class=\"page-title\">                    
                     <h2><span class=\"fa fa-users\"></span> Contacts</h2>
@@ -67,18 +68,18 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                     
                         <div class=\"row\">
                                 ";
-        // line 23
+        // line 25
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["ens"] ?? $this->getContext($context, "ens")));
         foreach ($context['_seq'] as $context["_key"] => $context["en"]) {
-            // line 24
+            // line 26
             echo "                                    <div class=\"col-md-3\">
                                         <!-- CONTACT ITEM -->
                                         <div class=\"panel panel-default\">
                                             <div class=\"panel-body profile\">
                                                 <div class=\"profile-image\">
                                                     <img src=\"";
-            // line 29
+            // line 31
             if ($this->getAttribute($context["en"], "photo", array())) {
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("uploads/photos/" . $this->getAttribute($context["en"], "photo", array()))), "html", null, true);
             } else {
@@ -90,7 +91,7 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                                 </div>
                                                 <div class=\"profile-data\">
                                                     <div class=\"profile-data-name\">";
-            // line 32
+            // line 34
             echo twig_escape_filter($this->env, $this->getAttribute($context["en"], "nom", array()), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["en"], "prenom", array()), "html", null, true);
@@ -99,11 +100,11 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                                 </div>
                                                 <div class=\"profile-controls\">
                                                     <a href=\"";
-            // line 36
+            // line 38
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("profileParental", array("id" => $this->getAttribute($context["en"], "id", array()))), "html", null, true);
             echo "\" class=\"profile-control-left\"><span class=\"fa fa-info\"></span></a>
                                                     <a href=\"";
-            // line 37
+            // line 39
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_new", array("id" => $this->getAttribute($context["en"], "id", array()))), "html", null, true);
             echo "\" class=\"profile-control-right\"><span class=\"fa fa-phone\"></span></a>
                                                 </div>
@@ -111,15 +112,15 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                             <div class=\"panel-body\">                                    
                                                 <div class=\"contact-info\">
                                                     <p><small>Mobile</small><br/>";
-            // line 42
+            // line 44
             echo twig_escape_filter($this->env, $this->getAttribute($context["en"], "telephone", array()), "html", null, true);
             echo "</p>
                                                     <p><small>Email</small><br/>";
-            // line 43
+            // line 45
             echo twig_escape_filter($this->env, $this->getAttribute($context["en"], "email", array()), "html", null, true);
             echo "</p>
                                                     <p><small>Address</small><br/>";
-            // line 44
+            // line 46
             echo twig_escape_filter($this->env, $this->getAttribute($context["en"], "adresse", array()), "html", null, true);
             echo "</p>                                   
                                                 </div>
@@ -132,10 +133,10 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['en'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 51
+        // line 53
         echo "                                <div class=\"navigation\">
                                     ";
-        // line 52
+        // line 54
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, ($context["ens"] ?? $this->getContext($context, "ens")));
         echo "
                                 </div>
@@ -145,18 +146,18 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                     <div class=\"page-content-wrap page-tabs-item\" id=\"second-tab\">
                         <div class=\"row\">
                                 ";
-        // line 59
+        // line 61
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["parents"] ?? $this->getContext($context, "parents")));
         foreach ($context['_seq'] as $context["_key"] => $context["parent"]) {
-            // line 60
+            // line 62
             echo "                                    <div class=\"col-md-3\">
                                         <!-- CONTACT ITEM -->
                                         <div class=\"panel panel-default\">
                                             <div class=\"panel-body profile\">
                                                 <div class=\"profile-image\">
                                                     <img src=\"";
-            // line 65
+            // line 67
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("uploads/photos/avatar.png"), "html", null, true);
             echo "\" alt=\"";
             echo twig_escape_filter($this->env, $this->getAttribute($context["parent"], "nom", array()), "html", null, true);
@@ -164,7 +165,7 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                                 </div>
                                                 <div class=\"profile-data\">
                                                     <div class=\"profile-data-name\">";
-            // line 68
+            // line 70
             echo twig_escape_filter($this->env, $this->getAttribute($context["parent"], "nom", array()), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["parent"], "prenom", array()), "html", null, true);
@@ -173,11 +174,11 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                                 </div>
                                                 <div class=\"profile-controls\">
                                                     <a href=\"";
-            // line 72
+            // line 74
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("profileParental", array("id" => $this->getAttribute($context["parent"], "id", array()))), "html", null, true);
             echo "\" class=\"profile-control-left\"><span class=\"fa fa-info\"></span></a>
                                                     <a href=\"";
-            // line 73
+            // line 75
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_new", array("id" => $this->getAttribute($context["parent"], "id", array()))), "html", null, true);
             echo "\" class=\"profile-control-right\"><span class=\"fa fa-phone\"></span></a>
                                                 </div>
@@ -185,15 +186,15 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                             <div class=\"panel-body\">                                    
                                                 <div class=\"contact-info\">
                                                     <p><small>Mobile</small><br/>";
-            // line 78
+            // line 80
             echo twig_escape_filter($this->env, $this->getAttribute($context["parent"], "telephone", array()), "html", null, true);
             echo "</p>
                                                     <p><small>Email</small><br/>";
-            // line 79
+            // line 81
             echo twig_escape_filter($this->env, $this->getAttribute($context["parent"], "email", array()), "html", null, true);
             echo "</p>
                                                     <p><small>Address</small><br/>";
-            // line 80
+            // line 82
             echo twig_escape_filter($this->env, $this->getAttribute($context["parent"], "adresse", array()), "html", null, true);
             echo "</p>                                   
                                                 </div>
@@ -206,10 +207,10 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['parent'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 87
+        // line 89
         echo "                                <div class=\"navigation\">
                                     ";
-        // line 88
+        // line 90
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, ($context["parents"] ?? $this->getContext($context, "parents")));
         echo "
                                 </div>
@@ -219,18 +220,18 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                     
                         <div class=\"row\">
                                 ";
-        // line 95
+        // line 97
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["eleves"] ?? $this->getContext($context, "eleves")));
         foreach ($context['_seq'] as $context["_key"] => $context["eleve"]) {
-            // line 96
+            // line 98
             echo "                                    <div class=\"col-md-3\">
                                         <!-- CONTACT ITEM -->
                                         <div class=\"panel panel-default\">
                                             <div class=\"panel-body profile\">
                                                 <div class=\"profile-image\">
                                                     <img src=\"";
-            // line 101
+            // line 103
             if ($this->getAttribute($context["eleve"], "photo", array())) {
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("uploads/photos/" . $this->getAttribute($context["eleve"], "photo", array()))), "html", null, true);
             } else {
@@ -244,7 +245,7 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                                 </div>
                                                 <div class=\"profile-data\">
                                                     <div class=\"profile-data-name\">";
-            // line 104
+            // line 106
             echo twig_escape_filter($this->env, $this->getAttribute($context["eleve"], "nom", array()), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, $this->getAttribute($context["eleve"], "prenom", array()), "html", null, true);
@@ -253,11 +254,11 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                                 </div>
                                                 <div class=\"profile-controls\">
                                                     <a href=\"";
-            // line 108
+            // line 110
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("profileParental", array("id" => $this->getAttribute($context["eleve"], "id", array()))), "html", null, true);
             echo "\" class=\"profile-control-left\"><span class=\"fa fa-info\"></span></a>
                                                     <a href=\"";
-            // line 109
+            // line 111
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_new", array("id" => $this->getAttribute($context["eleve"], "id", array()))), "html", null, true);
             echo "\" class=\"profile-control-right\"><span class=\"fa fa-phone\"></span></a>
                                                 </div>
@@ -265,15 +266,15 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                                             <div class=\"panel-body\">                                    
                                                 <div class=\"contact-info\">
                                                     <p><small>Mobile</small><br/>";
-            // line 114
+            // line 116
             echo twig_escape_filter($this->env, $this->getAttribute($context["eleve"], "telephone", array()), "html", null, true);
             echo "</p>
                                                     <p><small>Email</small><br/>";
-            // line 115
+            // line 117
             echo twig_escape_filter($this->env, $this->getAttribute($context["eleve"], "email", array()), "html", null, true);
             echo "</p>
                                                     <p><small>Address</small><br/>";
-            // line 116
+            // line 118
             echo twig_escape_filter($this->env, $this->getAttribute($context["eleve"], "adresse", array()), "html", null, true);
             echo "</p>                                   
                                                 </div>
@@ -286,10 +287,10 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['eleve'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 123
+        // line 125
         echo "                                <div class=\"navigation\">
                                     ";
-        // line 124
+        // line 126
         echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, ($context["parents"] ?? $this->getContext($context, "parents")));
         echo "
                                 </div>
@@ -298,41 +299,37 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                     </div>
                     <!-- END PAGE CONTENT TABBED -->
                 </div>            
-                <!-- END PAGE CONTENT -->
-            </div>
-            <!-- END PAGE CONTAINER -->
-                    
-                    
-                </div>
-                <!-- END PAGE CONTENT WRAPPER -->             
+                <!-- END PAGE CONTENT -->    
                 
 ";
         
-        $__internal_291f2eb0fb256db5488fdd75471c3dcecf113574136e4554a29fe22003896c71->leave($__internal_291f2eb0fb256db5488fdd75471c3dcecf113574136e4554a29fe22003896c71_prof);
+        $__internal_3a8695939c998fdc390de367d3ca62b0f2a2912aff4c0b8f07cae640deae4fe2->leave($__internal_3a8695939c998fdc390de367d3ca62b0f2a2912aff4c0b8f07cae640deae4fe2_prof);
 
         
-        $__internal_309ec701cea948f4d800d2c35dd24ac47f8a1c2af5d6492f38cf34747df9e43a->leave($__internal_309ec701cea948f4d800d2c35dd24ac47f8a1c2af5d6492f38cf34747df9e43a_prof);
+        $__internal_1de5675fbadec2b859369b3a3b7ae30d2014101a43d01c90325ea19d247ee66f->leave($__internal_1de5675fbadec2b859369b3a3b7ae30d2014101a43d01c90325ea19d247ee66f_prof);
 
     }
 
-    // line 142
+    // line 138
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_e4042b35c93028a75a095d609b8ab1a1db0187485370547753a4be6f511ac8f7 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_e4042b35c93028a75a095d609b8ab1a1db0187485370547753a4be6f511ac8f7->enter($__internal_e4042b35c93028a75a095d609b8ab1a1db0187485370547753a4be6f511ac8f7_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_e1b8921fc85e85deb80015352ef3a026cc60e3fa0f2c3bac8d981f3ef12b4a0f = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_e1b8921fc85e85deb80015352ef3a026cc60e3fa0f2c3bac8d981f3ef12b4a0f->enter($__internal_e1b8921fc85e85deb80015352ef3a026cc60e3fa0f2c3bac8d981f3ef12b4a0f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        $__internal_b0f7e41cf950072ce9de9b2bc809a4f0392072c8fe9e8aacc09cf7c0dbed69c5 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_b0f7e41cf950072ce9de9b2bc809a4f0392072c8fe9e8aacc09cf7c0dbed69c5->enter($__internal_b0f7e41cf950072ce9de9b2bc809a4f0392072c8fe9e8aacc09cf7c0dbed69c5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_e58ae1a1cdfe5045033f13e1c990dd6eefe5b55e71378ece2e94bbde1100c57c = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_e58ae1a1cdfe5045033f13e1c990dd6eefe5b55e71378ece2e94bbde1100c57c->enter($__internal_e58ae1a1cdfe5045033f13e1c990dd6eefe5b55e71378ece2e94bbde1100c57c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 143
-        echo "           
-
+        // line 139
+        echo "    <script>
+        \$('.page-sidebar .active').removeClass('active');
+        \$('.msg').addClass('active');
+    </script>
 ";
         
-        $__internal_b0f7e41cf950072ce9de9b2bc809a4f0392072c8fe9e8aacc09cf7c0dbed69c5->leave($__internal_b0f7e41cf950072ce9de9b2bc809a4f0392072c8fe9e8aacc09cf7c0dbed69c5_prof);
+        $__internal_e58ae1a1cdfe5045033f13e1c990dd6eefe5b55e71378ece2e94bbde1100c57c->leave($__internal_e58ae1a1cdfe5045033f13e1c990dd6eefe5b55e71378ece2e94bbde1100c57c_prof);
 
         
-        $__internal_e4042b35c93028a75a095d609b8ab1a1db0187485370547753a4be6f511ac8f7->leave($__internal_e4042b35c93028a75a095d609b8ab1a1db0187485370547753a4be6f511ac8f7_prof);
+        $__internal_e1b8921fc85e85deb80015352ef3a026cc60e3fa0f2c3bac8d981f3ef12b4a0f->leave($__internal_e1b8921fc85e85deb80015352ef3a026cc60e3fa0f2c3bac8d981f3ef12b4a0f_prof);
 
     }
 
@@ -348,7 +345,7 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
 
     public function getDebugInfo()
     {
-        return array (  328 => 143,  319 => 142,  293 => 124,  290 => 123,  277 => 116,  273 => 115,  269 => 114,  261 => 109,  257 => 108,  248 => 104,  234 => 101,  227 => 96,  223 => 95,  213 => 88,  210 => 87,  197 => 80,  193 => 79,  189 => 78,  181 => 73,  177 => 72,  168 => 68,  160 => 65,  153 => 60,  149 => 59,  139 => 52,  136 => 51,  123 => 44,  119 => 43,  115 => 42,  107 => 37,  103 => 36,  94 => 32,  82 => 29,  75 => 24,  71 => 23,  50 => 4,  41 => 3,  11 => 1,);
+        return array (  323 => 139,  314 => 138,  294 => 126,  291 => 125,  278 => 118,  274 => 117,  270 => 116,  262 => 111,  258 => 110,  249 => 106,  235 => 103,  228 => 98,  224 => 97,  214 => 90,  211 => 89,  198 => 82,  194 => 81,  190 => 80,  182 => 75,  178 => 74,  169 => 70,  161 => 67,  154 => 62,  150 => 61,  140 => 54,  137 => 53,  124 => 46,  120 => 45,  116 => 44,  108 => 39,  104 => 38,  95 => 34,  83 => 31,  76 => 26,  72 => 25,  51 => 6,  42 => 5,  32 => 3,  20 => 1,  19 => 3,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -361,7 +358,9 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
 
     public function getSourceContext()
     {
-        return new Twig_Source("{% extends 'base2.html.twig' %}
+        return new Twig_Source("{% extends 'ROLE_PARENT' in app.user.roles 
+    ? 'baseParent.html.twig' 
+    : 'base2.html.twig' %}
 
 {% block body %}
 <!-- PAGE TITLE -->
@@ -491,20 +490,16 @@ class __TwigTemplate_433fe8a098fb9c8d21361f25145dce98e4f0ea53ec6c6868ba16b801002
                     </div>
                     <!-- END PAGE CONTENT TABBED -->
                 </div>            
-                <!-- END PAGE CONTENT -->
-            </div>
-            <!-- END PAGE CONTAINER -->
-                    
-                    
-                </div>
-                <!-- END PAGE CONTENT WRAPPER -->             
+                <!-- END PAGE CONTENT -->    
                 
 {% endblock %}
 
 
 {% block javascripts %}
-           
-
+    <script>
+        \$('.page-sidebar .active').removeClass('active');
+        \$('.msg').addClass('active');
+    </script>
 {% endblock %}", "message/adressBook.html.twig", "/Applications/MAMP/htdocs/Schoolium/app/Resources/views/message/adressBook.html.twig");
     }
 }

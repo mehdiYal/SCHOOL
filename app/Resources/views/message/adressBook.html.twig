@@ -1,4 +1,6 @@
-{% extends 'base2.html.twig' %}
+{% extends 'ROLE_PARENT' in app.user.roles 
+    ? 'baseParent.html.twig' 
+    : 'base2.html.twig' %}
 
 {% block body %}
 <!-- PAGE TITLE -->
@@ -128,18 +130,14 @@
                     </div>
                     <!-- END PAGE CONTENT TABBED -->
                 </div>            
-                <!-- END PAGE CONTENT -->
-            </div>
-            <!-- END PAGE CONTAINER -->
-                    
-                    
-                </div>
-                <!-- END PAGE CONTENT WRAPPER -->             
+                <!-- END PAGE CONTENT -->    
                 
 {% endblock %}
 
 
 {% block javascripts %}
-           
-
+    <script>
+        $('.page-sidebar .active').removeClass('active');
+        $('.msg').addClass('active');
+    </script>
 {% endblock %}

@@ -21,29 +21,29 @@ class __TwigTemplate_4797880814adf71e0bd3aac4e3f206734a133a77fff955ed63aba65ca06
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_5e73f145b360731c3abc3adeaca349ec25bad4940cf20baaff8fc3df93325ef0 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_5e73f145b360731c3abc3adeaca349ec25bad4940cf20baaff8fc3df93325ef0->enter($__internal_5e73f145b360731c3abc3adeaca349ec25bad4940cf20baaff8fc3df93325ef0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/dashAdmin.html.twig"));
+        $__internal_1289254ba06971c043df576f71a2575265e240bb2626d653ffc3611b6acf1981 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_1289254ba06971c043df576f71a2575265e240bb2626d653ffc3611b6acf1981->enter($__internal_1289254ba06971c043df576f71a2575265e240bb2626d653ffc3611b6acf1981_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/dashAdmin.html.twig"));
 
-        $__internal_12688e57ae86df19721df982a57604b965fbcb4bf6c021fde08cc307d167b407 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_12688e57ae86df19721df982a57604b965fbcb4bf6c021fde08cc307d167b407->enter($__internal_12688e57ae86df19721df982a57604b965fbcb4bf6c021fde08cc307d167b407_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/dashAdmin.html.twig"));
+        $__internal_55d7000d3c080e729e7f16803ce6d1ef54b07f755974801363e43d062546ba58 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_55d7000d3c080e729e7f16803ce6d1ef54b07f755974801363e43d062546ba58->enter($__internal_55d7000d3c080e729e7f16803ce6d1ef54b07f755974801363e43d062546ba58_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/dashAdmin.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_5e73f145b360731c3abc3adeaca349ec25bad4940cf20baaff8fc3df93325ef0->leave($__internal_5e73f145b360731c3abc3adeaca349ec25bad4940cf20baaff8fc3df93325ef0_prof);
+        $__internal_1289254ba06971c043df576f71a2575265e240bb2626d653ffc3611b6acf1981->leave($__internal_1289254ba06971c043df576f71a2575265e240bb2626d653ffc3611b6acf1981_prof);
 
         
-        $__internal_12688e57ae86df19721df982a57604b965fbcb4bf6c021fde08cc307d167b407->leave($__internal_12688e57ae86df19721df982a57604b965fbcb4bf6c021fde08cc307d167b407_prof);
+        $__internal_55d7000d3c080e729e7f16803ce6d1ef54b07f755974801363e43d062546ba58->leave($__internal_55d7000d3c080e729e7f16803ce6d1ef54b07f755974801363e43d062546ba58_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_a2d65e5be386b6fc5511f125f2ad97071ed70d28c48f3220912ddaf600f10a5b = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_a2d65e5be386b6fc5511f125f2ad97071ed70d28c48f3220912ddaf600f10a5b->enter($__internal_a2d65e5be386b6fc5511f125f2ad97071ed70d28c48f3220912ddaf600f10a5b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_c666f72db43c4841efb1d8994393a1709b87ba341ab78b760bbb67a03dfab37c = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_c666f72db43c4841efb1d8994393a1709b87ba341ab78b760bbb67a03dfab37c->enter($__internal_c666f72db43c4841efb1d8994393a1709b87ba341ab78b760bbb67a03dfab37c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        $__internal_309c8568c0164dc31e866cda8db6565fa55cca5257087e0983e137ca8df187c6 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_309c8568c0164dc31e866cda8db6565fa55cca5257087e0983e137ca8df187c6->enter($__internal_309c8568c0164dc31e866cda8db6565fa55cca5257087e0983e137ca8df187c6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_1b1c0019c6ba620dc880e9424c0cbdb08373cd28bac7ecc6cd34645a250e6241 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_1b1c0019c6ba620dc880e9424c0cbdb08373cd28bac7ecc6cd34645a250e6241->enter($__internal_1b1c0019c6ba620dc880e9424c0cbdb08373cd28bac7ecc6cd34645a250e6241_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    <div class=\"page-content-wrap\">
@@ -95,7 +95,10 @@ class __TwigTemplate_4797880814adf71e0bd3aac4e3f206734a133a77fff955ed63aba65ca06
                         <span class=\"fa fa-envelope\"></span>
                     </div>                             
                     <div class=\"widget-data\">
-                        <div class=\"widget-int num-count\">0</div>
+                        <div class=\"widget-int num-count\">";
+        // line 44
+        echo twig_escape_filter($this->env, ($context["newMessages"] ?? $this->getContext($context, "newMessages")), "html", null, true);
+        echo "</div>
                         <div class=\"widget-title\">New messages</div>
                         <div class=\"widget-subtitle\">In your mailbox</div>
                     </div>      
@@ -160,10 +163,10 @@ class __TwigTemplate_4797880814adf71e0bd3aac4e3f206734a133a77fff955ed63aba65ca06
 
 ";
         
-        $__internal_309c8568c0164dc31e866cda8db6565fa55cca5257087e0983e137ca8df187c6->leave($__internal_309c8568c0164dc31e866cda8db6565fa55cca5257087e0983e137ca8df187c6_prof);
+        $__internal_1b1c0019c6ba620dc880e9424c0cbdb08373cd28bac7ecc6cd34645a250e6241->leave($__internal_1b1c0019c6ba620dc880e9424c0cbdb08373cd28bac7ecc6cd34645a250e6241_prof);
 
         
-        $__internal_a2d65e5be386b6fc5511f125f2ad97071ed70d28c48f3220912ddaf600f10a5b->leave($__internal_a2d65e5be386b6fc5511f125f2ad97071ed70d28c48f3220912ddaf600f10a5b_prof);
+        $__internal_c666f72db43c4841efb1d8994393a1709b87ba341ab78b760bbb67a03dfab37c->leave($__internal_c666f72db43c4841efb1d8994393a1709b87ba341ab78b760bbb67a03dfab37c_prof);
 
     }
 
@@ -179,7 +182,7 @@ class __TwigTemplate_4797880814adf71e0bd3aac4e3f206734a133a77fff955ed63aba65ca06
 
     public function getDebugInfo()
     {
-        return array (  124 => 65,  119 => 63,  79 => 26,  71 => 21,  63 => 16,  49 => 4,  40 => 3,  11 => 1,);
+        return array (  127 => 65,  122 => 63,  100 => 44,  79 => 26,  71 => 21,  63 => 16,  49 => 4,  40 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -235,7 +238,7 @@ class __TwigTemplate_4797880814adf71e0bd3aac4e3f206734a133a77fff955ed63aba65ca06
                         <span class=\"fa fa-envelope\"></span>
                     </div>                             
                     <div class=\"widget-data\">
-                        <div class=\"widget-int num-count\">0</div>
+                        <div class=\"widget-int num-count\">{{newMessages}}</div>
                         <div class=\"widget-title\">New messages</div>
                         <div class=\"widget-subtitle\">In your mailbox</div>
                     </div>      

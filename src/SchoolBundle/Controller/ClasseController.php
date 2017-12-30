@@ -141,6 +141,18 @@ class ClasseController extends Controller
         return $this->render('classesViews/affecterEleve.html.twig',array("eleves"=>$eleves,"classe"=>$classe));
     }
 
+    /**
+     * @Route("/listeEns/{id}}", name="classe_listeEns")
+     */
+    public function listeEnsAction(Classe $classe)
+    {
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/listeEns.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"classe"=>$classe));
+    }
+
     
 
 

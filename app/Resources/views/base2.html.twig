@@ -104,10 +104,11 @@
                                 </ul>
                             </li>
                              <!-- Messagerie -->
-                            <li>
+                            <li class="msg">
                                 <a href="{{ path('message_inbox') }}">
                                     <span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span>
                                 </a>
+                                <div class="informer informer-danger">{{newMessages}}</div>
                             </li>
                            
                         {% endif %}
@@ -196,7 +197,7 @@
                             <li><a href="#"><span class="fa fa-money"></span> <span class="xn-text">Payement</span></a></li>
 
                             <!-- Messagerie -->
-                            <li><a href="{{ path('message_inbox') }}"><span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span></a></li>
+                            <li class="msg"><a href="{{ path('message_inbox') }}"><span class="fa fa-envelope-o"></span> <span class="xn-text">Messagerie</span></a><div class="informer informer-danger">{{newMessages}}</div></li>
 
                             <!-- Ressources pédagogiques -->
                             <li><a href="#"><span class="fa fa-leanpub"></span> <span class="xn-text">Ressources pédagogiques</span></a></li>
@@ -268,7 +269,7 @@
                                 {% for msg in inbox %}
                                     <a href="{{ path('message_show',{'id':msg.id})}}" class="list-group-item">
                                         <div class="list-group-status status-online"></div>
-                                        <img src="{{asset('uploads/photos/'~ msg.createdBy.photo)}}" class="pull-left" alt="John Doe"/>
+                                        <img src="{% if msg.createdBy.photo %}{{asset('uploads/photos/'~ msg.createdBy.photo)}}{% else %}{{ asset('uploads/photos/avatar.png') }}{% endif %}" class="pull-left" alt="John Doe"/>
                                         <span class="contacts-title">{{msg.createdBy.nom}} {{msg.createdBy.prenom}}</span>
                                         <p>{{msg.subject}}</p>
                                     </a>

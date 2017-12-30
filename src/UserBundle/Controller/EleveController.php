@@ -198,4 +198,17 @@ class EleveController extends Controller
         $em->flush();   
         return $this->redirectToRoute('listEleves');      
     }
+
+    /**
+     * @Route("/absence_eleve/{id}", name="eleve_absence")
+     */
+    public function absenceEleveAction(Eleve $eleve)
+    {
+       
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('absence/show.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"eleve"=>$eleve));
+    }
 }

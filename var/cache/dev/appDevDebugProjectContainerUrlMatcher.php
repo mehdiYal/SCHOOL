@@ -173,6 +173,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'remettreEleveClasse')), array (  '_controller' => 'SchoolBundle\\Controller\\ClasseController::remettreEleveClasse',));
         }
 
+        // classe_listeEns
+        if (preg_match('#^/(?P<_locale>[^/]++)/classe/listeEns/(?P<id>[^/]+)\\}$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'classe_listeEns')), array (  '_controller' => 'SchoolBundle\\Controller\\ClasseController::listeEnsAction',));
+        }
+
         // new_cours
         if (preg_match('#^/(?P<_locale>[^/]++)/cours/new/classe/(?P<idClasse>[^/]++)/matiere/(?P<idMatiere>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($canonicalMethod, array('GET', 'POST'))) {
@@ -364,6 +369,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'mySchool')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::mySchoolAction',));
         }
 
+        // ecole_cantineTrans
+        if (preg_match('#^/(?P<_locale>[^/]++)/school/cantineTrans/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'ecole_cantineTrans')), array (  '_controller' => 'SchoolBundle\\Controller\\SchoolController::cantineTransAction',));
+        }
+
         // addTransport
         if (preg_match('#^/(?P<_locale>[^/]++)/transport/add$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'addTransport')), array (  '_controller' => 'SchoolBundle\\Controller\\TransportController::addAction',));
@@ -421,6 +431,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_travail')), array (  '_controller' => 'SchoolBundle\\Controller\\TravailRealiseController::editAction',));
         }
         not_edit_travail:
+
+        // travailParent
+        if (preg_match('#^/(?P<_locale>[^/]++)/travailrealise/travailParent$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'travailParent')), array (  '_controller' => 'SchoolBundle\\Controller\\TravailRealiseController::travailParentAction',));
+        }
 
         // absence_index
         if (preg_match('#^/(?P<_locale>[^/]++)/absence/?$#s', $pathinfo, $matches)) {
@@ -565,6 +580,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // assoParent
         if (preg_match('#^/(?P<_locale>[^/]++)/eleve/asso/(?P<id>[^/]++)/(?P<idp>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'assoParent')), array (  '_controller' => 'UserBundle\\Controller\\EleveController::assoParentAction',));
+        }
+
+        // eleve_absence
+        if (preg_match('#^/(?P<_locale>[^/]++)/eleve/absence_eleve/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'eleve_absence')), array (  '_controller' => 'UserBundle\\Controller\\EleveController::absenceEleveAction',));
         }
 
         // addEnseignant

@@ -1,0 +1,50 @@
+{% extends 'baseParent.html.twig' %}
+
+{% block body %}
+    <div class="page-content-wrap">
+         <div class="row">
+            <div class="col-md-12">
+                <h3>Mes Enfants :</h3>
+            </div>
+             {% for eleve in app.user.eleves %}
+                <div class="col-md-4">
+                    <!-- CONTACT ITEM -->
+                    <div class="panel panel-default">
+                        <div class="panel-body profile">
+                            <div class="profile-image">
+                                <img src="{% if eleve.photo %}{{ asset('uploads/photos/' ~ eleve.photo) }}{% else %}{{ asset('uploads/photos/avatar.png') }}{% endif %}" alt="{{eleve.nom}}"/>
+                            </div>
+                            <div class="profile-data">
+                                <div class="profile-data-name">{{eleve.nom}} {{eleve.prenom}}</div>
+                                <div class="profile-data-title">Eleve</div>
+                            </div>
+                            <div class="profile-controls">
+                                <a href="{{ path('profileEleve',{'id':eleve.id})}}" class="profile-control-left"><span class="fa fa-info"></span></a>
+                                <a href="{{ path('message_new',{'id':eleve.id}) }}" class="profile-control-right"><span class="fa fa-phone"></span></a>
+                            </div>
+                        </div>                                
+                        <div class="panel-body">                                    
+                            <div class="contact-info">
+                                <p><small>Ecole</small><br/><a href="">{{eleve.ecole.nom}}</a></p>
+                                <p><small>Année</small><br/>{{eleve.annee.nom}} {{eleve.annee.niveau}}</p>
+                                <p><small>Classe</small><br/>
+                                {% if eleve.classe%}
+                                <a href=" {{ path ('classe_listeEns',{'id':eleve.classe.id})}} ">{{eleve.classe.nom}} <span class="label label-danger pull-right"">Nouvelles informations</span> </a></p>
+                                <p><small><a href="{{path('program_show_class',{'id':eleve.classe.id})}}">Emploie du temps</a></small></p>
+                                <p><small><a href="{{ path('eleve_absence',{'id':eleve.id}) }}">Retards & absenses</a></small></p>
+                                <p><small><a href="{{ path ('classe_listeEns',{'id':eleve.classe.id})}}">Liste des enseignants</a></small></p>
+                                <p><small><a href="">Liste des evaluations</a></small></p>
+                                <p><small><a href="">Ressources pédagogique</a></small></p>
+                                <p><small><a href="{{ path ('ecole_cantineTrans',{'id':eleve.ecole.id})}}">Cantine & transports</a></small></p>
+                                {%else%} Pas de classe pour l'instant<p/>{% endif%}
+                                                                   
+                            </div>
+                        </div>                                
+                    </div>
+                    <!-- END CONTACT ITEM -->
+                </div>
+             {% endfor %}
+         </div>           
+    </div>
+
+{% endblock %}
