@@ -15,3 +15,5 @@ parameters:
     uploads_cours_annexe: uploads/cours/annexe
     uploads_matiere_prog_annuel: uploads/matiere/programme
     uploads_devoir: uploads/devoir
+    uploads_homework: uploads/travailafaire
+    uploads_ressource: uploads/ressource

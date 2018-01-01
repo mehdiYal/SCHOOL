@@ -57,16 +57,19 @@ class ProgrammeController extends Controller
      */
     public function showClasseAction(Request $request)
     {   
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $em = $this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
         $data['programme']= $em->getRepository('SchoolBundle:Programme')->findBy(array('classe'=>$id));
         $data['jour']= $em->getRepository('SchoolBundle:Jour')->findAll();
         $data['horraire']= $em->getRepository('SchoolBundle:Horraire')->findAll();
-         $provider = $this->container->get('fos_message.provider');
-        $inbox = $provider->getInboxThreads();
-        $sentbox = $provider->getSentThreads();
-        $nb=$provider->getNbUnreadMessages();
-        return $this->render('programme/show.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+
+        return $this->render('programme/show.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
       
     }   
 
@@ -75,12 +78,18 @@ class ProgrammeController extends Controller
      */
     public function showEnseignantAction(Request $request)
     {
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $em = $this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
         $data['programme']= $em->getRepository('SchoolBundle:Programme')->findBy(array('enseignant'=>$id));
         $data['jour']= $em->getRepository('SchoolBundle:Jour')->findAll();
         $data['horraire']= $em->getRepository('SchoolBundle:Horraire')->findAll();
-        return $this->render('programme/show.html.twig',array("data"=>$data));
+        return $this->render('programme/show.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }   
 
 }

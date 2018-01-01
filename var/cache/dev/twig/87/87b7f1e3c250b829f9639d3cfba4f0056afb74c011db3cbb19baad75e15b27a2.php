@@ -15,17 +15,18 @@ class __TwigTemplate_0c3c92e49d0496f04dbef051985d67ae3023c745ae10ef6e55eeefd9d58
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_254dcb397b4498746218be34661724622417a79afd3461b37211113d58a9b1d5 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_254dcb397b4498746218be34661724622417a79afd3461b37211113d58a9b1d5->enter($__internal_254dcb397b4498746218be34661724622417a79afd3461b37211113d58a9b1d5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Profiler:base_js.html.twig"));
+        $__internal_7ab1c8076e281b5ae72381b91cce165faf99d0fa9a3d86a58a216277ee72dd49 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_7ab1c8076e281b5ae72381b91cce165faf99d0fa9a3d86a58a216277ee72dd49->enter($__internal_7ab1c8076e281b5ae72381b91cce165faf99d0fa9a3d86a58a216277ee72dd49_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Profiler:base_js.html.twig"));
 
-        $__internal_7edfd149faa35184e009076250347c883385e8d1fade92eb48d7300f5510828a = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_7edfd149faa35184e009076250347c883385e8d1fade92eb48d7300f5510828a->enter($__internal_7edfd149faa35184e009076250347c883385e8d1fade92eb48d7300f5510828a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Profiler:base_js.html.twig"));
+        $__internal_525445e2af4d18b352995ed79d9a50e5fdcd7e65cec4fd58aca2acabdb6be962 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_525445e2af4d18b352995ed79d9a50e5fdcd7e65cec4fd58aca2acabdb6be962->enter($__internal_525445e2af4d18b352995ed79d9a50e5fdcd7e65cec4fd58aca2acabdb6be962_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "WebProfilerBundle:Profiler:base_js.html.twig"));
 
         // line 3
         echo "<script";
         if ((array_key_exists("csp_script_nonce", $context) && (isset($context["csp_script_nonce"]) ? $context["csp_script_nonce"] : $this->getContext($context, "csp_script_nonce")))) {
-            echo " nonce=";
+            echo " nonce=\"";
             echo twig_escape_filter($this->env, (isset($context["csp_script_nonce"]) ? $context["csp_script_nonce"] : $this->getContext($context, "csp_script_nonce")), "html", null, true);
+            echo "\"";
         }
         echo ">/*<![CDATA[*/
     ";
@@ -580,10 +581,10 @@ class __TwigTemplate_0c3c92e49d0496f04dbef051985d67ae3023c745ae10ef6e55eeefd9d58
 /*]]>*/</script>
 ";
         
-        $__internal_254dcb397b4498746218be34661724622417a79afd3461b37211113d58a9b1d5->leave($__internal_254dcb397b4498746218be34661724622417a79afd3461b37211113d58a9b1d5_prof);
+        $__internal_7ab1c8076e281b5ae72381b91cce165faf99d0fa9a3d86a58a216277ee72dd49->leave($__internal_7ab1c8076e281b5ae72381b91cce165faf99d0fa9a3d86a58a216277ee72dd49_prof);
 
         
-        $__internal_7edfd149faa35184e009076250347c883385e8d1fade92eb48d7300f5510828a->leave($__internal_7edfd149faa35184e009076250347c883385e8d1fade92eb48d7300f5510828a_prof);
+        $__internal_525445e2af4d18b352995ed79d9a50e5fdcd7e65cec4fd58aca2acabdb6be962->leave($__internal_525445e2af4d18b352995ed79d9a50e5fdcd7e65cec4fd58aca2acabdb6be962_prof);
 
     }
 
@@ -599,7 +600,7 @@ class __TwigTemplate_0c3c92e49d0496f04dbef051985d67ae3023c745ae10ef6e55eeefd9d58
 
     public function getDebugInfo()
     {
-        return array (  381 => 332,  349 => 303,  343 => 300,  339 => 299,  333 => 296,  329 => 295,  285 => 254,  266 => 237,  264 => 236,  33 => 7,  25 => 3,);
+        return array (  382 => 332,  350 => 303,  344 => 300,  340 => 299,  334 => 296,  330 => 295,  286 => 254,  267 => 237,  265 => 236,  34 => 7,  25 => 3,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -614,7 +615,7 @@ class __TwigTemplate_0c3c92e49d0496f04dbef051985d67ae3023c745ae10ef6e55eeefd9d58
     {
         return new Twig_Source("{# This file is partially duplicated in TwigBundle/Resources/views/base_js.html.twig. If you
    make any change in this file, verify the same change is needed in the other file. #}
-<script{% if csp_script_nonce is defined and csp_script_nonce %} nonce={{ csp_script_nonce }}{% endif %}>/*<![CDATA[*/
+<script{% if csp_script_nonce is defined and csp_script_nonce %} nonce=\"{{ csp_script_nonce }}\"{% endif %}>/*<![CDATA[*/
     {# Caution: the contents of this file are processed by Twig before loading
                 them as JavaScript source code. Always use '/*' comments instead
                 of '//' comments to avoid impossible-to-debug side-effects #}

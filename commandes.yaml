@@ -17,7 +17,7 @@ php bin/console generate:doctrine:entity SchoolBundle:Jour
 
 
 #Mettre à jour une entity
-php bin/console doctrine:generate:entities SchoolBundle:EnsMat AUUserBundle:User AUGeneralBundle:Contact  AUFaqBundle:Faq 
+php bin/console doctrine:generate:entities SchoolBundle:Ressource AUUserBundle:User AUGeneralBundle:Contact  AUFaqBundle:Faq 
 
 #Créer une entity à partir de la bdd
 php bin/console doctrine:mapping:convert metadata_format  ./src/AU/FaqBundle/Resources/config/doctrine --from-database --filter="faqCategory"

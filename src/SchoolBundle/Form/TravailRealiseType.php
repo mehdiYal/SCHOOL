@@ -7,7 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use SchoolBundle\Repository\MatiereRepository;
 use SchoolBundle\Repository\ClasseRepository;
 use SchoolBundle\Repository\TravailRealiseRepository;
@@ -46,9 +48,19 @@ class TravailRealiseType extends AbstractType
             'html5' => false
             ]
             )
+         ->add('time', TimeType::class,[
+            'attr' => ['class' => 'timeForm form-control  input-small'],
+            'widget' => 'single_text',
+            'html5' => false
+            ]
+            )
           ->add('travail', FileType::class, array(
                 'data_class' => null,
-                'required' => false, 
+                'required' => true, 
+            ))
+          ->add('commentaire', TextareaType::class, array(
+                'attr'=> ['class' => 'form-control'],
+                'required' => false
             ))
          ;
     }

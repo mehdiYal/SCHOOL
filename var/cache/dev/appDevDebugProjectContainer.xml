@@ -143,6 +143,8 @@
     <parameter key="uploads_cours_annexe">uploads/cours/annexe</parameter>
     <parameter key="uploads_matiere_prog_annuel">uploads/matiere/programme</parameter>
     <parameter key="uploads_devoir">uploads/devoir</parameter>
+    <parameter key="uploads_homework">uploads/travailafaire</parameter>
+    <parameter key="uploads_ressource">uploads/ressource</parameter>
     <parameter key="locale">fr</parameter>
     <parameter key="photo_directory">/Applications/MAMP/htdocs/Schoolium/web/uploads/photos</parameter>
     <parameter key="logo_directory">/Applications/MAMP/htdocs/Schoolium/web/uploads/logos</parameter>
@@ -774,7 +776,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>zGsIoyhRjrsECc0eFdRc0R</argument>
+      <argument>EAm81LQPqzeLY6KzuUnKhD</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -784,7 +786,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>zGsIoyhRjrsECc0eFdRc0R</argument>
+      <argument>EAm81LQPqzeLY6KzuUnKhD</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2557,13 +2559,13 @@
         <argument type="service" id="routing.loader.service"/>
       </call>
       <call method="addLoader">
+        <argument type="service" id="sensio_framework_extra.routing.loader.annot_class"/>
+      </call>
+      <call method="addLoader">
         <argument type="service" id="sensio_framework_extra.routing.loader.annot_dir"/>
       </call>
       <call method="addLoader">
         <argument type="service" id="sensio_framework_extra.routing.loader.annot_file"/>
-      </call>
-      <call method="addLoader">
-        <argument type="service" id="sensio_framework_extra.routing.loader.annot_class"/>
       </call>
     </service>
     <service id="routing.loader.xml" class="Symfony\Component\Routing\Loader\XmlFileLoader" public="false">
@@ -2859,6 +2861,13 @@
         <argument type="service" id="security.request_matcher.cf8cfaa3b575ad741fd78a79d6865559a441285c37d041f59c81f33475f3e7ea4f4e2d4b"/>
         <argument type="collection">
           <argument>ROLE_ENSEIGNANT</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id="security.request_matcher.f6e7340ad55328ed63d4fb52a22074b220416e18cd06d8d0976dcf61f22859e57e7e7084"/>
+        <argument type="collection">
+          <argument>ROLE_ELEVE</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -3264,12 +3273,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5a4a170f730a29.21908335</argument>
+      <argument>5a4a1bd25ed402.95884089</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5a4a170f730a29.21908335</argument>
+      <argument>5a4a1bd25ed402.95884089</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3314,6 +3323,9 @@
     </service>
     <service id="security.request_matcher.cf8cfaa3b575ad741fd78a79d6865559a441285c37d041f59c81f33475f3e7ea4f4e2d4b" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/enseignant/</argument>
+    </service>
+    <service id="security.request_matcher.f6e7340ad55328ed63d4fb52a22074b220416e18cd06d8d0976dcf61f22859e57e7e7084" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/eleve/</argument>
     </service>
     <service id="security.console.user_password_encoder_command" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command"/>
@@ -4234,6 +4246,10 @@
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="annotations.cached_reader"/>
     </service>
+    <service id="sensio_framework_extra.routing.loader.annot_class" class="Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader" public="false">
+      <tag name="routing.loader"/>
+      <argument type="service" id="annotations.cached_reader"/>
+    </service>
     <service id="sensio_framework_extra.routing.loader.annot_dir" class="Symfony\Component\Routing\Loader\AnnotationDirectoryLoader" public="false">
       <tag name="routing.loader"/>
       <argument type="service" id="file_locator"/>
@@ -4243,10 +4259,6 @@
       <tag name="routing.loader"/>
       <argument type="service" id="file_locator"/>
       <argument type="service" id="sensio_framework_extra.routing.loader.annot_class"/>
-    </service>
-    <service id="sensio_framework_extra.routing.loader.annot_class" class="Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader" public="false">
-      <tag name="routing.loader"/>
-      <argument type="service" id="annotations.cached_reader"/>
     </service>
     <service id="sensio_framework_extra.converter.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener">
       <tag name="kernel.event_subscriber"/>
@@ -5224,7 +5236,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>pa5OcqjSWU</argument>
       <argument>0</argument>
-      <argument>zGsIoyhRjrsECc0eFdRc0R</argument>
+      <argument>EAm81LQPqzeLY6KzuUnKhD</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5232,7 +5244,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>s0usrvYPSv</argument>
       <argument>0</argument>
-      <argument>zGsIoyhRjrsECc0eFdRc0R</argument>
+      <argument>EAm81LQPqzeLY6KzuUnKhD</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5240,7 +5252,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>b8+C7eL5rw</argument>
       <argument>0</argument>
-      <argument>zGsIoyhRjrsECc0eFdRc0R</argument>
+      <argument>EAm81LQPqzeLY6KzuUnKhD</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5248,7 +5260,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>bQfurwaqgO</argument>
       <argument>0</argument>
-      <argument>zGsIoyhRjrsECc0eFdRc0R</argument>
+      <argument>EAm81LQPqzeLY6KzuUnKhD</argument>
       <argument>/Applications/MAMP/htdocs/Schoolium/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

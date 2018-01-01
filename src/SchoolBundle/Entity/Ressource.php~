@@ -1,0 +1,104 @@
+<?php
+
+namespace SchoolBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ressource
+ *
+ * @ORM\Table(name="ressource")
+ * @ORM\Entity(repositoryClass="SchoolBundle\Repository\RessourceRepository")
+ */
+class Ressource
+{
+
+    /**
+     * @var Annee
+     *
+     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Annee", inversedBy="classes")
+     *
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $annee;
+
+    /**
+     * @var Enseignant
+     *
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Enseignant", inversedBy="matEns")
+     *
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $enseignant;
+
+    /**
+     * @var Matiere
+     *
+     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Matiere", inversedBy="ensMat")
+     *
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $matiere;
+
+    /**
+     * @var Classe
+     *
+     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Classe", inversedBy="ensMat")
+     *
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $classe;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255,  options={"default"=""})
+     */
+    private $titre;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="cours", type="string", length=255,  options={"default"=""})
+     */
+    private $cours;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="ressource", type="string", length=255,  options={"default"=""})
+     */
+    private $ressource;
+
+    /**
+     * @var text $commentaire
+     *
+     * @ORM\Column(name="commentaire", type="text",nullable=true)
+     */
+    private $commentaire;
+
+    public function __construct()
+    {
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+  
+}

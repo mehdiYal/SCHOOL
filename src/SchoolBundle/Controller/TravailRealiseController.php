@@ -24,6 +24,10 @@ class TravailRealiseController extends Controller
      */
     public function addAction(Request $request)
     {   
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
        
         $user=$this->get('security.token_storage')->getToken()->getUser();
         $id=$user->getId();
@@ -65,9 +69,9 @@ class TravailRealiseController extends Controller
             $em->flush();
              $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findAll(array('enseignant_id'=> $id));
         
-        return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise));
+        return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
         }
-        return $this->render('travailrealise/add.html.twig',array("form"=>$form->createView(),"data"=>$matieres));
+        return $this->render('travailrealise/add.html.twig',array("form"=>$form->createView(),"data"=>$matieres,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
     /**
@@ -75,12 +79,19 @@ class TravailRealiseController extends Controller
      * @Method({"GET", "POST"})
      */
     public function showAction(Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $em = $this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
             
         $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findAll(array('enseignant_id'=> $id));
         
-        return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise));
+        return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     
     }
 
@@ -88,7 +99,13 @@ class TravailRealiseController extends Controller
      * @Route("/delete/{id}", name="delete_travail")
      */
     public function deleteAction(Request $request)
-    {
+    {   
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         $em=$this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
         $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findOneBy(array('id'=> $id));
@@ -101,7 +118,7 @@ class TravailRealiseController extends Controller
         
         $referer = $request->headers->get('referer');
      
-        return $this->redirect($referer);  
+        return $this->redirect($referer,array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));  
     }
 
     /**
@@ -112,6 +129,11 @@ class TravailRealiseController extends Controller
      */
     public function editAction(Request $request, TravailRealise $travailrealise){
         $user=$this->get('security.token_storage')->getToken()->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        
         $id=$user->getId();
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
@@ -157,10 +179,10 @@ class TravailRealiseController extends Controller
 
             $em->merge($travailrealise);
             $em->flush();
-            return $this->render('travailrealise/edit.html.twig',array("edit_form"=>$edit_form->createView(),"data"=>$matieres));
+            return $this->render('travailrealise/edit.html.twig',array("edit_form"=>$edit_form->createView(),"data"=>$matieres,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
         }
 
-        return $this->render('travailrealise/edit.html.twig',array("edit_form"=>$edit_form->createView(),"data"=>$matieres));
+        return $this->render('travailrealise/edit.html.twig',array("edit_form"=>$edit_form->createView(),"data"=>$matieres,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
    
     }
     

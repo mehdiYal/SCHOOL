@@ -133,6 +133,12 @@ class EnseignantController extends Controller
          if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             throw $this->createAccessDeniedException();
             }
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        
         $id= $request->attributes->get('id');
         $em = $this->getDoctrine()->getManager();
         $enseignant=$em->getRepository('UserBundle:Enseignant')->findOneBy(array('id'=>$id));
@@ -141,6 +147,6 @@ class EnseignantController extends Controller
         $data['classes']=$em->getRepository('SchoolBundle:EnsMat')->findBy(array('enseignant'=> $enseignant ));
         $data['enseignant']=$enseignant;
         $data['ensMat']=$ensMatiere;
-         return $this->render('enseignantsViews/listClasses.html.twig',array("data"=>$data));
+         return $this->render('enseignantsViews/listClasses.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 }

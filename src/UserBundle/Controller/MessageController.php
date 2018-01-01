@@ -30,7 +30,7 @@ class MessageController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('message/show.html.twig',array('thread'=>$thread,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        return $this->render('message/show.html.twig',array('thread'=>$thread,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
     /**
@@ -43,7 +43,7 @@ class MessageController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('message/inbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        return $this->render('message/inbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
     /**
@@ -56,7 +56,7 @@ class MessageController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('message/sentbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        return $this->render('message/sentbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
     /**
@@ -125,8 +125,9 @@ class MessageController extends Controller
 		$inbox = $provider->getInboxThreads();
 		$sentbox = $provider->getSentThreads();
 		$nb=$provider->getNbUnreadMessages();
-    	return $this->render('message/new.html.twig',array('recipient'=>$user,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
-    }
+
+    	return $this->render('message/new.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+   }
 
     /**
      * @Route("/send", name="message_send")
@@ -150,7 +151,12 @@ class MessageController extends Controller
 	    $sender = $this->container->get('fos_message.sender');
 		$sender->send($message);
 
-        return $this->redirectToRoute('message_sentbox');
+
+    	$provider = $this->container->get('fos_message.provider');
+		$inbox = $provider->getInboxThreads();
+		$sentbox = $provider->getSentThreads();
+		$nb=$provider->getNbUnreadMessages();
+    	return $this->render('message/new.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     }
 
 }

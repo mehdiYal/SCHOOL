@@ -1,0 +1,300 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+
+  <script type="text/javascript">
+      datedeb = [];
+      datefin = [];
+      titletab = [];
+      j=0;
+  </script>
+  {% for examen in data %}
+        <script type="text/javascript">
+                dateD=new Date("{{examen.date.date}}");
+                dateD.setHours(new Date("{{examen.heureDeb.date}}").getHours());
+                dateD.setMinutes(new Date("{{examen.heureDeb.date}}").getMinutes());
+                datedeb[j]=dateD;
+                titletab[j]= "{{examen.type~' '~examen.annee.nom~' '~examen.matiere.nom~' '~examen.classe.nom}}";
+                dateF=new Date("{{examen.date.date}}")
+                dateF.setHours(new Date("{{examen.heureFin.date}}").getHours());
+                dateF.setMinutes(new Date("{{examen.heureFin.date}}").getMinutes());
+                datefin[j]=dateF;
+                j++;
+        </script>
+  {% endfor %}
+
+  <div class="content-frame-body padding-bottom-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="alert_holder"></div>
+                <div class="calendar">                                
+            <div id="calendar"></div>                            
+                </div>
+            </div>
+        </div>
+    </div>   
+
+    <!-- Modal -->
+    <div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-12"> 
+                {{ form_start(form, { 'attr' : { 'class': 'form-horizontal' } }) }}
+                    <div class="form-group">
+                      {{ form_label(form.matiere,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+                      <div class="col-md-6 col-xs-12">
+                        <div class="input-group">
+                          {{ form_widget(form.matiere,{ 'id':'selectMatiere', 'label_attr': {'class': 'form-control select'} }) }}
+                          </div>
+                        {{ form_errors(form.matiere) }}
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      {{ form_label(form.classe,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+                      <div class="col-md-6 col-xs-12">
+                        <div class="input-group">
+                          {{ form_widget(form.classe,{ 'id':'selectClasse', 'label_attr': {'class': 'form-control select'} }) }}
+                          </div>
+                        {{ form_errors(form.classe) }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      {{ form_label(form.type,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+                      <div class="col-md-6 col-xs-12">
+                        <div class="input-group">
+                          {{ form_widget(form.type,{ 'label_attr': {'class': 'form-control select'} }) }}
+                        </div>
+                        {{ form_errors(form.type) }}
+                      </div>
+                    </div>
+                    <input hidden="hidden" name="date" class="date" />
+                    <input hidden="hidden" name="heureDeb" class="heureDeb" />
+                    <input hidden="hidden" name="heureFin" class="heureFin" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'global.close'|trans}}</button>
+            <input type="submit" value="{{'add'|trans}}" class="btn btn-primary pull-right" />
+            {{ form_end(form) }}
+         </div>
+        </div>
+      </div>
+    </div>
+<style type="text/css">
+.hidden-row{
+  display: none;
+}
+</style>
+{% endblock %}
+
+{% block javascripts %}
+    
+    
+
+  <script type="text/javascript" src="{{ asset('js/plugins/fullcalendar/fullcalendar.min.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('js/plugins/fullcalendar/lang/fr.js')}}"></script>
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        
+        $('#selectMatiere').selectpicker({
+          style: 'btn-default',
+            size: 4
+        });
+
+        $('#selectClasse').selectpicker({
+          style: 'btn-default',
+            size: 4
+        });
+      
+
+        var calendar = $('#calendar').fullCalendar({
+      
+            editable: false,
+        
+            minTime: "8:00",
+
+            maxTime: "18:00",
+
+            firstDay: 0,
+
+            timezone : 'local',
+
+            hiddenDays: [ 5, 6 ],
+
+            lang: 'fr',
+
+            defaultView: 'agendaWeek',
+          
+            header: {
+            
+            left: 'prev,next today',
+              center: 'title',
+              right: 'agendaWeek,agendaDay'
+            },
+
+
+             events: "events.php",
+             
+             eventRender: function(event, element, view) {
+
+                if (event.allDay === 'true') {
+
+                 event.allDay = true;
+
+                } else {
+
+                 event.allDay = false;
+
+                }
+
+             },
+
+             selectable: true,
+
+             selectHelper: true,
+
+             select: function(start, end, allDay) {
+
+             $('#addEventModal').modal('show');
+            
+             startDate=new Date(start);
+             endDate=new Date(end);
+             dateStart=startDate.getFullYear()+"/"+(startDate.getMonth()+1)+"/"+startDate.getDate();
+            $('.date').attr('value',startDate);
+            $('.heureFin').attr('value',endDate);
+            $('.heureDeb').attr('value',startDate);
+
+            /* if (title) {
+
+          
+               $.ajax({
+
+                 url: 'add_events.php',
+
+                 data: 'title='+ title+'&start='+ start +'&end='+ end,
+
+                 type: "POST",
+
+                 success: function(json) {
+
+                 alert('Added Successfully');
+
+                 }
+
+               }); 
+
+               calendar.fullCalendar('renderEvent',{
+
+                   title: title,
+
+                   start: start,
+
+                   end: end,
+
+                  },true
+              );
+
+             }*/
+
+              calendar.fullCalendar('unselect');
+
+           },
+
+           /*
+           eventDrop: function(event, delta) {
+
+             var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+
+             var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+
+             $.ajax({
+
+               url: 'update_events.php',
+
+               data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+
+               type: "POST",
+
+               success: function(json) {
+
+                alert("Updated Successfully");
+
+               }
+
+             });
+
+           },
+
+           eventClick: function(event) {
+
+            var decision = confirm("Do you really want to do that?"); 
+
+            if (decision) {
+
+              $.ajax({
+
+                type: "POST",
+
+                url: "delete_event.php",
+
+                data: "&id=" + event.id,
+
+                 success: function(json) {
+
+                   $('#calendar').fullCalendar('removeEvents', event.id);
+
+                    alert("Updated Successfully");}
+
+              });
+
+            }
+
+            },
+
+           eventResize: function(event) {
+
+             var start = $.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
+
+             var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+
+             $.ajax({
+
+              url: 'update_events.php',
+
+              data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+
+              type: "POST",
+
+              success: function(json) {
+
+               alert("Updated Successfully");
+
+              }
+
+             });
+
+              } */
+        });
+        length=j;
+        for(var i=0;i<length;i++){
+          calendar.fullCalendar('renderEvent',{
+            title: titletab[i],
+            start: datedeb[i],
+            end: datefin[i],
+            },true
+          );
+      };
+
+    });
+
+    </script>
+{% endblock %}

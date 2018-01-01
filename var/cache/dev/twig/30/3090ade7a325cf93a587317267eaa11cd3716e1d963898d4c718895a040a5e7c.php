@@ -15,11 +15,11 @@ class __TwigTemplate_a01335437915cdb6474a7dc416ad756636ae567767b838d4dd155cdaddc
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_7fa55d6ec49a7090d686b80852a1876d2802636b5067d0a51de5730c0cafa4c3 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_7fa55d6ec49a7090d686b80852a1876d2802636b5067d0a51de5730c0cafa4c3->enter($__internal_7fa55d6ec49a7090d686b80852a1876d2802636b5067d0a51de5730c0cafa4c3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
+        $__internal_0f9016a57b118dee23994e70c231cc61c0b6d8fc59510208201adbd7e63fdd25 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_0f9016a57b118dee23994e70c231cc61c0b6d8fc59510208201adbd7e63fdd25->enter($__internal_0f9016a57b118dee23994e70c231cc61c0b6d8fc59510208201adbd7e63fdd25_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
 
-        $__internal_2f0eac36ed1adbe02ab611f2763628e1449e10e04514edfe6edb8636f215a936 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_2f0eac36ed1adbe02ab611f2763628e1449e10e04514edfe6edb8636f215a936->enter($__internal_2f0eac36ed1adbe02ab611f2763628e1449e10e04514edfe6edb8636f215a936_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
+        $__internal_06b6a845922055a5b9eb8005d735b90d3d8062977063c8d3fad4da9585019820 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_06b6a845922055a5b9eb8005d735b90d3d8062977063c8d3fad4da9585019820->enter($__internal_06b6a845922055a5b9eb8005d735b90d3d8062977063c8d3fad4da9585019820_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "TwigBundle::exception.css.twig"));
 
         // line 1
         echo "html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{margin:.67em 0;font-size:2em}mark{color:#000;background:#ff0}small{font-size:80%}sub,sup{position:relative;font-size:75%;line-height:0;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{height:0;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;font:inherit;color:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type=\"button\"],input[type=\"reset\"],input[type=\"submit\"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type=\"checkbox\"],input[type=\"radio\"]{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0}input[type=\"number\"]::-webkit-inner-spin-button,input[type=\"number\"]::-webkit-outer-spin-button{height:auto}input[type=\"search\"]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;-webkit-appearance:textfield}input[type=\"search\"]::-webkit-search-cancel-button,input[type=\"search\"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}
@@ -46,7 +46,7 @@ table th { background-color: #E0E0E0; font-weight: bold; text-align: left; }
 .hidden { display: none; }
 .nowrap { white-space: nowrap; }
 .newline { display: block; }
-.break-long-words { -ms-word-break: break-all; word-break: break-all; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; }
+.break-long-words { word-wrap: break-word; overflow-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; min-width: 0; }
 .text-small { font-size: 12px !important; }
 .text-muted { color: #999; }
 .text-bold { font-weight: bold; }
@@ -152,10 +152,10 @@ header .container { display: flex; justify-content: space-between; }
 }
 ";
         
-        $__internal_7fa55d6ec49a7090d686b80852a1876d2802636b5067d0a51de5730c0cafa4c3->leave($__internal_7fa55d6ec49a7090d686b80852a1876d2802636b5067d0a51de5730c0cafa4c3_prof);
+        $__internal_0f9016a57b118dee23994e70c231cc61c0b6d8fc59510208201adbd7e63fdd25->leave($__internal_0f9016a57b118dee23994e70c231cc61c0b6d8fc59510208201adbd7e63fdd25_prof);
 
         
-        $__internal_2f0eac36ed1adbe02ab611f2763628e1449e10e04514edfe6edb8636f215a936->leave($__internal_2f0eac36ed1adbe02ab611f2763628e1449e10e04514edfe6edb8636f215a936_prof);
+        $__internal_06b6a845922055a5b9eb8005d735b90d3d8062977063c8d3fad4da9585019820->leave($__internal_06b6a845922055a5b9eb8005d735b90d3d8062977063c8d3fad4da9585019820_prof);
 
     }
 
@@ -203,7 +203,7 @@ table th { background-color: #E0E0E0; font-weight: bold; text-align: left; }
 .hidden { display: none; }
 .nowrap { white-space: nowrap; }
 .newline { display: block; }
-.break-long-words { -ms-word-break: break-all; word-break: break-all; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; }
+.break-long-words { word-wrap: break-word; overflow-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; min-width: 0; }
 .text-small { font-size: 12px !important; }
 .text-muted { color: #999; }
 .text-bold { font-weight: bold; }
