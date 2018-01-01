@@ -3,9 +3,15 @@
 
 {% block  bodyList %}
 	<div class="table-responsive">
-		<a style="margin-bottom:2%;" class="btn btn-info" href="{{path('new_travailafaire')}}">
-			<span class="fa fa-plus"></span>{{'travail.add'|trans}}
-		</a>
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if 'ROLE_ENSEIGNANT' in app.user.roles %}
+				{% if 'ROLE_ADMIN' in app.user.roles %}
+					<a style="margin-bottom:2%;" class="btn btn-info" href="{{path('new_travailafaire')}}">
+							<span class="fa fa-plus"></span>{{'travail.add'|trans}}
+						</a>
+				{% endif %}
+			{% endif %}
+		{% endif %}
         <table id="customers2" class="table datatable">
             <thead>
                 <tr>

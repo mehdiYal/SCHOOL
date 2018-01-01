@@ -74,10 +74,10 @@ class ExamenController extends Controller
     }
 
     /**
-     * @Route("/show/{id}", name="show_examen")
+     * @Route("/show/enseignant/{id}", name="show_examen_enseignant")
      * @Method({"GET", "POST"})
      */
-    public function showAction(Request $request){
+    public function showEnseignantAction(Request $request){
 
         $user=$this->getUser();
         $provider = $this->container->get('fos_message.provider');
@@ -89,6 +89,27 @@ class ExamenController extends Controller
         $id=$request->attributes->get('id');
             
         $examen=$em->getRepository('SchoolBundle:Examen')->findAll(array('enseignant_id'=> $id));
+        
+        return $this->render('examen/show.html.twig',array("data"=>$examen,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+    
+    }
+
+    /**
+     * @Route("/show/classe/{id}", name="show_examen_class")
+     * @Method({"GET", "POST"})
+     */
+    public function showClassAction(Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->attributes->get('id');
+            
+        $examen=$em->getRepository('SchoolBundle:Examen')->findAll(array('classe_id'=> $id));
         
         return $this->render('examen/show.html.twig',array("data"=>$examen,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     

@@ -2,6 +2,27 @@
 
 {% block body %}
 
+  <script type="text/javascript">
+      datedeb = [];
+      datefin = [];
+      titletab = [];
+      j=0;
+  </script>
+  {% for examen in data %}
+        <script type="text/javascript">
+                dateD=new Date("{{examen.date.date}}");
+                dateD.setHours(new Date("{{examen.heureDeb.date}}").getHours());
+                dateD.setMinutes(new Date("{{examen.heureDeb.date}}").getMinutes());
+                datedeb[j]=dateD;
+                titletab[j]= "{{examen.type~' '~examen.annee.nom~' '~examen.matiere.nom~' '~examen.classe.nom}}";
+                dateF=new Date("{{examen.date.date}}")
+                dateF.setHours(new Date("{{examen.heureFin.date}}").getHours());
+                dateF.setMinutes(new Date("{{examen.heureFin.date}}").getMinutes());
+                datefin[j]=dateF;
+                j++;
+        </script>
+  {% endfor %}
+
   <div class="content-frame-body padding-bottom-0">
         <div class="row">
             <div class="col-md-12">
@@ -12,31 +33,13 @@
             </div>
         </div>
     </div>   
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         </div>
-    </div>
-  </div>
-</div>
-
+    
+<style type="text/css">
+.hidden-row{
+  display: none;
+}
+</style>
 {% endblock %}
 
 {% block javascripts %}
@@ -48,58 +51,76 @@
 
     <script type="text/javascript">
       $( document ).ready(function() {
-     
-      
-
-    var calendar = $('#calendar').fullCalendar({
-      
-        editable: false,
         
-        minTime: "8:00",
+        $('#selectMatiere').selectpicker({
+          style: 'btn-default',
+            size: 4
+        });
 
-                maxTime: "18:00",
+        $('#selectClasse').selectpicker({
+          style: 'btn-default',
+            size: 4
+        });
+      
 
-                firstDay: 0,
+        var calendar = $('#calendar').fullCalendar({
+      
+            editable: false,
+        
+            minTime: "8:00",
 
-                hiddenDays: [ 5, 6 ],
+            maxTime: "18:00",
 
-        lang: 'fr',
+            firstDay: 0,
 
-        defaultView: 'agendaWeek',
+            timezone : 'local',
+
+            hiddenDays: [ 5, 6 ],
+
+            lang: 'fr',
+
+            defaultView: 'agendaWeek',
           
-          header: {
-          left: 'prev,next today',
-            center: 'title',
-            right: 'agendaWeek,agendaDay'
-          },
+            header: {
+            
+            left: 'prev,next today',
+              center: 'title',
+              right: 'agendaWeek,agendaDay'
+            },
 
 
-         events: "events.php",
-         
-         eventRender: function(event, element, view) {
+             events: "events.php",
+             
+             eventRender: function(event, element, view) {
 
-            if (event.allDay === 'true') {
+                if (event.allDay === 'true') {
 
-             event.allDay = true;
+                 event.allDay = true;
 
-            } else {
+                } else {
 
-             event.allDay = false;
+                 event.allDay = false;
 
-            }
+                }
 
-         },
+             },
 
-           //selectable: true,
+             selectable: true,
 
-           selectHelper: true,
+             selectHelper: true,
 
-           /*select: function(start, end, allDay) {
+             select: function(start, end, allDay) {
 
-             var title = prompt('Event Title:');
+             $('#addEventModal').modal('show');
+            
+             startDate=new Date(start);
+             endDate=new Date(end);
+             dateStart=startDate.getFullYear()+"/"+(startDate.getMonth()+1)+"/"+startDate.getDate();
+            $('.date').attr('value',startDate);
+            $('.heureFin').attr('value',endDate);
+            $('.heureDeb').attr('value',startDate);
 
-
-             if (title) {
+            /* if (title) {
 
           
                $.ajax({
@@ -129,11 +150,11 @@
                   },true
               );
 
-             }
+             }*/
 
               calendar.fullCalendar('unselect');
 
-           },*/
+           },
 
            /*
            eventDrop: function(event, delta) {
@@ -208,10 +229,20 @@
 
              });
 
-          } */
+              } */
+        });
+        length=j;
+        for(var i=0;i<length;i++){
+          alert(datedeb[i]+""+datefin[i]);
+          calendar.fullCalendar('renderEvent',{
+            title: titletab[i],
+            start: datedeb[i],
+            end: datefin[i],
+            },true
+          );
+      };
+
     });
-        
-      });
 
     </script>
 {% endblock %}

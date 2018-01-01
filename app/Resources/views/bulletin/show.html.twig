@@ -1,0 +1,30 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+{% dump(data) %}
+    
+    {{eleve.nom~' '~eleve.prenom~' '~eleve.classe.nom~' '~eleve.annee.niveau~' '~eleve.annee.nom}} <br>
+
+        {% for myData in data%}
+            {{myData.matiere}}  
+            {% set length= myData|length %}
+            {% set length=length-1 %}
+            {% for i  in 0..length-1 %}
+                {{myData[i].evaluation}}
+            {% endfor %}
+        {% endfor %}
+        <br>
+        {% for myData in data%}
+            {% set length= myData|length %}
+            {% set length=length-1 %}
+            {% for i  in 0..length-1 %}
+                {{myData[i].note}}
+            {% endfor %}
+        {% endfor %}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}

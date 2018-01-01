@@ -109,6 +109,27 @@ class RessourceController extends Controller
     }
 
     /**
+     * @Route("/show/classe/{id}", name="show_ressource_class")
+     * @Method({"GET", "POST"})
+     */
+    public function showClasseAction(Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->attributes->get('id');
+            
+        $ressource=$em->getRepository('SchoolBundle:Ressource')->findAll(array('classe_id'=> $id));
+        
+        return $this->render('ressource/show.html.twig',array("data"=>$ressource,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+    
+    }
+
+    /**
      * @Route("/delete/{id}", name="delete_ressource")
      */
     public function deleteAction(Request $request)

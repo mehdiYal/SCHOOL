@@ -96,6 +96,27 @@ class TravailaFaireController extends Controller
     }
 
     /**
+     * @Route("/show/classe/{id}", name="show_travailafaire_class")
+     * @Method({"GET", "POST"})
+     */
+    public function showClassAction(Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->attributes->get('id');
+            
+        $travailafaire=$em->getRepository('SchoolBundle:TravailaFaire')->findAll(array('classe_id'=> $id));
+        
+        return $this->render('travailafaire/show.html.twig',array("data"=>$travailafaire,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+    
+    }
+
+    /**
      * @Route("/delete/{id}", name="delete_travailafaire")
      */
     public function deleteAction(Request $request)
