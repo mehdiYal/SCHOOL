@@ -1,0 +1,78 @@
+{% extends 'ROLE_PARENT' in app.user.roles 
+    ? 'baseParent.html.twig' 
+    : 'base2.html.twig' %}
+
+
+{% block body %}
+	<div class="page-title">                    
+        <h2><span class="fa fa-info-circle"></span> Informations :</h2>
+    </div>
+    <div class="row">
+    	<div class="col-md-12">          
+            <div class="page-tabs">
+                <a href="#first-tab" class="active">Travail Fait</a>
+                <a href="#second-tab">Travail à faire</a>
+                <a href="#third-tab">Autres</a>
+            </div>
+                     {% dump(data) %}   
+            <div class="page-content-wrap page-tabs-item active" id="first-tab">
+                                   
+                <div class="messages messages-img">
+                    {% for travailfait in data.travailfait %}
+                    <div class="item">
+                        <div class="image">
+                            <img src="{% if travailfait.enseignant.photo %}{{ asset('uploads/photos/' ~ travailfait.enseignant.photo) }}{% else %}{{ asset('uploads/photos/avatar.png') }}{% endif %}" alt="{{travailfait.enseignant.nom~' '~travailfait.enseignant.prenom}}"/>
+                        </div>
+                        <div class="text">
+                            <div class="heading">
+                                <a href="#">{{travailfait.enseignant.nom~' '~travailfait.enseignant.prenom}}</a>
+                                <span class="date">{{travailfait.date|date('d/m/Y')}}</span>
+                            </div>
+                            {{travailfait.commentaire|raw}}
+                            {% if travailfait.travail != null %}
+                            <h4 style="margin-top: 1%;">
+                                Fichier join : <a  href="{{asset(uploads_devoir~'/'~travailfait.travail)}}">
+                                    <span class="fa fa-file"></span>
+                                </a>
+                            </h4>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="page-content-wrap page-tabs-item" id="second-tab">
+                <div class="messages messages-img">
+                    {% for travailafaire in data.travailafaire %}
+                    <div class="item">
+                        <div class="image">
+                            <img src="{% if travailafaire.enseignant.photo %}{{ asset('uploads/photos/' ~ travailafaire.enseignant.photo) }}{% else %}{{ asset('uploads/photos/avatar.png') }}{% endif %}" alt="{{travailafaire.enseignant.nom~' '~travailafaire.enseignant.prenom}}"/>
+                        </div>
+                        <div class="text">
+                            <div class="heading">
+                                <a href="#">{{travailafaire.enseignant.nom~' '~travailafaire.enseignant.prenom}}</a>
+                            </div>
+                            {{travailafaire.commentaire|raw}} avant le {{travailafaire.datelimite|date('d/m/Y')}} 
+                            à {{travailafaire.timelimite|date('H:i')}}
+                            {% if travailafaire.travail != null %}
+                            <h4 style="margin-top: 1%;">
+                                Fichier join : <a  href="{{asset('uploads_homework'~'/'~travailafaire.travail)}}">
+                                    <span class="fa fa-file"></span>
+                                </a>
+                            </h4>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+         </script>
+{% endblock%}
