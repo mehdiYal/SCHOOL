@@ -5,11 +5,10 @@
 	<div class="table-responsive">
 		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             {% if 'ROLE_ENSEIGNANT' in app.user.roles %}
-				{% if 'ROLE_ADMIN' in app.user.roles %}
 					<a style="margin-bottom:2%;" class="btn btn-info" href="{{path('new_ressource')}}">
 						<span class="fa fa-plus"></span>{{'global.ressource.add'|trans}}
 					</a>
-				{% endif %}
+
 			{% endif %}
 		{% endif %}	
         <table id="customers2" class="table datatable">

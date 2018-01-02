@@ -47,7 +47,11 @@ class ClasseController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("SchoolBundle:Classe");
         $classes=$repository->findAll();
-        return $this->render('classesViews/listClasses.html.twig',array("classes"=>$classes));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/listClasses.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"classes"=>$classes));
     }
 
      /**
@@ -95,8 +99,11 @@ class ClasseController extends Controller
             $em->flush();
             return $this->redirectToRoute('affectProf',array('id'=>$classe->getId()));
         }
-
-        return $this->render('classesViews/affecterProf.html.twig',array("form"=>$form->createView(),"classe"=>$classe));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/affecterProf.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"form"=>$form->createView(),"classe"=>$classe));
     }
 
     /**
