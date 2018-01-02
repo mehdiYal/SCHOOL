@@ -5,6 +5,7 @@ namespace UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use SchoolBundle\Entity\Classe;
 
 class DefaultController extends Controller
 {
@@ -34,6 +35,8 @@ class DefaultController extends Controller
             return $this->render('default/dashAdmin.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR));
         }else if ($user->hasRole('ROLE_PARENT')){
             return $this->render('default/dashParent.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR));
+        }else if ($user->hasRole('ROLE_ELEVE')){
+            return $this->redirectToRoute('eleve_information',array("id"=>$user->getClasse()->getId()));
         }else{
             return $this->render('default/dashAdmin.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR));
         }

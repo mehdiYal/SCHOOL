@@ -250,33 +250,42 @@
                             </li>
 
                             <!-- Emploi du temps -->
-                            <li class="pl">
+                            <li class="emploitemps">
                                 <a href="{{ path('program_show_class', { 'id': app.user.classe.id}) }}">
                                     <span class="fa fa-table"></span>
                                     <span class="xn-text">Mon Emploi du temps</span>
                                 </a>
                             </li>
                             <!-- Emploi du temps des examens -->
-                            <li class="pl">
+                            <li class="emploiexamen">
                                 <a href="{{ path('show_examen_class', { 'id': app.user.classe.id}) }}">
                                     <span class="fa fa-table"></span>
                                     <span class="xn-text">Emploi du temps des examens</span>
                                 </a>
                             </li>
                             <!-- Travail à faire -->
-                            <li class="pl">
+                            <li class="travailfaire">
                                 <a href="{{ path('show_travailafaire_class', { 'id': app.user.classe.id}) }}">
-                                    <span class="fa fa-table"></span>
+                                    <span class="fa fa-edit"></span>
                                     <span class="xn-text">Travail à faire</span>
                                 </a>
                             </li>
+                            <!-- Travail Fait -->
+                            <li class="travailfait">
+                                <a href="{{ path('show_travail_class', { 'id': app.user.classe.id}) }}">
+                                    <span class="fa fa-check"></span>
+                                    <span class="xn-text">Travail Fait</span>
+                                </a>
+                            </li>
                             <!-- Ressource pédagogiques -->
-                            <li class="pl">
+                            <li class="ressource">
                                 <a href="{{ path('show_ressource_class', { 'id': app.user.classe.id}) }}">
-                                    <span class="fa fa-table"></span>
+                                    <span class="fa fa-book"></span>
                                     <span class="xn-text">Ressource pédagogiques</span>
                                 </a>
                             </li>
+                            
+                                    
                         {% endif %}
                     {% endif %}
 
@@ -480,11 +489,11 @@
         <!-- START TEMPLATE -->
         <script type="text/javascript" src="{{ asset('js/settings.js') }}"></script>
         
-       <!-- <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>        
-       --> <script type="text/javascript" src="{{ asset('js/actions.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>        
+        <script type="text/javascript" src="{{ asset('js/actions.js') }}"></script>
         <script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-timepicker.min.js') }}"></script>
-        <!-- <script type="text/javascript" src="{{ asset('js/demo_dashboard.js') }}"></script> -->
-        <!-- END TEMPLATE -->
+       <!--  <script type="text/javascript" src="{{ asset('js/demo_dashboard.js') }}"></script>
+        --><!-- END TEMPLATE -->
     <!-- END SCRIPTS --> 
         {% block javascripts %}
         {% endblock %}

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use SchoolBundle\Entity\TravailaFaire;
 use SchoolBundle\Entity\Classe;
+use UserBundle\Entity\Enseignant;
 use SchoolBundle\Form\TravailaFaireType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -79,7 +80,7 @@ class TravailaFaireController extends Controller
      * @Route("/show/{id}", name="show_travailafaire")
      * @Method({"GET", "POST"})
      */
-    public function showAction(Request $request){
+    public function showAction(Enseignant $enseignant,Request $request){
 
         $user=$this->getUser();
         $provider = $this->container->get('fos_message.provider');
@@ -88,9 +89,8 @@ class TravailaFaireController extends Controller
         $nb=$provider->getNbUnreadMessages();
 
         $em = $this->getDoctrine()->getManager();
-        $id=$request->attributes->get('id');
             
-        $travailafaire=$em->getRepository('SchoolBundle:TravailaFaire')->findBy(array('enseignant_id'=> $id));
+        $travailafaire=$em->getRepository('SchoolBundle:TravailaFaire')->findBy(array('enseignant'=> $enseignant));
         
         return $this->render('travailafaire/show.html.twig',array("data"=>$travailafaire,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     

@@ -233,7 +233,6 @@
         });
         length=j;
         for(var i=0;i<length;i++){
-          alert(datedeb[i]+""+datefin[i]);
           calendar.fullCalendar('renderEvent',{
             title: titletab[i],
             start: datedeb[i],
@@ -241,8 +240,9 @@
             },true
           );
       };
-
+      
     });
-
+      $('.active').removeClass('active');
+      $('.emploiexamen').addClass('active');
     </script>
 {% endblock %}

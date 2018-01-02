@@ -68,7 +68,8 @@ class TravailRealiseController extends Controller
             $travailrealise->setAnnee($classe->getAnnee());
             $em->persist($travailrealise);
             $em->flush();
-             $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findAll(array('enseignant_id'=> $id));
+
+             $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findBy(array('enseignant'=> $user));
         
         return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
         }
@@ -90,7 +91,7 @@ class TravailRealiseController extends Controller
         $em = $this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
             
-        $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findBy(array('enseignant_id'=> $id));
+        $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findBy(array('enseignant'=> $user));
         
         return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     
@@ -219,6 +220,8 @@ class TravailRealiseController extends Controller
         $nb=$provider->getNbUnreadMessages();
         return $this->render('travailrealise/showParent.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));  
     }
+
+    
 
 
 }
