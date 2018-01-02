@@ -25,6 +25,10 @@ class AbsenceController extends Controller
      */
     public function indexAction(Request $request)
     {   
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
         $em = $this->getDoctrine()->getManager();
         $absences=null;
         $classe=null;
@@ -32,30 +36,25 @@ class AbsenceController extends Controller
             ->add('classe', EntityType::class,
                 array( 'required' => false,
                     'class' => 'SchoolBundle:Classe','choice_label' => 'nom'))
-            ->add('annee', EntityType::class,
-                array( 'required' => false,
-                    'class' => 'SchoolBundle:Annee','choice_label' => 'nom'))
              ->getForm();
         $form->handleRequest($request);
        
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $anneeF=$form->get('annee')->getData();
             $classeF=$form->get('classe')->getData();
 
-            $classe=$em->getRepository('SchoolBundle:Classe')->findBy(array('annee'=>$anneeF->getId()));
-            $eleve=$em->getRepository('UserBundle:Eleve')->findBy(array('classe'=>$classe));
+            $eleve=$em->getRepository('UserBundle:Eleve')->findBy(array('classe'=>$classeF));
             $absences=$em->getRepository('UserBundle:Absence')->findBy(array('eleve'=>$eleve));
             return $this->render('absence/index.html.twig',array(
             'absences'=> $absences,
             'classe'=> $classe,
-            'form' => $form->createView()));
+            'form' => $form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
         }
-
         return $this->render('absence/index.html.twig',array(
             'absences'=> $absences,
             'classe'=> $classe,
-            'form' => $form->createView()));
+            'form' => $form->createView(),
+            'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
@@ -85,10 +84,13 @@ class AbsenceController extends Controller
             return $this->redirectToRoute('absence_index');
       
         }
-
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
         return $this->render('absence/add.html.twig',array(
             'absences'=> $absences,
-            'form' => $form->createView()));
+            'form' => $form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
     /**
@@ -124,10 +126,15 @@ class AbsenceController extends Controller
             return $this->redirectToRoute('absence_index');
         }
 
+         $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
         return $this->render('absence/edit.html.twig', array(
             'absence' => $absence,
-            'edit_form' => $editForm->createView()
-        ));
+            'edit_form' => $editForm->createView(),
+            'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox)
+        );
     }
 
 }

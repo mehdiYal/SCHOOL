@@ -5,11 +5,9 @@
 	<div class="table-responsive">
 		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             {% if 'ROLE_ENSEIGNANT' in app.user.roles %}
-				
-					<a style="margin-bottom:2%;" class="btn btn-info" href="{{path('new_travailafaire')}}">
+				<a style="margin-bottom:2%;" class="btn btn-info" href="{{path('new_travailafaire')}}">
 							<span class="fa fa-plus"></span>{{'travail.add'|trans}}
-						</a>
-				
+						</a>	
 			{% endif %}
 		{% endif %}
         <table id="customers2" class="table datatable">
@@ -57,11 +55,12 @@
 	
      $( document ).ready( function() {
 
-                $('#customers2').dataTable();
-                $('.active').removeClass('active');
-                $('.GC').addClass('active');
-                $('.showTravail').addClass('active');
-            });
+        $('#customers2').dataTable();
+     	$('.active').removeClass('active');
+        $('.travailfaire').addClass('active');              
+     });
+
 </script>
+
 
 {% endblock %}
