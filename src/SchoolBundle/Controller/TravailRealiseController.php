@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use SchoolBundle\Entity\TravailRealise;
+use SchoolBundle\Entity\Classe;
 use SchoolBundle\Form\TravailRealiseType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -89,7 +90,28 @@ class TravailRealiseController extends Controller
         $em = $this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
             
-        $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findAll(array('enseignant_id'=> $id));
+        $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findBy(array('enseignant_id'=> $id));
+        
+        return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+    
+    }
+
+     /**
+     * @Route("/showClass/{id}", name="show_travail_class")
+     * @Method({"GET", "POST"})
+     */
+    public function showClassAction(Classe $classe,Request $request){
+
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->attributes->get('id');
+            
+        $travailrealise=$em->getRepository('SchoolBundle:TravailRealise')->findBy(array('classe'=> $classe));
         
         return $this->render('travailrealise/show.html.twig',array("data"=>$travailrealise,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     

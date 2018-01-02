@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use SchoolBundle\Entity\Examen;
+use SchoolBundle\Entity\Enseignant;
+use SchoolBundle\Entity\Classe;
 use SchoolBundle\Form\ExamenType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -77,7 +79,7 @@ class ExamenController extends Controller
      * @Route("/show/enseignant/{id}", name="show_examen_enseignant")
      * @Method({"GET", "POST"})
      */
-    public function showEnseignantAction(Request $request){
+    public function showEnseignantAction(Enseignant $ens,Request $request){
 
         $user=$this->getUser();
         $provider = $this->container->get('fos_message.provider');
@@ -88,7 +90,7 @@ class ExamenController extends Controller
         $em = $this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
             
-        $examen=$em->getRepository('SchoolBundle:Examen')->findAll(array('enseignant_id'=> $id));
+        $examen=$em->getRepository('SchoolBundle:Examen')->findBy(array('enseignant'=> $ens));
         
         return $this->render('examen/show.html.twig',array("data"=>$examen,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     
@@ -98,7 +100,7 @@ class ExamenController extends Controller
      * @Route("/show/classe/{id}", name="show_examen_class")
      * @Method({"GET", "POST"})
      */
-    public function showClassAction(Request $request){
+    public function showClassAction(Classe $classe,Request $request){
 
         $user=$this->getUser();
         $provider = $this->container->get('fos_message.provider');
@@ -109,7 +111,7 @@ class ExamenController extends Controller
         $em = $this->getDoctrine()->getManager();
         $id=$request->attributes->get('id');
             
-        $examen=$em->getRepository('SchoolBundle:Examen')->findAll(array('classe_id'=> $id));
+        $examen=$em->getRepository('SchoolBundle:Examen')->findBy(array('classe'=> $classe));
         
         return $this->render('examen/show.html.twig',array("data"=>$examen,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
     

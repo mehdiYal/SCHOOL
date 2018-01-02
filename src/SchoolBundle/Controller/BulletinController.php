@@ -32,11 +32,6 @@ class BulletinController extends Controller
 
         $id=$request->attributes->get('id');
 
-        if($id!=$user->getId()){
-            $referer = $request->headers->get('referer');
-            return $this->redirect($referer,array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));  
-        }
-
         $em=$this->getDoctrine()->getManager();
         $connection = $em->getConnection();
 
@@ -67,7 +62,7 @@ class BulletinController extends Controller
             $j++;
         }
         
-        return $this->render('bulletin/show.html.twig',array("data"=>$data,"eleve" => $eleve,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+        return $this->render('bulletin/show.html.twig',array("data"=>$data,"eleve" => $eleve,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     
         
     }

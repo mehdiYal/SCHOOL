@@ -29,11 +29,15 @@
                                 <p><small>Année</small><br/>{{eleve.annee.nom}} {{eleve.annee.niveau}}</p>
                                 <p><small>Classe</small><br/>
                                 {% if eleve.classe%}
-                                <a href=" {{ path ('classe_listeEns',{'id':eleve.classe.id})}} ">{{eleve.classe.nom}} <span class="label label-danger pull-right"">Nouvelles informations</span> </a></p>
+                                {{eleve.classe.nom}}</p>
                                 <p><small><a href="{{path('program_show_class',{'id':eleve.classe.id})}}">Emploie du temps</a></small></p>
                                 <p><small><a href="{{ path('eleve_absence',{'id':eleve.id}) }}">Retards & absenses</a></small></p>
                                 <p><small><a href="{{ path ('classe_listeEns',{'id':eleve.classe.id})}}">Liste des enseignants</a></small></p>
                                 <p><small><a href="{{ path('eleve_note',{'id':eleve.id}) }}">Liste des evaluations</a></small></p>
+                                <p><small><a href="{{ path('get_bulletin',{'id':eleve.id}) }}">Bulletin</a></small></p>
+                                <p><small><a href="{{ path ('show_travail_class',{'id':eleve.classe.id})}}">Travail fait <span class="label label-danger pull-right"">New</span></a></small></p>
+                                <p><small><a href="{{ path ('show_travailafaire_class',{'id':eleve.classe.id})}}">Travail à faire <span class="label label-danger pull-right"">New</span></a></small></p>
+                                <p><small><a href="{{ path ('show_examen_class',{'id':eleve.classe.id})}}">Planning des examens <span class="label label-danger pull-right"">New</span></a></small></p>
                                 <p><small><a href="{{ path('show_ressource_class',{'id':eleve.classe.id}) }}">Ressources pédagogique</a></small></p>
                                 <p><small><a href="{{ path ('ecole_cantineTrans',{'id':eleve.ecole.id})}}">Cantine & transports</a></small></p>
                                 {%else%} Pas de classe pour l'instant<p/>{% endif%}
