@@ -116,7 +116,6 @@
 				     event.allDay = false;
 				    }
 			   },
-				   selectable: true,
 				   selectHelper: true,
 				   select: function(start, end, allDay) {
 					   var title = prompt('Event Title:');
@@ -190,7 +189,7 @@
 					},true
 				);
 			};
-			//$('#calendar').fullCalendar('gotoDate', startDate);
+			$('#calendar').fullCalendar('gotoDate', startDate);
 		  	
 		  });
 		$('.active').removeClass('active');
