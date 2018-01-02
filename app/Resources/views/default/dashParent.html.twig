@@ -33,8 +33,8 @@
                                 <p><small><a href="{{path('program_show_class',{'id':eleve.classe.id})}}">Emploie du temps</a></small></p>
                                 <p><small><a href="{{ path('eleve_absence',{'id':eleve.id}) }}">Retards & absenses</a></small></p>
                                 <p><small><a href="{{ path ('classe_listeEns',{'id':eleve.classe.id})}}">Liste des enseignants</a></small></p>
-                                <p><small><a href="">Liste des evaluations</a></small></p>
-                                <p><small><a href="">Ressources pédagogique</a></small></p>
+                                <p><small><a href="{{ path('eleve_note',{'id':eleve.id}) }}">Liste des evaluations</a></small></p>
+                                <p><small><a href="{{ path('show_ressource_class',{'id':eleve.classe.id}) }}">Ressources pédagogique</a></small></p>
                                 <p><small><a href="{{ path ('ecole_cantineTrans',{'id':eleve.ecole.id})}}">Cantine & transports</a></small></p>
                                 {%else%} Pas de classe pour l'instant<p/>{% endif%}
                                                                    

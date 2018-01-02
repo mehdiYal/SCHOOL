@@ -30,7 +30,7 @@ class MessageController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('message/show.html.twig',array('thread'=>$thread,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+        return $this->render('message/show.html.twig',array('thread'=>$thread,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
     /**
@@ -43,7 +43,7 @@ class MessageController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('message/inbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+        return $this->render('message/inbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
     /**
@@ -56,7 +56,7 @@ class MessageController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('message/sentbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+        return $this->render('message/sentbox.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
     /**
@@ -121,13 +121,12 @@ class MessageController extends Controller
      */
     public function newAction(User $user)
     {   
-    	$provider = $this->container->get('fos_message.provider');
-		$inbox = $provider->getInboxThreads();
-		$sentbox = $provider->getSentThreads();
-		$nb=$provider->getNbUnreadMessages();
-
-    	return $this->render('message/new.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
-   }
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('message/new.html.twig',array('recipient'=>$user,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+    }
 
     /**
      * @Route("/send", name="message_send")
@@ -135,28 +134,23 @@ class MessageController extends Controller
      */
     public function sendAction(Request $request)
     {   
-    	extract($_POST);
+        extract($_POST);
 
-    	$repository=$this->getDoctrine()->getRepository("UserBundle:User");
+        $repository=$this->getDoctrine()->getRepository("UserBundle:User");
         $recipient=$repository->findOneById($_POST['recipient']);
 
-    	$composer = $this->container->get('fos_message.composer');
-		$message = $composer->newThread()
-		    ->setSender($this->getUser())
-		    ->addRecipient($recipient)
-		    ->setSubject($subject)
-		    ->setBody($msg)
-		    ->getMessage();
+        $composer = $this->container->get('fos_message.composer');
+        $message = $composer->newThread()
+            ->setSender($this->getUser())
+            ->addRecipient($recipient)
+            ->setSubject($subject)
+            ->setBody($msg)
+            ->getMessage();
 
-	    $sender = $this->container->get('fos_message.sender');
-		$sender->send($message);
+        $sender = $this->container->get('fos_message.sender');
+        $sender->send($message);
 
-
-    	$provider = $this->container->get('fos_message.provider');
-		$inbox = $provider->getInboxThreads();
-		$sentbox = $provider->getSentThreads();
-		$nb=$provider->getNbUnreadMessages();
-    	return $this->render('message/new.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+        return $this->redirectToRoute('message_sentbox');
     }
 
 }

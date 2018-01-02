@@ -211,4 +211,17 @@ class EleveController extends Controller
         $nb=$provider->getNbUnreadMessages();
         return $this->render('absence/show.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"eleve"=>$eleve));
     }
+
+    /**
+     * @Route("/note/{id}", name="eleve_note")
+     */
+    public function noteEleveAction(Eleve $eleve)
+    {
+       
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('elevesViews/note.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"eleve"=>$eleve));
+    }
 }

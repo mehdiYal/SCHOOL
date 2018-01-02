@@ -21,6 +21,7 @@ var/cache/*
 !var/logs/.gitkeep
 !var/sessions/.gitkeep
 
+
 #  user uploads
 /web/bundles/
 /web/uploads/
