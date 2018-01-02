@@ -1,0 +1,61 @@
+{% extends 'ROLE_PARENT' in app.user.roles 
+    ? 'baseParent.html.twig' 
+    : 'base2.html.twig' %}
+
+{% block body %}
+<!-- PAGE TITLE -->
+                <div class="page-title">                    
+                    <h2><span class="fa fa-users"></span> Notes</h2>
+                </div>
+                <!-- END PAGE TITLE -->                
+                
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    
+                    <!-- PAGE CONTENT TABBED -->
+                    <div class="page-tabs">
+                        {%for mat in eleve.classe.ensMat %}
+                        	<a href="#{{mat.matiere.nom}}" class="{%if loop.first %}active{%endif%}">{{mat.matiere.nom}}</a>
+                        {%endfor%}
+                    </div>
+                    	{%for mat in eleve.classe.ensMat %}
+                        	<div class="page-content-wrap page-tabs-item {%if loop.first %}active{%endif%}" id="{{mat.matiere.nom}}">
+		                        <div class="row">
+		                               <div class="col-md-12">
+							                <h3>Enseignant {{mat.enseignant.nom}} {{mat.enseignant.prenom}} </h3>
+							                <div class="table-responsive">
+							                    <table id="customers2" class="table ">
+							                        <thead>
+							                            <tr>
+							                                <th>Evaluation</th>
+							                                <th>Note</th>
+							                                <th>Remarque</th>
+							                                <th>Date</th>
+							                            </tr>
+							                        </thead>
+							                        <tbody>
+							                        	{%for note in eleve.notes%}
+							          							{% if note.matiere.id == mat.matiere.id%}
+							          								<tr>
+							          									<td>{{note.evaluation.nom}}</td>
+							          									<td>{{note.note}}</td>
+							          									<td>{{note.remarque}}</td>
+							          									<td>{{note.date|date('Y/mm/dd')}}</td>
+							          								</tr>
+								                            	{%endif%}              		
+								                            
+							                            {%endfor%}
+							                        </tbody>
+							                    </table>
+							                </div>
+							            </div>
+		                        </div>
+		                    
+		                    </div>
+                        {%endfor%}
+                    
+                    <!-- END PAGE CONTENT TABBED -->
+                </div>            
+                <!-- END PAGE CONTENT -->    
+                
+{% endblock %}
