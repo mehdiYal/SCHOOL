@@ -41,5 +41,27 @@ class InformationController extends Controller
    
     }
 
+    /**
+     * @Route("/parent/", name="parent_information")
+     * @Method({"GET", "POST"})
+     */
+    public function showParentAction(Request $request)
+    { 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        $em = $this->getDoctrine()->getManager();
+        foreach ($this->getUser()->getEleves() as $eleve) {
+            $data['travailfait'][]=$em->getRepository('SchoolBundle:TravailRealise')->findBy(array('classe'=>$eleve->getClasse()),array('date' => 'desc'));
+            $data['travailafaire'][]=$em->getRepository('SchoolBundle:TravailaFaire')->findBy(array('classe'=>$eleve->getClasse()),array('datelimite' => 'desc'));
+        }
+               
+
+        return $this->render('information/parent.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));  
+   
+    }
+
 
 }
