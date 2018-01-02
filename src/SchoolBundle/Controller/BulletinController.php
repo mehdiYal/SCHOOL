@@ -22,7 +22,7 @@ class BulletinController extends Controller
      * @Route("/eleve/{id}", name="get_bulletin")
      * @Method({"GET", "POST"})
      */
-    public function addAction(Request $request)
+    public function getAction(Request $request)
     {   
         $user = $this->getUser();
         $provider = $this->container->get('fos_message.provider');
