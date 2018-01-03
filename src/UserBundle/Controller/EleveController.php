@@ -10,6 +10,7 @@ use UserBundle\Entity\Retard;
 use UserBundle\Entity\Absence;
 use UserBundle\Entity\Parental;
 use UserBundle\Form\EleveType;
+use UserBundle\Form\EleveParentType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -28,8 +29,10 @@ class EleveController extends Controller
         $eleve = new Eleve();
         $form=$this->createForm(EleveType::class,$eleve);
         $form->handleRequest($request);
+        $form2=$this->createForm(EleveParentType::class,$eleve);
+        $form2->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if(($form->isSubmitted() && $form->isValid())||($form2->isSubmitted() && $form2->isValid())){
             if($eleve->getPhoto() !=null){
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 $file = $eleve->getPhoto();
@@ -55,7 +58,7 @@ class EleveController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('elevesViews/addEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form"=>$form->createView()));
+        return $this->render('elevesViews/addEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form"=>$form->createView(),"form2"=>$form2->createView()));
     }
 
 
