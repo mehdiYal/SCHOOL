@@ -24,6 +24,11 @@ class MenuController extends Controller
         $form=$this->createForm(MenuType::class,$menu);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
             $menu->setEcole($this->getUser()->getEcole());
             $em=$this->getDoctrine()->getManager();
@@ -43,6 +48,12 @@ class MenuController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("SchoolBundle:Menu");
         $menus=$repository->findAll();
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         return $this->render('menusViews/listMenus.html.twig',array("menus"=>$menus));
     }
 
@@ -54,13 +65,18 @@ class MenuController extends Controller
         $form=$this->createForm(MenuType::class,$menu);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
             $em=$this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute('listMenus');
         }
 
-        return $this->render('menusViews/addMenu.html.twig',array("edit"=>true,"form"=>$form->createView()));
+        return $this->render('menusViews/addMenu.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

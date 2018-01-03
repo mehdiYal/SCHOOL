@@ -25,8 +25,8 @@ class EleveParentType extends AbstractType
         //                                                'data_class' => null))
         ->add('nom',null,array('label' => 'form.name'))
         ->add('prenom',null,array('label' => 'form.lastName'))
-        ->add('annee',ParentalType::class)
-        ->add('parent')
+        ->add('annee')
+        ->add('parent',ParentalType::class)
         ->add('dateDeNaissance',null,array('label' => 'form.dateN',
                                             'widget' => 'single_text',
                                             'html5' => false,))

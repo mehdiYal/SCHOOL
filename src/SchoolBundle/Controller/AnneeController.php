@@ -32,8 +32,11 @@ class AnneeController extends Controller
             $em->flush();
             return $this->redirectToRoute('listAnnees');
         }
-
-        return $this->render('anneesViews/addAnnee.html.twig',array("edit"=>false,"form"=>$form->createView()));
+$provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('anneesViews/addAnnee.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -44,7 +47,7 @@ class AnneeController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("SchoolBundle:Annee");
         $annees=$repository->findAll();
-        return $this->render('anneesViews/listAnnees.html.twig',array("annees"=>$annees));
+        return $this->render('anneesViews/listAnnees.html.twig',array("annees"=>$annees,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
@@ -61,8 +64,11 @@ class AnneeController extends Controller
             $em->flush();
             return $this->redirectToRoute('listAnnees');
         }
-
-        return $this->render('anneesViews/addAnnee.html.twig',array("edit"=>false,"form"=>$form->createView()));
+$provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('anneesViews/addAnnee.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

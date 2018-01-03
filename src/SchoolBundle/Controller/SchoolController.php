@@ -26,6 +26,11 @@ class SchoolController extends Controller
         $form=$this->createForm(EcoleType::class,$ecole);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
              if($ecole->getLogo() !=null){
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -48,7 +53,7 @@ class SchoolController extends Controller
             return $this->redirectToRoute('listSchools');
         }
 
-        return $this->render('schoolsViews/addSchool.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('schoolsViews/addSchool.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
@@ -58,7 +63,13 @@ class SchoolController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("SchoolBundle:Ecole");
         $ecoles=$repository->findAll();
-        return $this->render('schoolsViews/listSchools.html.twig',array("ecoles"=>$ecoles));
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('schoolsViews/listSchools.html.twig',array("ecoles"=>$ecoles,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -70,6 +81,11 @@ class SchoolController extends Controller
         $form=$this->createForm(EcoleType::class,$ecole);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
              if($ecole->getLogo() !=null){
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -92,7 +108,7 @@ class SchoolController extends Controller
             return $this->redirectToRoute('listSchools');
         }
 
-        return $this->render('schoolsViews/addSchool.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('schoolsViews/addSchool.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
     /**
      * @Route("/editMy/{id}", name="editMySchool")
@@ -102,6 +118,11 @@ class SchoolController extends Controller
         $form=$this->createForm(EcoleEditType::class,$ecole);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
              if($ecole->getLogo() !=null){
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -124,7 +145,7 @@ class SchoolController extends Controller
             return $this->redirectToRoute('listSchools');
         }
 
-        return $this->render('schoolsViews/editSchool.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('schoolsViews/editSchool.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
@@ -144,7 +165,12 @@ class SchoolController extends Controller
      */
     public function profileAction(Ecole $ecole)
     {
-        return $this->render('SchoolsViews/profileSchool.html.twig',array("ecole"=>$ecole));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('SchoolsViews/profileSchool.html.twig',array("ecole"=>$ecole,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -153,7 +179,7 @@ class SchoolController extends Controller
      */
     public function mySchoolAction()
     {
-        return $this->render('SchoolsViews/profileSchool.html.twig',array("ecole"=>$this->getUser()->getEcole()));
+        return $this->render('SchoolsViews/profileSchool.html.twig',array("ecole"=>$this->getUser()->getEcole(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
     /**

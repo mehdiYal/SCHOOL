@@ -1,0 +1,316 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+<div class="page-content-wrap">
+	<div class="row addParentPanel"  >
+		<div class="col-md-12">                 
+			<div class="panel panel-default">
+	            <div class="panel-heading">
+	                <h3 class="panel-title"><strong>{% if edit %}{{'edit'|trans}}{% else %}{{'add'|trans}}{% endif %} </strong> {{'student'|trans}}</h3>
+	            </div>
+
+			<div class="panel-body ">
+
+					<!-- START WIZARD WITH VALIDATION -->
+                            
+                        {{ form_start(form2, { 'attr' : {'id':'wizard-validation','class': 'form-horizontal' } }) }}                                
+                        <div class="wizard show-submit wizard-validation">
+                            <ul>
+                                <li>
+                                    <a href="#step-2">
+                                        <span class="stepNumber">1</span>
+                                        <span class="stepDesc">Parent<br /><small>Information</small></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#step-1">
+                                        <span class="stepNumber">2</span>
+                                        <span class="stepDesc">Eleve<br /><small>Information</small></span>
+                                    </a>
+                                </li>
+                                                                  
+                            </ul>
+
+                            <div class="row" style="text-align: center;">
+								<a href="{{ path ('addEleve')}}">
+									<span class="fa fa-check"></span> Selectionner un parent existant
+								</a>
+								
+							</div>
+
+                            <div id="step-1">   
+
+                                <div class="form-group">
+									{{ form_label(form2.nom , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+									<div class="col-md-6 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+								    		{{ form_widget(form2.nom ,{ 'attr': {'class': 'form-control'} }) }}
+								    	</div>
+								    	{{ form_errors(form2.nom) }}
+								    </div>
+								</div>
+
+								<div class="form-group">
+									{{ form_label(form2.prenom , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+									<div class="col-md-6 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+								    		{{ form_widget(form2.prenom ,{ 'attr': {'class': 'form-control'} }) }}
+								    	</div>
+								    	{{ form_errors(form2.prenom) }}
+								    </div>
+								</div>
+
+								<div class="form-group">
+									{{ form_label(form2.dateDeNaissance , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+									<div class="col-md-6 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+								    		{{ form_widget(form2.dateDeNaissance ,{ 'attr': {'class': 'form-control datepicker'} }) }}
+								    	</div>
+								    	{{ form_errors(form2.dateDeNaissance) }}
+								    </div>
+								</div>
+
+								<div class="form-group">
+									{{ form_label(form2.annee , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+									<div class="col-md-6 col-xs-12">
+								    	{{ form_widget(form2.annee ,{ 'attr': {'class': 'form-control select'} }) }}
+								    	{{ form_errors(form2.annee) }}
+								    </div>
+								</div>
+
+								
+								<div class="form-group">
+									{{ form_label(form2.username , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+									<div class="col-md-6 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon"><span class="fa fa-user"></span></span>
+								    		{{ form_widget(form2.username ,{ 'attr': {'class': 'form-control'} }) }}
+								    	</div>
+								    	{{ form_errors(form2.username) }}
+								    </div>
+								</div>
+
+							{% if edit==false %}
+								<div class="form-group">
+									{{ form_label(form2.plainPassword.first , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+									<div class="col-md-6 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
+								    		{{ form_widget(form2.plainPassword.first ,{ 'attr': {'class': 'form-control'} }) }}
+								    	</div>
+								    	{{ form_errors(form2.plainPassword.first) }}
+								    </div>
+								</div>
+
+								<div class="form-group">
+									{{ form_label(form2.plainPassword.second , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+									<div class="col-md-6 col-xs-12">
+										<div class="input-group">
+											<span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
+								    		{{ form_widget(form2.plainPassword.second ,{ 'attr': {'class': 'form-control'} }) }}
+								    	</div>
+								    	{{ form_errors(form2.plainPassword.second) }}
+								    </div>
+								</div>
+							{% else %}
+							{% do form2.plainPassword.setRendered %}
+							{% endif %}	
+
+                            </div>
+
+                            <div id="step-2">
+                            		<div class="form-group">
+										{{ form_label(form2.parent.nom , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+									    		{{ form_widget(form2.parent.nom ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.nom) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.prenom , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+									    		{{ form_widget(form2.parent.prenom ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.prenom) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.nomMere , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+									    		{{ form_widget(form2.parent.nomMere ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.nomMere) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.prenomMere , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+									    		{{ form_widget(form2.parent.prenomMere ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.prenomMere) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.cIN , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+									    		{{ form_widget(form2.parent.cIN ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.cIN) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.professionPere , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-building"></span></span>
+									    		{{ form_widget(form2.parent.professionPere ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.professionPere) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.professionMere , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-building"></span></span>
+									    		{{ form_widget(form2.parent.professionMere ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.professionMere) }}
+									    </div>
+									</div>
+									
+									<div class="form-group">
+										{{ form_label(form2.parent.adresse , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+									    	{{ form_widget(form2.parent.adresse ,{ 'attr': {'class': 'form-control'} }) }}
+									    	{{ form_errors(form2.parent.adresse) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.codePostal , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
+									    		{{ form_widget(form2.parent.codePostal ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.codePostal) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.telephone , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-phone"></span></span>
+									    		{{ form_widget(form2.parent.telephone ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.telephone) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.mobil , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-mobile"></span></span>
+									    		{{ form_widget(form2.parent.mobil ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.mobil) }}
+									    </div>
+									</div>
+									
+									<div class="form-group">
+										{{ form_label(form2.parent.email , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+									    		{{ form_widget(form2.parent.email ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.email) }}
+									    </div>
+									</div>
+									
+									<div class="form-group">
+										{{ form_label(form2.parent.username , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-user"></span></span>
+									    		{{ form_widget(form2.parent.username ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.username) }}
+									    </div>
+									</div>
+
+								{% if edit==false %}
+									<div class="form-group">
+										{{ form_label(form2.parent.plainPassword.first , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
+									    		{{ form_widget(form2.parent.plainPassword.first ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.plainPassword.first) }}
+									    </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(form2.parent.plainPassword.second , null ,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+										<div class="col-md-6 col-xs-12">
+											<div class="input-group">
+												<span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
+									    		{{ form_widget(form2.parent.plainPassword.second ,{ 'attr': {'class': 'form-control'} }) }}
+									    	</div>
+									    	{{ form_errors(form2.parent.plainPassword.second) }}
+									    </div>
+									</div>
+								{% else %}
+								{% do form2.parent.plainPassword.setRendered %}
+								{% endif %}	
+                                 
+                            </div>    
+                        </div>
+                                          
+                <!-- END WIZARD WITH VALIDATION -->
+						
+				</div>
+			{{ form_end(form2) }}
+		</div>
+	</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+	<script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-select.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('js/plugins/smartwizard/jquery.smartWizard-2.0.min.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('js/plugins/jquery-validation/jquery.validate.js') }}"></script>
+	<script>
+		$('.active').removeClass('active');
+        $('.eleve').addClass('active');
+        $('.addEl').addClass('active');
+       
+	</script>
+{% endblock %}

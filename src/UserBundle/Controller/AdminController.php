@@ -26,6 +26,11 @@ class AdminController extends Controller
         $form=$this->createForm(AdminType::class,$admin);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
              if($admin->getPhoto() !=null){
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -48,7 +53,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('listAdmins');
         }
 
-        return $this->render('adminsViews/addAdmin.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('adminsViews/addAdmin.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -60,6 +65,11 @@ class AdminController extends Controller
 
         $form=$this->createForm(AdminType::class,$admin);
         $form->handleRequest($request);
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
 
         if($form->isSubmitted() && $form->isValid()){
              if($admin->getPhoto() !=null){
@@ -81,7 +91,7 @@ class AdminController extends Controller
              return $this->redirectToRoute('listAdmins');
         }
 
-        return $this->render('adminsViews/addAdmin.html.twig',array("edit"=>true,"form"=>$form->createView()));
+        return $this->render('adminsViews/addAdmin.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -102,7 +112,12 @@ class AdminController extends Controller
      */
     public function profileAction(Admin $admin)
     {
-        return $this->render('adminsViews/profileAdmin.html.twig',array("admin"=>$admin));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('adminsViews/profileAdmin.html.twig',array("admin"=>$admin,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
@@ -121,7 +136,13 @@ class AdminController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("UserBundle:Admin");
         $admins=$repository->findAll();
-        return $this->render('adminsViews/listAdmins.html.twig',array("admins"=>$admins));
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('adminsViews/listAdmins.html.twig',array("admins"=>$admins,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -130,12 +151,17 @@ class AdminController extends Controller
      */
     public function schoolAction(Admin $admin)
     {
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if ($admin->getEcole()==null) {
             $repository=$this->getDoctrine()->getRepository("SchoolBundle:Ecole");
             $schools=$repository->findAll();
             return $this->render('adminsViews/schoolAdmin.html.twig',array("ecoles"=>$schools,"admin"=>$admin));
         }
-        return $this->redirectToRoute('profileSchool',array('id' => $admin->getEcole()->getId()));
+        return $this->redirectToRoute('profileSchool',array('id' => $admin->getEcole()->getId(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
     /**

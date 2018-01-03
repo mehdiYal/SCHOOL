@@ -30,6 +30,11 @@ class CoursController extends Controller
         $form->handleRequest($request);
         $idMatiere=$request->attributes->get('idMatiere');
         $idClasse=$request->attributes->get('idClasse');
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
         
         if($form->isSubmitted() && $form->isValid()){
             //Initialisation des ids
@@ -98,6 +103,11 @@ class CoursController extends Controller
         $em=$this->getDoctrine()->getManager();
         $editForm = $this->createForm(CoursType::class, $cours);
         $editForm->handleRequest($request);
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             
@@ -177,12 +187,13 @@ class CoursController extends Controller
             $em->flush();
            
              
-            return $this->redirectToRoute('edit_cours', array('id' => $cours->getId()));
+            return $this->redirectToRoute('edit_cours', array('id' => $cours->getId(),'thread'=>$thread,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
         }
 
         return $this->render('cours/edit.html.twig', array(
             'cours' => $cours,
-            'edit_form' => $editForm->createView()
+            'edit_form' => $editForm->createView(),
+            'thread'=>$thread,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox
         ));
     }
 

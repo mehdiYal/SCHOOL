@@ -24,6 +24,11 @@ class SalleController extends Controller
         $form=$this->createForm(SalleType::class,$salle);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
             $salle->setEcole($this->getUser()->getEcole());
             $em=$this->getDoctrine()->getManager();
@@ -32,7 +37,7 @@ class SalleController extends Controller
             return $this->redirectToRoute('listSalles');
         }
 
-        return $this->render('sallesViews/addSalle.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('sallesViews/addSalle.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -43,7 +48,13 @@ class SalleController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("SchoolBundle:Salle");
         $salles=$repository->findAll();
-        return $this->render('sallesViews/listSalles.html.twig',array("salles"=>$salles));
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('sallesViews/listSalles.html.twig',array("salles"=>$salles,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
@@ -54,13 +65,18 @@ class SalleController extends Controller
         $form=$this->createForm(SalleType::class,$salle);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
             $em=$this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute('listSalles');
         }
 
-        return $this->render('sallesViews/addSalle.html.twig',array("edit"=>true,"form"=>$form->createView()));
+        return $this->render('sallesViews/addSalle.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

@@ -29,10 +29,8 @@ class EleveController extends Controller
         $eleve = new Eleve();
         $form=$this->createForm(EleveType::class,$eleve);
         $form->handleRequest($request);
-        $form2=$this->createForm(EleveParentType::class,$eleve);
-        $form2->handleRequest($request);
 
-        if(($form->isSubmitted() && $form->isValid())||($form2->isSubmitted() && $form2->isValid())){
+        if(($form->isSubmitted() && $form->isValid())){
             if($eleve->getPhoto() !=null){
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 $file = $eleve->getPhoto();
@@ -58,7 +56,45 @@ class EleveController extends Controller
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
-        return $this->render('elevesViews/addEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form"=>$form->createView(),"form2"=>$form2->createView()));
+        return $this->render('elevesViews/addEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form"=>$form->createView()));
+    }
+
+    /**
+     * @Route("/addEleveParent", name="addEleveParent")
+     */
+    public function addEleveParentAction(Request $request)
+    {
+        $eleve = new Eleve();
+        $form2=$this->createForm(EleveParentType::class,$eleve);
+        $form2->handleRequest($request);
+
+        if(($form2->isSubmitted() && $form2->isValid())){
+            if($eleve->getPhoto() !=null){
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $file = $eleve->getPhoto();
+
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('photo_directory'),
+                    $fileName
+                );
+
+                
+                $eleve->setphoto($fileName);
+             }
+            $eleve->setEcole($this->getUser()->getEcole());
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($eleve);
+            $em->flush();
+            return $this->redirectToRoute('listEleves');
+        }
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('elevesViews/addEleveParent.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form2"=>$form2->createView()));
     }
 
 
@@ -146,15 +182,25 @@ class EleveController extends Controller
      */
     public function profileAction(Eleve $eleve)
     {
-        return $this->render('elevesViews/profileEleve.html.twig',array("eleve"=>$eleve));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('elevesViews/profileEleve.html.twig',array("eleve"=>$eleve,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
      * @Route("/myProfile", name="myProfileEleve")
      */
     public function myProfileAction()
-    {
-        return $this->render('elevesViews/myProfileEleve.html.twig');
+    {   
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('elevesViews/myProfileEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

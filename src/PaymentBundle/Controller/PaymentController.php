@@ -31,8 +31,14 @@ class PaymentController extends Controller
 
         $payment = new Payment();
         $pay=$this->createForm(PaymentType::class,$payment);
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         return $this->render('payment/payment.html.twig', array("form"=>$form->createView()
-            ,"payment"=>$pay->createView()
+            ,"payment"=>$pay->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox
         ));
     }
 
@@ -57,7 +63,11 @@ class PaymentController extends Controller
     public function initAction()
     {
 
-        return $this->render('PaymentBundle:PaymentController:init.html.twig', array(
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('PaymentBundle:PaymentController:init.html.twig', array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox
             // ...
         ));
     }

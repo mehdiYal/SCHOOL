@@ -31,6 +31,11 @@ class MatiereEvaluationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         //Initialisation des ids
         $idMatiere=$request->attributes->get('idMatiere');
         $idClasse=$request->attributes->get('idClasse');
@@ -50,10 +55,10 @@ class MatiereEvaluationController extends Controller
             $em->persist($matiereEvaluation);
             $em->flush($matiereEvaluation);
             
-            return $this->redirectToRoute('showEleve', array('idClasse' => $idClasse,'idMatiere' => $idMatiere));
+            return $this->redirectToRoute('showEleve', array('idClasse' => $idClasse,'idMatiere' => $idMatiere,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
         }
 
-        return $this->render('evaluation/add.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('evaluation/add.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

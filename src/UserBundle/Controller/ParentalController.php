@@ -25,6 +25,11 @@ class ParentalController extends Controller
         $form=$this->createForm(ParentalType::class,$parental);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
             $parental->setEcole($this->getUser()->getEcole());
             $em=$this->getDoctrine()->getManager();
@@ -33,7 +38,7 @@ class ParentalController extends Controller
              return $this->redirectToRoute('listParentals');
         }
 
-        return $this->render('parentsViews/addParent.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('parentsViews/addParent.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -46,13 +51,18 @@ class ParentalController extends Controller
         $form=$this->createForm(ParentalType::class,$parental);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
             $em=$this->getDoctrine()->getManager();
             $em->flush();
              return $this->redirectToRoute('listParentals');
         }
 
-        return $this->render('parentsViews/addParent.html.twig',array("edit"=>true,"form"=>$form->createView()));
+        return $this->render('parentsViews/addParent.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -72,15 +82,25 @@ class ParentalController extends Controller
      */
     public function profileAction(Parental $parental)
     {
-        return $this->render('parentsViews/profileParent.html.twig',array("parent"=>$parental));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('parentsViews/profileParent.html.twig',array("parent"=>$parental,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
      * @Route("/myProfile", name="myProfileParental")
      */
     public function myProfileAction()
-    {
-        return $this->render('parentsViews/myProfileParent.html.twig');
+    {   
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('parentsViews/myProfileParent.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -92,6 +112,12 @@ class ParentalController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("UserBundle:Parental");
         $parentals=$repository->findAll();
-        return $this->render('parentsViews/listParents.html.twig',array("parentals"=>$parentals));
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('parentsViews/listParents.html.twig',array("parentals"=>$parentals,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 }

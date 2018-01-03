@@ -35,8 +35,11 @@ class ClasseController extends Controller
             $em->flush();
             return $this->redirectToRoute('listClasses');
         }
-
-        return $this->render('classesViews/addClasse.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/addClasse.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>false,"form"=>$form->createView()));
     }
 
 
@@ -67,8 +70,11 @@ class ClasseController extends Controller
             $em->flush();
             return $this->redirectToRoute('listClasses');
         }
-
-        return $this->render('classesViews/addClasse.html.twig',array("edit"=>true,"form"=>$form->createView()));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/addClasse.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"edit"=>true,"form"=>$form->createView()));
     }
 
 
@@ -113,7 +119,11 @@ class ClasseController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("UserBundle:Eleve");
         $eleves=$repository->findBy(array('classe'=>null,'ecole' => $classe->getEcole(),'annee'=>$classe->getAnnee()));
-        return $this->render('classesViews/affecterEleve.html.twig',array("eleves"=>$eleves,"classe"=>$classe));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/affecterEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"eleves"=>$eleves,"classe"=>$classe));
     }
 
     /**
@@ -129,7 +139,11 @@ class ClasseController extends Controller
         $em->persist($eleve);
         $em->flush();
         $eleves=$repository->findBy(array('classe'=>null,'ecole' => $classe->getEcole(),'annee'=>$classe->getAnnee()));
-        return $this->render('classesViews/affecterEleve.html.twig',array("eleves"=>$eleves,"classe"=>$classe));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/affecterEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"eleves"=>$eleves,"classe"=>$classe));
     }
 
     /**
@@ -145,7 +159,11 @@ class ClasseController extends Controller
         $em->persist($eleve);
         $em->flush();
         $eleves=$repository->findBy(array('classe'=>null,'ecole' => $classe->getEcole(),'annee'=>$classe->getAnnee()));
-        return $this->render('classesViews/affecterEleve.html.twig',array("eleves"=>$eleves,"classe"=>$classe));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('classesViews/affecterEleve.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,"eleves"=>$eleves,"classe"=>$classe));
     }
 
     /**
@@ -153,6 +171,10 @@ class ClasseController extends Controller
      */
     public function listeEnsAction(Classe $classe)
     {
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
         $provider = $this->container->get('fos_message.provider');
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();

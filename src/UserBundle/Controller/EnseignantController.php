@@ -25,6 +25,11 @@ class EnseignantController extends Controller
         $form=$this->createForm(EnseignantType::class,$enseignant);
         $form->handleRequest($request);
 
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
         if($form->isSubmitted() && $form->isValid()){
             if($enseignant->getPhoto() !=null){
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -48,7 +53,7 @@ class EnseignantController extends Controller
             return $this->redirectToRoute('listEnseignants');
         }
 
-        return $this->render('enseignantsViews/addEnseignant.html.twig',array("edit"=>false,"form"=>$form->createView()));
+        return $this->render('enseignantsViews/addEnseignant.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -60,6 +65,11 @@ class EnseignantController extends Controller
 
         $form=$this->createForm(EnseignantType::class,$enseignant);
         $form->handleRequest($request);
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
 
         if($form->isSubmitted() && $form->isValid()){
             if($enseignant->getPhoto() !=null){
@@ -82,7 +92,7 @@ class EnseignantController extends Controller
             return $this->redirectToRoute('listEnseignants');
         }
 
-        return $this->render('enseignantsViews/addEnseignant.html.twig',array("edit"=>true,"form"=>$form->createView()));
+        return $this->render('enseignantsViews/addEnseignant.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -102,15 +112,25 @@ class EnseignantController extends Controller
      */
     public function profileAction(Enseignant $enseignant)
     {
-        return $this->render('enseignantsViews/profileEnseignant.html.twig',array("enseignant"=>$enseignant));
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('enseignantsViews/profileEnseignant.html.twig',array("enseignant"=>$enseignant,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
      /**
      * @Route("/myProfile", name="myProfileEnseignant")
      */
     public function myProfileAction()
-    {
-        return $this->render('enseignantsViews/myProfileEnseignant.html.twig');
+    {   
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('enseignantsViews/myProfileEnseignant.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -122,7 +142,13 @@ class EnseignantController extends Controller
     {
         $repository=$this->getDoctrine()->getRepository("UserBundle:Enseignant");
         $enseignants=$repository->findAll();
-        return $this->render('enseignantsViews/listEnseignants.html.twig',array("enseignants"=>$enseignants));
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        return $this->render('enseignantsViews/listEnseignants.html.twig',array("enseignants"=>$enseignants,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
     /**
