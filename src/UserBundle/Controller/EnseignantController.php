@@ -46,7 +46,7 @@ class EnseignantController extends Controller
                 $enseignant->setphoto($fileName);
              }
              $enseignant->setEcole($this->getUser()->getEcole());
-
+             $enseignant->addRole("ROLE_ENSEIGNANT");
             $em=$this->getDoctrine()->getManager();
             $em->persist($enseignant);
             $em->flush();
@@ -89,10 +89,11 @@ class EnseignantController extends Controller
 
             $em=$this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute('listEnseignants');
+            if($this->getUser()==$enseignant) return $this->redirectToRoute('myProfileEnseignant');
+             else return $this->redirectToRoute('listEnseignants');
         }
-
-        return $this->render('enseignantsViews/addEnseignant.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        if($this->getUser()==$enseignant)return $this->render('enseignantsViews/editMyEnseignant.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        else return $this->render('enseignantsViews/addEnseignant.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

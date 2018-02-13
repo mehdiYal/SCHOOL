@@ -4,7 +4,7 @@
 {% block body %}
 <div class="page-content-wrap">
     <div class="row">
-        <div class="col-md-12"> 
+        <div class="col-md-12" > 
 			{{ form_start(form, { 'attr' : { 'class': 'form-horizontal' } }) }}
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -12,24 +12,14 @@
 						
 					</h3>
 				</div>
-				<div class="panel-body">
-					<div class="form-group">
-						{{ form_label(form.matiere,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
-						<div class="col-md-6 col-xs-12">
-							<div class="input-group">
-								{{ form_widget(form.matiere,{ 'id':'selectMatiere', 'label_attr': {'class': 'form-control select'} }) }}
-					  		</div>
-							{{ form_errors(form.matiere) }}
-						</div>
-					</div>
 
 					<div class="form-group">
-						{{ form_label(form.classe,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
+						{{ form_label(form.ensMat,null,{ 'label_attr': {'class': 'col-md-3 col-xs-12 control-label'} }) }}
 						<div class="col-md-6 col-xs-12">
 							<div class="input-group">
-								{{ form_widget(form.classe,{ 'id':'selectClasse', 'label_attr': {'class': 'form-control select'} }) }}
+								{{ form_widget(form.ensMat,{ 'id':'selectClasse', 'label_attr': {'class': 'form-control select'} }) }}
 					  		</div>
-							{{ form_errors(form.classe) }}
+							{{ form_errors(form.ensMat) }}
 						</div>
 					</div>
 					<div class="form-group">

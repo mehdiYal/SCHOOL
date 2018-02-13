@@ -6,6 +6,7 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}">
         <link rel="stylesheet" type="text/css" id="theme" href="{{ asset('css/theme-default.css') }}"/>
         {% if (app.request.locale == 'ar') %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-flipped.css">
@@ -39,7 +40,7 @@
                                 <div class="profile-data-title">{{app.user.typeUser}}</div>
                             </div>
                             <div class="profile-controls">
-                                <a href="{{ path('myProfileAdmin') }}" class="profile-control-left"><span class="fa fa-info"></span></a>
+                                <a href="{% if 'ROLE_ENSEIGNANT' in app.user.roles %}{{ path('myProfileEnseignant') }}{%else%}{{ path('myProfileAdmin') }}{%endif%}" class="profile-control-left"><span class="fa fa-info"></span></a>
                                 <a href="{{ path('message_inbox') }}" class="profile-control-right"><span class="fa fa-envelope"></span></a>
                             </div>
                         </div>                                                                        
@@ -199,7 +200,7 @@
                             </li>
 
                             <!-- Gestion des absences/retard -->
-                            <li><a href="#"><span class="fa fa-check-square-o"></span> <span class="xn-text">Gestion des Retards et absences</span></a></li>
+                            <li><a href="{{path('absence_index')}}"><span class="fa fa-check-square-o"></span> <span class="xn-text">Gestion des Retards et absences</span></a></li>
 
                             <!-- Transport -->
                             <li class="xn-openable trans">
@@ -495,6 +496,33 @@
        <!--  <script type="text/javascript" src="{{ asset('js/demo_dashboard.js') }}"></script>
         --><!-- END TEMPLATE -->
     <!-- END SCRIPTS --> 
+
+        <!-- Sweet Alert -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+        $(".delete").on('click', function(event) {
+            event.preventDefault();
+            link = $(this).attr('href');
+            swal({
+              title: "etes vous sur?",
+              text: "Une fois supprimé, vous ne pourrez jamais revenir en arriére !",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                window.location.replace(link);
+                swal("Poof! supprimé!", {
+                  icon: "success",
+                });
+              } else {
+                swal("vos données sont en securité!");
+              }
+            });
+        });
+    </script>
+
         {% block javascripts %}
         {% endblock %}
 

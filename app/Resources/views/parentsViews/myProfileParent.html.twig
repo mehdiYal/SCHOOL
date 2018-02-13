@@ -1,29 +1,47 @@
-
-{% extends 'base.html.twig' %}
+{% extends 'baseParent.html.twig' %}
 
 {% block body %}
-<h1>Mon Profile {{app.user.nom}} {{app.user.prenom}}</h1>
-	<ul>
-		<li><b>nom :</b>{{app.user.nom}}</li>
-		<li><b>prenom :</b>{{app.user.prenom}}</li>
-		<li><b>nom mere :</b>{{app.user.nomMere}}</li>
-		<li><b>prenom mere :</b>{{app.user.prenomMere}}</li>
-		<li><b>adresse :</b>{{app.user.adresse}}</li>
-		<li><b>code postal :</b>{{app.user.codePostal}}</li>
-		<li><b>telephone :</b>{{app.user.telephone}}</li>
-		<li><b>username :</b>{{app.user.username}}</li>
-		<li><b>email :</b>{{app.user.email}}</li>
-		<li><b>type :</b>{{app.user.typeUser|upper}}</li>
-		<li><b>derniere connexion :</b>{{app.user.lastLogin|date('Y-m-d')}}</li>
-		<li>
-			<b>Liste de mes enfants dans l'ecole</b>
-			<ul>
-				{% for eleve in app.user.eleves %}
-					<li>{{eleve.nom}} {{eleve.prenom}}</li>
-				{% endfor %}
-			</ul>
-		</li>
-	</ul>
+<div class="row">	
+	<div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body profile" style="background: url('{{asset("img/gallery/music-4.jpg")}}') center center no-repeat;">
+                <div class="profile-image">
+                    <img src="{% if app.user.photo %}{{ asset('uploads/photos/' ~ app.user.photo) }}{% else %}{{ asset('uploads/photos/avatar.png') }}{% endif %}" alt="{{app.user.nom}}"/>
+                </div>
+                <div class="profile-data">
+                    <div class="profile-data-name">{{app.user.nom}} {{app.user.prenom}}</div>
+                    <div class="profile-data-title" style="color: #FFF;">{{app.user.typeUser}}</div>
+                </div>
+                                                 
+            </div>                                
+            <div class="panel-body">                                    
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-info btn-rounded btn-block" href="{{ path('fos_user_change_password') }}"><span class="fa fa-check"></span> Changer mot de passe</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-rounded btn-block" href="{{ path('editParental',{'id':app.user.id})}}"><span class="fa fa-cog"></span> Editer Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body list-group border-bottom">                               
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-location-arrow"><b> ADRESSE :</b></span> {{app.user.adresse}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-map-marker"><b> CODE POSTAL :</b></span> {{app.user.codePostal}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-mobile"><b> TELEPHONE :</b></span> {{app.user.telephone}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-envelope-o"><b> EMAIL :</b></span> {{app.user.email}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-user"><b> PSEUDO :</b></span> {{app.user.username}}</a>
+            </div>
+            <div class="panel-body">
+                  <h3>Mes Enfants Dans l'école</h3>
+					<ul>
+						{% for eleve in app.user.eleves %}
+							<li>{{eleve.nom}} {{eleve.prenom}}</li>
+						{% endfor %}
+					</ul>
+            </div>
+        </div>                              
+    </div>
+</div>
 	
 	
 {% endblock %}

@@ -14,12 +14,12 @@
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Annee</th>
+                    <th>Resp</th>
+                    <th>Mod</th>
+                    <th>Supp</th>
+                    <th>Ens.</th>
                     <th>Eleves</th>
-                    <th>Responsable</th>
-                    <th>{{'edit'|trans}}</th>
-                    <th>{{'delete'|trans}}</th>
-                    <th>Aff Ens.</th>
-                    <th>Aff Eleves</th>
+                    <th>Absences</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,6 @@
 						<td>{{ classe.nom|upper}}</td>
 						<td>{{ classe.description}}</td>
 						<td>{{ classe.annee.nom}} {{ classe.annee.niveau}}</td>
-						<td>{{ classe.eleves|length}}</td>
 						<td>{{ classe.responsable.nom}}</td>
 						<td>
 							<a href="{{ path('editClasse',{'id':classe.id})}}">
@@ -36,7 +35,7 @@
 							</a>
 						</td>
 						<td>
-							<a href="{{ path('removeClasse',{'id':classe.id})}}">
+							<a class="delete" href="{{ path('removeClasse',{'id':classe.id})}}">
 								<span class="fa fa-trash"></span>
 							</a>
 						</td>
@@ -47,7 +46,12 @@
 						</td>
 						<td>
 							<a href="{{ path('affectEleves',{'id':classe.id})}}">
-								<span class="fa fa-users"></span>
+								<span class="fa fa-users"> ({{ classe.eleves|length}})</span>
+							</a>
+						</td>
+						<td class="text-center">
+							<a href="{{path('absence_new',{ 'id': classe.id})}}">
+								<i class="fa fa-plus" aria-hidden="true"></i>
 							</a>
 						</td>
 					</tr>

@@ -13,37 +13,29 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use SchoolBundle\Repository\MatiereRepository;
 use SchoolBundle\Repository\ClasseRepository;
 use SchoolBundle\Repository\RessourceRepository;
+use SchoolBundle\Repository\EnsMatRepository;
 
 
 class RessourceType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $idEnseignant= $options['idEnseignant'];
+         $idEnseignant= $options['idEnseignant'];
         $idMatiere= $options['idMatiere'];
-        $builder
-         ->add('titre')
-         ->add('matiere', EntityType::class, array(
-                'class' => 'SchoolBundle:Matiere',
-                'choice_label' => 'nom',
-                'query_builder' => function(MatiereRepository $er) use ($idMatiere){
-                    return $er->findByArrayId($idMatiere);
-                },
-                'required' => TRUE,
-            ))
-         ->add('classe', EntityType::class, array(
-                'class' => 'SchoolBundle:Classe',
-                'choice_label' => 'nom',
-                'query_builder' => function(ClasseRepository $er) use ($idEnseignant){
+       
+        $builder->add('titre')
+         ->add('ensMat', EntityType::class, array(
+                'class' => 'SchoolBundle:EnsMat',
+                'label' => 'Classe / Matiere',
+                'query_builder' => function(EnsMatRepository $er) use ($idEnseignant){
                    return $er->findByEnseignant($idEnseignant);
                 },
                 'required' => TRUE,
             ))
-          ->add('cours', FileType::class, array(
+         ->add('cours', FileType::class, array(
                 'data_class' => null,
                 'required' => true, 
             ))
@@ -54,12 +46,9 @@ class RessourceType extends AbstractType
           ->add('commentaire', TextareaType::class, array(
                 'attr'=> ['class' => 'form-control'],
                 'required' => false
-            ))
-         ;
-    }
-    
-    /**
-     *  @param OptionsResolver $resolver
+            ));
+    }/**
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -70,6 +59,7 @@ class RessourceType extends AbstractType
         ));
 
          $resolver->setRequired(['idEnseignant','idMatiere']);
+    
     }
 
     /**
@@ -78,7 +68,7 @@ class RessourceType extends AbstractType
     public function getBlockPrefix()
     {
         return 'schoolbundle_ressource';
-
     }
+
 
 }

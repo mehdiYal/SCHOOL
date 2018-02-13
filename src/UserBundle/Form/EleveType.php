@@ -20,9 +20,9 @@ class EleveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        // ->add('photo', FileType::class, array('label' => 'form.photo',
-        //                                               'required' => false,
-        //                                                'data_class' => null))
+         ->add('photo', FileType::class, array('label' => 'form.photo',
+                                                       'required' => false,
+                                                        'data_class' => null))
         ->add('nom',null,array('label' => 'form.name'))
         ->add('prenom',null,array('label' => 'form.lastName'))
         ->add('annee')

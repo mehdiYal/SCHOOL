@@ -1,42 +1,45 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'ROLE_PARENT' in app.user.roles 
+    ? 'baseParent.html.twig' 
+    : 'base2.html.twig' %}
 {% block body %}
-<h1>Profile De {{ecole.nom}} à {{ecole.ville}}</h1>
-	<ul>
-		<li><b>logo :</b><img src="{% if ecole.logo %}{{ asset('uploads/logos/' ~ ecole.logo) }}{% else %}{{ asset('uploads/logos/logo.jpg') }}{% endif %}" alt=""></li>
-		<li><b>nom :</b>{{ecole.nom}}</li>
-		<li><b>code :</b>{{ecole.code}}</li>
-		<li><b>adresse :</b>{{ecole.adresse}}</li>
-		<li><b>ville :</b>{{ecole.ville}}</li>
-		<li><b>pays :</b>{{ecole.pays}}</li>
-		<li><b>telephone :</b>{{ecole.telephone}}</li>
-		<li><b>email :</b>{{ecole.email}}</li>
-		<li><b>date De Creation :</b>{{ecole.dateCreation|date('Y-m-d')}}</li>
-		<li><b>informations :</b>{{ecole.informations}}</li>
-		<li><b>admin :</b>{{ecole.admin.nom}} {{ecole.admin.prenom}}</li>
-		<li>
-			<b>Liste des parents dans l'ecole</b>
-			<ul>
-				{% for parent in ecole.parents %}
-					<li>{{parent.nom}} {{parent.prenom}}</li>
-				{% endfor %}
-			</ul>
-		</li>
-		<li>
-			<b>Liste des enseignants dans l'ecole</b>
-			<ul>
-				{% for ens in ecole.enseignants %}
-					<li>{{ens.nom}} {{ens.prenom}}</li>
-				{% endfor %}
-			</ul>
-		</li>
-		<li>
-			<b>Liste des eleves dans l'ecole</b>
-			<ul>
-				{% for eleve in ecole.eleves %}
-					<li>{{eleve.nom}} {{eleve.prenom}}</li>
-				{% endfor %}
-			</ul>
-		</li>
-	</ul>
+<div class="row">	
+	<div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body profile" style="background: url('{{asset("img/gallery/music-4.jpg")}}') center center no-repeat;">
+                <div class="profile-image">
+                    <img src="{% if ecole.logo %}{{ asset('uploads/logos/' ~ ecole.logo) }}{% else %}{{ asset('uploads/logos/logo.jpg') }}{% endif %}" alt="{{ecole.nom}} à {{ecole.ville}}"/>
+                </div>
+                <div class="profile-data">
+                    <div class="profile-data-name">{{ecole.nom}} à {{ecole.ville}}</div>
+                    <div class="profile-data-title" style="color: #FFF;">Ecole N° {{ecole.code}}</div>
+                </div>
+                                                 
+            </div>                                
+            <div class="panel-body">                                    
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-info btn-rounded btn-block" href="#"><span class="fa fa-user"></span> Ajouter des utilisateurs</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-rounded btn-block" href="#"><span class="fa fa-money"></span> Editer Payements</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body list-group border-bottom">   
+            	<a href="#" class="list-group-item"><span class=" col-md-3 fa fa-calendar"><b> Date Création :</b></span> {{ecole.dateCreation|date('Y-m-d')}}</a>                          
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-location-arrow"><b> ADRESSE :</b></span> {{ecole.adresse}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-map-marker"><b> PAYS :</b></span> {{ecole.pays}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-mobile"><b> TELEPHONE :</b></span> {{ecole.telephone}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-envelope-o"><b> EMAIL :</b></span> {{ecole.email}}</a>
+                <a href="#" class="list-group-item "><span class=" col-md-3 fa fa-user"><b> ADMIN :</b></span> {{ecole.admin.nom}} {{ecole.admin.prenom}}</a>
+            </div>
+            <div class="panel-body">
+                  <h3>Tarifs des payements</h3>
+					<ul>
+							<li><b>Primaire :</b> 20 0000 DZD</li>
+					</ul>
+            </div>
+        </div>                              
+    </div>
+</div>
 {% endblock %}

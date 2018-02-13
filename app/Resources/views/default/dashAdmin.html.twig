@@ -97,5 +97,45 @@
             </div>
         </div>
         <!-- END WIDGETS -->
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if 'ROLE_ADMIN' in app.user.roles %}
+        <hr>
+        <div class="row">
+            <div class="col-md-3">                        
+                <a href="{{ path('listEleves') }}" class="tile tile-danger "><span class="fa fa-graduation-cap"></span> <p>Eleves</p></a>                        
+            </div>
+            <div class="col-md-3">                        
+                <a href="{{ path('listEnseignants') }}" class="tile tile-success "><span class="fa fa-briefcase"></span> <p>Enseigants</p></a>                        
+            </div>
+            <div class="col-md-3">                        
+                <a href="{{ path('listClasses') }}" class="tile tile-warning "><span class="fa fa-users"></span><p>Classes</p></a>                        
+            </div>
+            <div class="col-md-3">                        
+                <a href="#" class="tile tile-info "><span class="fa fa-money"></span><p>Payement</p></a>                        
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">                        
+                <a href="{{path('absence_index')}}" class="tile tile-default "><span class="fa fa-check-square-o"></span><p>Absences & retards</p></a>                        
+            </div>
+            <div class="col-md-3">                        
+                <a href="#" class="tile tile-primary "><span class="fa fa-bar-chart-o"></span><p>Statistiques</p></a>                        
+            </div>
+            <div class="col-md-3">                        
+                <a href="#" class="tile tile-danger "><span class="fa fa-mobile"></span><p>SMS</p></a>                        
+            </div>
+            <div class="col-md-3">                        
+                <a href="#" class="tile tile-success "><span class="fa fa-info"></span><p>Informations</p></a>                        
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">                        
+                <a href="{{path('mySchool')}}" class="tile tile-danger "><span class="fa fa-university"></span><p>Mon Ecole</p></a>
+            </div>
+        </div>
+            {%endif%}
+        {%endif%}
+        <!-- END WIDGETS -->
 
 {% endblock %}

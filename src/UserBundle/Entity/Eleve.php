@@ -46,7 +46,7 @@ class Eleve extends User
      *
      * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Annee", inversedBy="eleves")
      *
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $annee;    
 
@@ -182,6 +182,10 @@ class Eleve extends User
      */
     private $commentaire;
 
+    public function __construct()
+    {
+    }
+    
     /**
      * Set photo
      *

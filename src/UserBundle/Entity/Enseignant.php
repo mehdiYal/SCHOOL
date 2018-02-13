@@ -134,7 +134,6 @@ class Enseignant extends User
      */
     private $commentaire;
 
-
     /**
      * Set photo
      *

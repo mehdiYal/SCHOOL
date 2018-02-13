@@ -17,5 +17,6 @@ class EnsMatRepository extends \Doctrine\ORM\EntityRepository
         $qb->where('c.enseignant = :id')
               ->setParameter('id', $id);
         return $qb;
-    }   
+    }
+   
 }

@@ -30,10 +30,11 @@
                 </tr>
             </thead>
             <tbody>
-               	{% for ressource in data %}
+              	{% for ressource in data %}
+
 					<tr>
 						<td class="text-center">{{ressource.annee.nom~' '~ressource.annee.niveau}}</td>
-						<td class="text-center">{{ressource.matiere.nom}}</td>
+						<td class="text-center">{{ressource.ensMat.matiere.nom}}</td>
 						<td class="text-center">{{ressource.titre}}</td>
 						<td class="text-center">
 							<a class="btn btn-condensed btn-info" href="{{asset('uploads_ressource'~'/'~ressource.cours)}}">

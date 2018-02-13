@@ -179,6 +179,10 @@ class SchoolController extends Controller
      */
     public function mySchoolAction()
     {
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
         return $this->render('SchoolsViews/profileSchool.html.twig',array("ecole"=>$this->getUser()->getEcole(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 

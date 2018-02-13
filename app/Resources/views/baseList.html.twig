@@ -16,11 +16,6 @@
                             <div class="btn-group pull-right">
                                 <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" onClick ="$('#customers2').tableExport({type:'json',escape:'false'});"><img src='{{ asset("img/icons/json.png")}}' width="24"/> JSON</a></li>
-                                    <li><a href="#" onClick ="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src='{{ asset("img/icons/json.png")}}' width="24"/> JSON (ignoreColumn)</a></li>
-                                    <li><a href="#" onClick ="$('#customers2').tableExport({type:'json',escape:'true'});"><img src='{{ asset("img/icons/json.png")}}' width="24"/> JSON (with Escape)</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#" onClick ="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src='{{ asset("img/icons/xml.png")}}' width="24"/> XML</a></li>
                                     <li><a href="#" onClick ="$('#customers2').tableExport({type:'sql'});"><img src='{{ asset("img/icons/sql.png")}}' width="24"/> SQL</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#" onClick ="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src='{{ asset("img/icons/csv.png")}}' width="24"/> CSV</a></li>
@@ -28,10 +23,7 @@
                                     <li class="divider"></li>
                                     <li><a href="#" onClick ="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src='{{ asset("img/icons/xls.png")}}' width="24"/> XLS</a></li>
                                     <li><a href="#" onClick ="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src='{{ asset("img/icons/word.png")}}' width="24"/> Word</a></li>
-                                    <li><a href="#" onClick ="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src='{{ asset("img/icons/ppt.png")}}' width="24"/> PowerPoint</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#" onClick ="$('#customers2').tableExport({type:'png',escape:'false'});"><img src='{{ asset("img/icons/png.png")}}' width="24"/> PNG</a></li>
-                                    <li><a href="#" onClick ="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src='{{ asset("img/icons/pdf.png")}}' width="24"/> PDF</a></li>
+                                    <li><a class="print"><img src='{{ asset("img/icons/print.png")}}' width="24"/> Imprimer</a></li>
                                 </ul>
                             </div>                                    
                             
@@ -57,6 +49,20 @@
 	<script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/sprintf.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/jspdf.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('js/plugins/tableexport/jspdf/libs/base64.js')}}"></script>  
+    <script>
+        function printData()
+        {
+           var divToPrint=document.getElementById("customers2");
+           newWin= window.open("");
+           newWin.document.write(divToPrint.outerHTML);
+           newWin.print();
+           newWin.close();
+        }
+
+        $('.print').on('click',function(){
+        printData();
+        })
+    </script>
 
     {% block active %}
     {% endblock %}      

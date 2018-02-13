@@ -34,20 +34,12 @@ class Ressource
     /**
      * @var Matiere
      *
-     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Matiere", inversedBy="ensMat")
+     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\EnsMat", inversedBy="ensMat")
      *
      * @ORM\JoinColumn(nullable=true)
      */
-    private $matiere;
+    private $ensMat;
 
-    /**
-     * @var Classe
-     *
-     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Classe", inversedBy="ensMat")
-     *
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $classe;
 
     /**
      * @var int
@@ -222,6 +214,32 @@ class Ressource
         return $this->annee;
     }
 
+
+
+    /**
+     * Set classe
+     *
+     * @param \SchoolBundle\Entity\Classe $classe
+     *
+     * @return Ressource
+     */
+    public function setClasse(\SchoolBundle\Entity\Classe $classe = null)
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * Get classe
+     *
+     * @return \SchoolBundle\Entity\Classe
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
     /**
      * Set enseignant
      *
@@ -247,50 +265,26 @@ class Ressource
     }
 
     /**
-     * Set matiere
+     * Set ensMat
      *
-     * @param \SchoolBundle\Entity\Matiere $matiere
+     * @param \SchoolBundle\Entity\EnsMat $ensMat
      *
      * @return Ressource
      */
-    public function setMatiere(\SchoolBundle\Entity\Matiere $matiere = null)
+    public function setEnsMat(\SchoolBundle\Entity\EnsMat $ensMat = null)
     {
-        $this->matiere = $matiere;
+        $this->ensMat = $ensMat;
 
         return $this;
     }
 
     /**
-     * Get matiere
+     * Get ensMat
      *
-     * @return \SchoolBundle\Entity\Matiere
+     * @return \SchoolBundle\Entity\EnsMat
      */
-    public function getMatiere()
+    public function getEnsMat()
     {
-        return $this->matiere;
-    }
-
-    /**
-     * Set classe
-     *
-     * @param \SchoolBundle\Entity\Classe $classe
-     *
-     * @return Ressource
-     */
-    public function setClasse(\SchoolBundle\Entity\Classe $classe = null)
-    {
-        $this->classe = $classe;
-
-        return $this;
-    }
-
-    /**
-     * Get classe
-     *
-     * @return \SchoolBundle\Entity\Classe
-     */
-    public function getClasse()
-    {
-        return $this->classe;
+        return $this->ensMat;
     }
 }

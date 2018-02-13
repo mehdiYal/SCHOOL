@@ -17,7 +17,7 @@ class EnsMat
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Enseignant", inversedBy="matEns")
      *
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $enseignant;
 
@@ -26,7 +26,7 @@ class EnsMat
      *
      * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Matiere", inversedBy="ensMat")
      *
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $matiere;
 
@@ -159,5 +159,9 @@ class EnsMat
     public function getProgrammeAnnuel()
     {
         return $this->programmeAnnuel;
+    }
+
+    public function __toString() {
+        return $this->matiere.' '.$this->classe;
     }
 }

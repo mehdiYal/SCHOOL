@@ -46,7 +46,7 @@ class AdminController extends Controller
                 
                 $admin->setphoto($fileName);
              }
-
+            $admin->addRole("ROLE_ADMIN");
             $em=$this->getDoctrine()->getManager();
             $em->persist($admin);
             $em->flush();
@@ -88,10 +88,11 @@ class AdminController extends Controller
              }
             $em=$this->getDoctrine()->getManager();
             $em->flush();
-             return $this->redirectToRoute('listAdmins');
+            if($this->getUser()==$admin) return $this->redirectToRoute('myProfileAdmin');
+             else return $this->redirectToRoute('listAdmins');
         }
-
-        return $this->render('adminsViews/addAdmin.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        if($this->getUser()==$admin)return $this->render('adminsViews/editMyAdmin.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        else return $this->render('adminsViews/addAdmin.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 
@@ -125,7 +126,11 @@ class AdminController extends Controller
      */
     public function myProfileAction()
     {
-        return $this->render('adminsViews/myProfileAdmin.html.twig');
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('adminsViews/myProfileAdmin.html.twig',array('newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

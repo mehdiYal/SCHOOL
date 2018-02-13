@@ -54,6 +54,13 @@ class User extends BaseUser implements ParticipantInterface
      */
     private $type;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setEnabled(1);
+    }
+
+
     /**
      * Get id
      *

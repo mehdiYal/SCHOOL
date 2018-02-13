@@ -37,7 +37,7 @@ class Classe
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Enseignant", inversedBy="isResponsable")
      *
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $responsable;
 
@@ -46,7 +46,7 @@ class Classe
      *
      * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Annee", inversedBy="classes")
      *
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $annee;
 

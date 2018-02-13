@@ -31,7 +31,24 @@ class MatiereRepository extends \Doctrine\ORM\EntityRepository
     }
 
  
+    public function findByEnsMat($classe)
+    {
+        $qb = $this->createQueryBuilder('c');
+      
+        $mats=$qb->select('ensMat')
+              ->from('SchoolBundle:EnsMat', 'ensMat')
+              ->where($qb->expr()->in('ensMat.classe',$classe->getId()))
+              ->getQuery()
+              ->getResult();
+              foreach ($mats as $m) {
+                  $mat[]=$m->getMatiere()->getId();
+              }
 
+        return $qb->select('mat')
+                 ->from('SchoolBundle:Matiere', 'mat')
+                 ->where($qb->expr()->notIn('mat', $mat));
+        
+    }
 
 
 }

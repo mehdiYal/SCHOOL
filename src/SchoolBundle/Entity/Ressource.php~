@@ -34,20 +34,12 @@ class Ressource
     /**
      * @var Matiere
      *
-     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Matiere", inversedBy="ensMat")
+     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\EnsMat", inversedBy="ensMat")
      *
      * @ORM\JoinColumn(nullable=true)
      */
-    private $matiere;
+    private $ensMat;
 
-    /**
-     * @var Classe
-     *
-     * @ORM\ManyToOne(targetEntity="SchoolBundle\Entity\Classe", inversedBy="ensMat")
-     *
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $classe;
 
     /**
      * @var int
@@ -101,4 +93,150 @@ class Ressource
     }
 
   
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Ressource
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set cours
+     *
+     * @param string $cours
+     *
+     * @return Ressource
+     */
+    public function setCours($cours)
+    {
+        $this->cours = $cours;
+
+        return $this;
+    }
+
+    /**
+     * Get cours
+     *
+     * @return string
+     */
+    public function getCours()
+    {
+        return $this->cours;
+    }
+
+    /**
+     * Set ressource
+     *
+     * @param string $ressource
+     *
+     * @return Ressource
+     */
+    public function setRessource($ressource)
+    {
+        $this->ressource = $ressource;
+
+        return $this;
+    }
+
+    /**
+     * Get ressource
+     *
+     * @return string
+     */
+    public function getRessource()
+    {
+        return $this->ressource;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Ressource
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set annee
+     *
+     * @param \SchoolBundle\Entity\Annee $annee
+     *
+     * @return Ressource
+     */
+    public function setAnnee(\SchoolBundle\Entity\Annee $annee = null)
+    {
+        $this->annee = $annee;
+
+        return $this;
+    }
+
+    /**
+     * Get annee
+     *
+     * @return \SchoolBundle\Entity\Annee
+     */
+    public function getAnnee()
+    {
+        return $this->annee;
+    }
+
+
+
+    /**
+     * Set classe
+     *
+     * @param \SchoolBundle\Entity\Classe $classe
+     *
+     * @return Ressource
+     */
+    public function setClasse(\SchoolBundle\Entity\Classe $classe = null)
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * Get classe
+     *
+     * @return \SchoolBundle\Entity\Classe
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
 }

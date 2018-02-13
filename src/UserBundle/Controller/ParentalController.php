@@ -32,10 +32,11 @@ class ParentalController extends Controller
 
         if($form->isSubmitted() && $form->isValid()){
             $parental->setEcole($this->getUser()->getEcole());
+            $parental->addRole("ROLE_PARENT");
             $em=$this->getDoctrine()->getManager();
             $em->persist($parental);
             $em->flush();
-             return $this->redirectToRoute('listParentals');
+            return $this->redirectToRoute('listParentals');
         }
 
         return $this->render('parentsViews/addParent.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
@@ -59,10 +60,11 @@ class ParentalController extends Controller
         if($form->isSubmitted() && $form->isValid()){
             $em=$this->getDoctrine()->getManager();
             $em->flush();
-             return $this->redirectToRoute('listParentals');
+            if($this->getUser()==$parental) return $this->redirectToRoute('myProfileParental');
+            else return $this->redirectToRoute('listParentals');
         }
-
-        return $this->render('parentsViews/addParent.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        if($this->getUser()==$parental)return $this->render('parentsViews/editMyParent.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+        else return $this->render('parentsViews/addParent.html.twig',array("edit"=>true,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
 
 

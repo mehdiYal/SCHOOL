@@ -95,7 +95,7 @@ class ClasseController extends Controller
     public function affectProf(Request $request,Classe $classe)
     {
         $ensMat = new EnsMat();
-        $form=$this->createForm(EnsMatAddType::class,$ensMat);
+        $form=$this->createForm(EnsMatAddType::class,$ensMat,array("c"=>$classe));
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){

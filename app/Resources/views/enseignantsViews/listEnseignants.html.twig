@@ -28,12 +28,12 @@
                         <td>{{enseignant.typeContrat}}</td>
                         <td>{{enseignant.telephone}}</td>
                         <td>
-                            <a href="{{ path('editEnseignant',{'id':enseignant.id})}}">
+                            <a  href="{{ path('editEnseignant',{'id':enseignant.id})}}">
                                 <span class="fa fa-pencil-square-o"></span>
                             </a>
                         </td>
                         <td>
-                            <a href="{{ path('removeEnseignant',{'id':enseignant.id})}}">
+                            <a class="delete" href="{{ path('removeEnseignant',{'id':enseignant.id})}}">
                                 <span class="fa fa-trash"></span>
                             </a>
                         </td>
@@ -50,6 +50,7 @@
 {% endblock %}
 
 {% block active %}
+    
     <script>
         $('.active').removeClass('active');
         $('.ens').addClass('active');
