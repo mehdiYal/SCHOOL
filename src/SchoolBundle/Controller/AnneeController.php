@@ -32,7 +32,7 @@ class AnneeController extends Controller
             $em->flush();
             return $this->redirectToRoute('listAnnees');
         }
-$provider = $this->container->get('fos_message.provider');
+        $provider = $this->container->get('fos_message.provider');
         $inbox = $provider->getInboxThreads();
         $sentbox = $provider->getSentThreads();
         $nb=$provider->getNbUnreadMessages();
@@ -45,6 +45,10 @@ $provider = $this->container->get('fos_message.provider');
      */
     public function showAction(Request $request)
     {
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
         $repository=$this->getDoctrine()->getRepository("SchoolBundle:Annee");
         $annees=$repository->findAll();
         return $this->render('anneesViews/listAnnees.html.twig',array("annees"=>$annees,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));

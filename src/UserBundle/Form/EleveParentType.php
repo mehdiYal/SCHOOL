@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use UserBundle\Form\ParentalType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EleveParentType extends AbstractType
 {
@@ -20,9 +21,9 @@ class EleveParentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        // ->add('photo', FileType::class, array('label' => 'form.photo',
-        //                                               'required' => false,
-        //                                                'data_class' => null))
+        ->add('photo', FileType::class, array('label' => 'form.photo',
+                                                      'required' => false,
+                                                       'data_class' => null))
         ->add('nom',null,array('label' => 'form.name'))
         ->add('prenom',null,array('label' => 'form.lastName'))
         ->add('annee')
@@ -30,6 +31,11 @@ class EleveParentType extends AbstractType
         ->add('dateDeNaissance',null,array('label' => 'form.dateN',
                                             'widget' => 'single_text',
                                             'html5' => false,))
+        ->add('lieuDeNaissance')
+         ->add('genre',ChoiceType::class,array('label' => 'form.genre','choices'  => array(
+                                                                        'HOMME'=>'HOMME',
+                                                                        'FEMME'=>'FEMME',
+                                                                    ),))
         // ->add('email',EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
         ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
         ->add('plainPassword', RepeatedType::class, array(

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="UserBundle\Repository\EleveRepository")
+ * @ORM\Entity()
  */
 class Eleve extends User
 {
@@ -122,35 +122,35 @@ class Eleve extends User
     /**
      * @var string
      *
-     * @ORM\Column(name="nationalite", type="string", length=255)
+     * @ORM\Column(name="nationalite", type="string", length=255, nullable=true)
      */
     private $nationalite;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="text")
+     * @ORM\Column(name="adresse", type="text", nullable=true)
      */
     private $adresse;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="codePostal", type="integer")
+     * @ORM\Column(name="codePostal", type="integer", nullable=true)
      */
     private $codePostal;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="mobile", type="integer")
+     * @ORM\Column(name="mobile", type="integer", nullable=true)
      */
     private $mobile;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="telephone", type="integer")
+     * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     private $telephone;
 
@@ -164,27 +164,23 @@ class Eleve extends User
     /**
      * @var string
      *
-     * @ORM\Column(name="ecoleID", type="string", length=255)
+     * @ORM\Column(name="ecoleID", type="string", length=255, nullable=true)
      */
     private $ecoleID;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="groupeSanguin", type="string", length=255)
+     * @ORM\Column(name="groupeSanguin", type="string", length=255, nullable=true)
      */
     private $groupeSanguin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="text")
+     * @ORM\Column(name="commentaire", type="text", nullable=true)
      */
     private $commentaire;
-
-    public function __construct()
-    {
-    }
     
     /**
      * Set photo

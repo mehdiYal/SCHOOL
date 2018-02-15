@@ -12,8 +12,7 @@ use Doctrine\ORM\Mapping\AttributeOverride;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
- * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string", length=255)
  * @ORM\DiscriminatorMap({"admin" = "Admin","enseignant"="Enseignant","parental"="Parental","eleve"="Eleve","user"="User"})
  *
@@ -57,7 +56,7 @@ class User extends BaseUser implements ParticipantInterface
     public function __construct()
     {
         parent::__construct();
-        $this->setEnabled(1);
+        $this->setEnabled(true);
     }
 
 

@@ -136,9 +136,30 @@ class Ecole
     /**
      * @var int
      *
-     * @ORM\Column(name="fraisDeScolarite", type="integer",nullable=true)
+     * @ORM\Column(name="fraisDeScolariteMaternelle", type="integer",nullable=true)
      */
-    private $fraisDeScolarite;
+    private $fraisDeScolariteMaternelle;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fraisDeScolaritePrimaire", type="integer",nullable=true)
+     */
+    private $fraisDeScolaritePrimaire;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fraisDeScolariteCEM", type="integer",nullable=true)
+     */
+    private $fraisDeScolariteCEM;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fraisDeScolariteLycee", type="integer",nullable=true)
+     */
+    private $fraisDeScolariteLycee;
 
     /**
      * @var int
@@ -796,5 +817,125 @@ class Ecole
     public function getFraisDeScolarite()
     {
         return $this->fraisDeScolarite;
+    }
+
+    /**
+     * Set fraisDeScolariteMatrnelle
+     *
+     * @param integer $fraisDeScolariteMatrnelle
+     *
+     * @return Ecole
+     */
+    public function setFraisDeScolariteMatrnelle($fraisDeScolariteMatrnelle)
+    {
+        $this->fraisDeScolariteMatrnelle = $fraisDeScolariteMatrnelle;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeScolariteMatrnelle
+     *
+     * @return integer
+     */
+    public function getFraisDeScolariteMatrnelle()
+    {
+        return $this->fraisDeScolariteMatrnelle;
+    }
+
+    /**
+     * Set fraisDeScolaritePrimaire
+     *
+     * @param integer $fraisDeScolaritePrimaire
+     *
+     * @return Ecole
+     */
+    public function setFraisDeScolaritePrimaire($fraisDeScolaritePrimaire)
+    {
+        $this->fraisDeScolaritePrimaire = $fraisDeScolaritePrimaire;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeScolaritePrimaire
+     *
+     * @return integer
+     */
+    public function getFraisDeScolaritePrimaire()
+    {
+        return $this->fraisDeScolaritePrimaire;
+    }
+
+    /**
+     * Set fraisDeScolariteCEM
+     *
+     * @param integer $fraisDeScolariteCEM
+     *
+     * @return Ecole
+     */
+    public function setFraisDeScolariteCEM($fraisDeScolariteCEM)
+    {
+        $this->fraisDeScolariteCEM = $fraisDeScolariteCEM;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeScolariteCEM
+     *
+     * @return integer
+     */
+    public function getFraisDeScolariteCEM()
+    {
+        return $this->fraisDeScolariteCEM;
+    }
+
+    /**
+     * Set fraisDeScolariteLycee
+     *
+     * @param integer $fraisDeScolariteLycee
+     *
+     * @return Ecole
+     */
+    public function setFraisDeScolariteLycee($fraisDeScolariteLycee)
+    {
+        $this->fraisDeScolariteLycee = $fraisDeScolariteLycee;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeScolariteLycee
+     *
+     * @return integer
+     */
+    public function getFraisDeScolariteLycee()
+    {
+        return $this->fraisDeScolariteLycee;
+    }
+
+    /**
+     * Set fraisDeScolariteMaternelle
+     *
+     * @param integer $fraisDeScolariteMaternelle
+     *
+     * @return Ecole
+     */
+    public function setFraisDeScolariteMaternelle($fraisDeScolariteMaternelle)
+    {
+        $this->fraisDeScolariteMaternelle = $fraisDeScolariteMaternelle;
+
+        return $this;
+    }
+
+    /**
+     * Get fraisDeScolariteMaternelle
+     *
+     * @return integer
+     */
+    public function getFraisDeScolariteMaternelle()
+    {
+        return $this->fraisDeScolariteMaternelle;
     }
 }

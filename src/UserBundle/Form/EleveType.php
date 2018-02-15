@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use UserBundle\Form\ParentalType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EleveType extends AbstractType
 {
@@ -30,6 +31,11 @@ class EleveType extends AbstractType
         ->add('dateDeNaissance',null,array('label' => 'form.dateN',
                                             'widget' => 'single_text',
                                             'html5' => false,))
+         ->add('lieuDeNaissance')
+         ->add('genre',ChoiceType::class,array('label' => 'form.genre','choices'  => array(
+                                                                        'HOMME'=>'HOMME',
+                                                                        'FEMME'=>'FEMME',
+                                                                    ),))
         // ->add('email',EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
         ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
         ->add('plainPassword', RepeatedType::class, array(

@@ -11,9 +11,9 @@
                     <span class="fa fa-cutlery"></span>
                 </div>                             
                 <div class="widget-data">
-                    <div class="widget-int num-count">{{app.user.ecole.fraisDeRestauration}} DZD</div>
+                    <div class="widget-int num-count">{{app.user.ecole.fraisDeRestauration}} DZD/Mois</div>
                     <div class="widget-title">Frais de Restauration</div>
-                    <div class="widget-subtitle">{{app.user.ecole.fraisDeRestauration}} DZD par an</div>
+                    <div class="widget-subtitle">{{app.user.ecole.fraisDeRestauration*9}} DZD/an</div>
                 </div>      
                 <div class="widget-controls">                                
                     <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
@@ -26,15 +26,32 @@
         <div class="col-md-4">
             
             <!-- START WIDGET MESSAGES -->
-            <div class="widget widget-default widget-item-icon">
+            <div class="widget widget-default widget-carousel">
                 <div class="widget-item-left">
                     <span class="fa fa-graduation-cap"></span>
-                </div>                             
-                <div class="widget-data">
-                    <div class="widget-int num-count">{{app.user.ecole.fraisDeScolarite}} DZD</div>
-                    <div class="widget-title">Frais de Scolarité</div>
-                    <div class="widget-subtitle">{{app.user.ecole.fraisDeScolarite}} DZD par an</div>
-                </div>      
+                </div>
+                    <div class="owl-carousel widget-data" id="owl-example">
+                        <div>                                    
+                            <div class="widget-title">Frais de Scolarité</div>                                               
+                            <div class="widget-subtitle">Maternelle</div>
+                            <div class="widget-int">{{app.user.ecole.fraisDeScolariteMaternelle}}<small class="widget-subtitle">DZD/Mois</small></div>
+                        </div>
+                         <div>                                    
+                            <div class="widget-title">Frais de Scolarité</div>                                               
+                            <div class="widget-subtitle">Primaire</div>
+                            <div class="widget-int">{{app.user.ecole.fraisDeScolaritePrimaire}}<small class="widget-subtitle">DZD/Mois</small></div>
+                        </div> 
+                        <div>                                    
+                            <div class="widget-title">Frais de Scolarité</div>                                               
+                            <div class="widget-subtitle">CEM</div>
+                            <div class="widget-int">{{app.user.ecole.fraisDeScolariteCEM}}<small class="widget-subtitle">DZD/Mois</small></div>
+                        </div>
+                         <div>                                    
+                            <div class="widget-title">Frais de Scolarité</div>                                               
+                            <div class="widget-subtitle">Lycée</div>
+                            <div class="widget-int">{{app.user.ecole.fraisDeScolariteLycee}}<small class="widget-subtitle">DZD/Mois</small></div>
+                        </div>
+                    </div>                                                            
                 <div class="widget-controls">                                
                     <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                 </div>
@@ -51,9 +68,9 @@
                     <span class="fa fa-bus"></span>
                 </div>                             
                 <div class="widget-data">
-                    <div class="widget-int num-count">{{app.user.ecole.fraisDeTransport}} DZD</div>
+                    <div class="widget-int num-count">{{app.user.ecole.fraisDeTransport}} DZD/Mois</div>
                     <div class="widget-title">Frais de Transport</div>
-                    <div class="widget-subtitle">{{app.user.ecole.fraisDeTransport}} DZD par an</div>
+                    <div class="widget-subtitle">{{app.user.ecole.fraisDeTransport*9}} DZD/an</div>
                 </div>      
                 <div class="widget-controls">                                
                     <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
@@ -87,7 +104,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nom & Prenom</th>
-                                            <th>Classe</th>
+                                            <th>Année</th>
                                             <th>Payé</th>
                                             <th>Reste</th>
                                             <th>Ajouter Payement</th>
@@ -98,16 +115,16 @@
                                         {% for eleve in app.user.ecole.eleves %}
                                             <tr class="{% if (eleve.parent == null)%} danger {% endif %}" id="{{eleve.id}}">
                                                 <td>{{ eleve.nom|upper}} {{ eleve.prenom}}</td>
-                                                <td>{% if eleve.classe != null %} {{ eleve.classe.nom}} {% endif %}</td>
+                                                <td>{% if eleve.classe != null %} {{ eleve.classe.annee}} {% endif %}</td>
                                                 <td>0DZD</td>
-                                                <td>0DZD</td>
+                                                <td>{{app.user.ecole.fraisDeRestauration+app.user.ecole.fraisDeScolariteMaternelle+app.user.ecole.fraisDeTransport}}DZD</td>
                                                 <td style="text-align: center;">
                                                     <a href="" data-toggle="modal" data-target="#pay">
                                                         <span class="fa fa-plus"></span>
                                                     </a>
                                                 </td>
                                                 <td style="text-align: center;">
-                                                    <a href="" class="listPay" data-toggle="modal" data-target="#listpay">
+                                                    <a href="#" class="listPay" data-toggle="modal" data-target="#listpay">
                                                         <span class="fa fa-list"></span>
                                                     </a>
                                                 </td>
@@ -173,8 +190,9 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="listBody"></div>
         <div class="table-responsive">
-                <table id="customers2" class="table datatable">
+                <table id="" class="table">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -182,7 +200,7 @@
                             <th>Montant</th>
                         </tr>
                     </thead>
-                    <tbody class="lisBody">
+                    <tbody >
                         
                     </tbody>
                 </table>                                    

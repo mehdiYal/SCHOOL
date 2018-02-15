@@ -85,6 +85,7 @@ class EleveController extends Controller
                 $eleve->setphoto($fileName);
              }
             $eleve->setEcole($this->getUser()->getEcole());
+            $eleve->addRole("ROLE_ELEVE");
             $em=$this->getDoctrine()->getManager();
             $em->persist($eleve);
             $em->flush();

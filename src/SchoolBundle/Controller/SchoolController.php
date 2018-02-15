@@ -8,6 +8,7 @@ use SchoolBundle\Entity\Ecole;
 use UserBundle\Entity\Eleve;
 use SchoolBundle\Form\EcoleType;
 use SchoolBundle\Form\EcoleEditType;
+use SchoolBundle\Form\PaymentEcoleType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -110,6 +111,31 @@ class SchoolController extends Controller
 
         return $this->render('schoolsViews/addSchool.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
     }
+
+    /**
+     * @Route("/editFrais", name="editFrais")
+     */
+    public function editFraisAction(Request $request)
+    {
+        $ecole=$this->getUser()->getEcole();
+        $form=$this->createForm(PaymentEcoleType::class,$ecole);
+        $form->handleRequest($request);
+
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($ecole);
+            $em->flush();
+            return $this->redirectToRoute('mySchool');
+        }
+
+        return $this->render('schoolsViews/editFrais.html.twig',array("edit"=>false,"form"=>$form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox));
+    }
+
     /**
      * @Route("/editMy/{id}", name="editMySchool")
      */

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AdminType extends AbstractType
 {
@@ -22,7 +23,10 @@ class AdminType extends AbstractType
                                                        'data_class' => null))
         ->add('nom',null,array('label' => 'form.name'))
         ->add('prenom',null,array('label' => 'form.lastName'))
-        ->add('genre',null,array('label' => 'form.genre'))
+        ->add('genre',ChoiceType::class,array('label' => 'form.genre','choices'  => array(
+                                                                        'HOMME'=>'HOMME',
+                                                                        'FEMME'=>'FEMME',
+                                                                    ),))
         ->add('dateDeNaissance',null,array('label' => 'form.dateN',
                                             'widget' => 'single_text',
                                             'html5' => false,))

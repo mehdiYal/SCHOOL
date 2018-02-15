@@ -13,7 +13,7 @@ class PaymentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('montant')->add('datePayment',null,array('label' => 'form.dateN',
+        $builder->add('montant')->add('datePayment',null,array('label' => 'Date',
                                             'widget' => 'single_text',
                                             'html5' => false,));
     }
