@@ -29,7 +29,7 @@ class ProgrammeController extends Controller
      * @Route("/new", name="program_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+  /*  public function newAction(Request $request)
     {
        /* $programme= new Programme();
        
@@ -49,7 +49,52 @@ class ProgrammeController extends Controller
         $programme->setJour($jour);
 
         $em->persist($programme);
-        $em->flush();*/
+        $em->flush();
+    } */
+
+     /**
+     * @Route("/new", name="programme_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {   
+        // Connection BDD
+        $em = $this->getDoctrine()->getManager();
+        $programmes=null;
+       
+        //Initialisation des ids
+       // $idClasse=$request->attributes->get('id');
+
+        $programme= new Programme();
+        $classe=new Classe();
+        $horraire=$em->getRepository('SchoolBundle:Horraire')->findAll();
+
+        $form=$this->createForm(ProgrammeType::class,$programme);
+        $form->handleRequest($request);
+       
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($programme);
+            $em->flush($programme);
+            
+          //  return $this->redirectToRoute('programme_index');
+            $provider = $this->container->get('fos_message.provider');
+            $inbox = $provider->getInboxThreads();
+            $sentbox = $provider->getSentThreads();
+            $nb=$provider->getNbUnreadMessages();
+            return $this->render('programme/add.html.twig',array(
+            'programmes'=> $programmes,
+            'form' => $form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'horraire'=>$horraire));
+
+      
+        }
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+        return $this->render('programme/add.html.twig',array(
+            'programmes'=> $programmes,
+            'form' => $form->createView(),'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'horraire'=>$horraire));
     }
 
      /**
@@ -69,7 +114,7 @@ class ProgrammeController extends Controller
         $data['jour']= $em->getRepository('SchoolBundle:Jour')->findAll();
         $data['horraire']= $em->getRepository('SchoolBundle:Horraire')->findAll();
 
-        return $this->render('programme/show.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+        return $this->render('programme/show2.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
       
     }   
 
@@ -89,7 +134,48 @@ class ProgrammeController extends Controller
         $data['programme']= $em->getRepository('SchoolBundle:Programme')->findBy(array('enseignant'=>$id));
         $data['jour']= $em->getRepository('SchoolBundle:Jour')->findAll();
         $data['horraire']= $em->getRepository('SchoolBundle:Horraire')->findAll();
-        return $this->render('programme/show.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
-    }   
+
+        return $this->render('programme/show2.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+      
+    }
+
+    /**
+     * @Route("/show/list/{id}", name="program_list")
+     */
+    public function showListAction(Request $request)
+    {
+        $user=$this->getUser();
+        $provider = $this->container->get('fos_message.provider');
+        $inbox = $provider->getInboxThreads();
+        $sentbox = $provider->getSentThreads();
+        $nb=$provider->getNbUnreadMessages();
+
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->attributes->get('id');
+        $data['classes']= $em->getRepository('SchoolBundle:Classe')->findBy(array('ecole'=> $id));
+
+        return $this->render('programme/list.html.twig',array("data"=>$data,'newMessages'=>$nb,'inbox'=>$inbox,"sentbox"=>$sentbox,'recipient'=>$user));
+      
+    }
+
+       /**
+     * @Route("/delete/{id}", name="delete_programme")
+     */
+    public function deleteAction(Request $request)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $id=$request->attributes->get('id');
+        $programme=$em->getRepository('SchoolBundle:Programme')->findOneBy(array('id'=> $id));
+
+
+        $em->remove($programme);
+        $em->flush();
+        
+        $referer = $request->headers->get('referer');
+     
+        return $this->redirect($referer);  
+    }
+
+
 
 }

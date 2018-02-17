@@ -187,8 +187,8 @@
                             <li class="xn-openable">
                                 <a href="#"><span class="fa fa-table"></span> <span class="xn-text">Gestion des Emplois de temps</span></a>
                                 <ul>
-                                    <li><a href="#"><span class="xn-text">Ajouter Emploi de temps</span></a></li>
-                                    <li><a href="#"><span class="xn-text">Liste des Emplois de temps </span></a></li>
+                                    <li><a href="{{path('programme_new')}}"><span class="xn-text">Ajouter Emploi de temps</span></a></li>
+                                    <li><a href="{{path('program_list',{'id': app.user.ecole.id})}}"><span class="xn-text">Liste des Emplois de temps </span></a></li>
                                 </ul>
                             </li>
 

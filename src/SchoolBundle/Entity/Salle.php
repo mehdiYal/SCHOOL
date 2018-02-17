@@ -158,4 +158,8 @@ class Salle
     {
         return $this->ecole;
     }
+
+    public function __toString(){
+        return $this->getNom();
+    }
 }

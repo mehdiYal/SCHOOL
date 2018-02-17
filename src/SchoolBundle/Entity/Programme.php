@@ -117,6 +117,7 @@ class Programme
      * @return \SchoolBundle\Entity\Matiere
      */
     public function getMatiere()
+
     {
         return $this->matiere;
     }
@@ -216,4 +217,10 @@ class Programme
     {
         return $this->jour;
     }
+
+    public function __toString(){
+        return $this->getClasse().' '.$this->getSalle().' '.$this->getMatiere().' '.$this->getEnseignant();
+    }
+
+   
 }

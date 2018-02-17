@@ -65,9 +65,9 @@ class Horraire
      *
      * @return \DateTime
      */
-    public function getHeureDeb()
+    public function getHeureDeb($format = 'H:i')
     {
-        return $this->heureDeb;
+        return $this->heureDeb->format($format);
     }
 
     /**
@@ -89,9 +89,13 @@ class Horraire
      *
      * @return \DateTime
      */
-    public function getHeureFin()
+    public function getHeureFin($format = 'H:i')
     {
-        return $this->heureFin;
+        return $this->heureFin->format($format);
+    }
+
+    public function __toString(){
+        return $this->getHeureDeb().'--'.$this->getHeureFin();
     }
 }
 
